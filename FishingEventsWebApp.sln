@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishingEventsWebApp", "FishingEventsWebApp\FishingEventsWebApp.csproj", "{C3B23DA1-4FCD-45DF-A631-FE942E5F6E97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FishingEventsWebApp", "FishingEventsWebApp\FishingEventsWebApp.csproj", "{C3B23DA1-4FCD-45DF-A631-FE942E5F6E97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishingEventsApp.Core", "FishingEventsApp.Core\FishingEventsApp.Core.csproj", "{ACD102F5-EAB9-40EA-83F5-C1AA7ECB11CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FishingEventsApp.Core", "FishingEventsApp.Core\FishingEventsApp.Core.csproj", "{ACD102F5-EAB9-40EA-83F5-C1AA7ECB11CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishingEvents.Infrastructure", "FishingEvents.Infrastructure\FishingEvents.Infrastructure.csproj", "{747BCDED-1E52-43A0-B6B0-2E7C05D29C4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FishingEvents.Infrastructure", "FishingEvents.Infrastructure\FishingEvents.Infrastructure.csproj", "{747BCDED-1E52-43A0-B6B0-2E7C05D29C4B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{C3EFDC61-866B-46ED-828A-AFCDA22DB3A8}"
 EndProject
