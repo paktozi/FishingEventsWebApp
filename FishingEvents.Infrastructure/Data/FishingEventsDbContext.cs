@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace FishingEvents.Infrastructure.Data
+namespace FishingEventsApp.Infrastructure
 {
     public class FishingEventsDbContext : IdentityDbContext
     {

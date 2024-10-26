@@ -1,4 +1,4 @@
-using FishingEvents.Infrastructure.Data;
+using FishingEventsApp.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
