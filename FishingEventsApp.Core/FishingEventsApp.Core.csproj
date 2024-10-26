@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FishingEvents.Infrastructure\FishingEvents.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
