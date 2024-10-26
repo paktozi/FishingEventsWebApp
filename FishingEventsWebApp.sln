@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{3D462CC6-3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{480E9037-4A89-4E27-83ED-380D63301142}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{07D89F68-0ECD-4FDE-A739-3D3340251067}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishingEventsApp.Common", "FishingEventsApp.Common\FishingEventsApp.Common.csproj", "{1B8086A1-566E-4E13-9B81-EAE5E66E1773}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,10 @@ Global
 		{747BCDED-1E52-43A0-B6B0-2E7C05D29C4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{747BCDED-1E52-43A0-B6B0-2E7C05D29C4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{747BCDED-1E52-43A0-B6B0-2E7C05D29C4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B8086A1-566E-4E13-9B81-EAE5E66E1773}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B8086A1-566E-4E13-9B81-EAE5E66E1773}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B8086A1-566E-4E13-9B81-EAE5E66E1773}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B8086A1-566E-4E13-9B81-EAE5E66E1773}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +49,7 @@ Global
 		{C3B23DA1-4FCD-45DF-A631-FE942E5F6E97} = {C3EFDC61-866B-46ED-828A-AFCDA22DB3A8}
 		{ACD102F5-EAB9-40EA-83F5-C1AA7ECB11CF} = {3D462CC6-30B4-48E8-AE03-782434916180}
 		{747BCDED-1E52-43A0-B6B0-2E7C05D29C4B} = {480E9037-4A89-4E27-83ED-380D63301142}
+		{1B8086A1-566E-4E13-9B81-EAE5E66E1773} = {07D89F68-0ECD-4FDE-A739-3D3340251067}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78D6B3E6-9736-417E-BA5D-2BE68078D986}

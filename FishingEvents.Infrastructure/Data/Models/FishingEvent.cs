@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static FishingEventsApp.Common.ValidationConstants;
 
 namespace FishingEvents.Infrastructure.Data.Models
 {
@@ -14,10 +10,11 @@ namespace FishingEvents.Infrastructure.Data.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [MaxLength(FishingEventNameMaxLength)]
         public required string Name { get; set; }
 
         [Required]
+        [MaxLength(FishingEventDescriptionMaxLength)]
         public required string Description { get; set; }
 
         [Required]
@@ -38,6 +35,7 @@ namespace FishingEvents.Infrastructure.Data.Models
         public string CreatorId { get; set; } = null!;
         public IdentityUser Creator { get; set; } = null!;
 
+        [Required]
         public bool IsCompleted { get; set; }
     }
 }
