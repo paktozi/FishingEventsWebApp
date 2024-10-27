@@ -17,6 +17,9 @@ namespace FishingEventsApp.Common
         public const int FishingEventDescriptionMinLength = 5;
         public const int FishingEventDescriptionMaxLength = 250;
 
+        public const int LocationNameMinLength = 3;
+        public const int LocationNameMaxLength = 50;
+
 
 
     }
