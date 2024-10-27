@@ -1,9 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FishingEvents.Infrastructure.Data.Models
 {
-    public class Leaderboard
+    public class LeaderBoard
     {
+
         [ForeignKey(nameof(FishingEvent))]
         public int FishingEventId { get; set; }
         public FishingEvent FishingEvent { get; set; }
@@ -12,7 +15,8 @@ namespace FishingEvents.Infrastructure.Data.Models
         public int ParticipantId { get; set; }
         public Participant Participant { get; set; }
 
-        public double TotalWeightCaught { get; set; }
-        public int Rank { get; set; }
+        public double TotalWeight { get; set; }
+        public int TotalFishCaught { get; set; }
+
     }
 }

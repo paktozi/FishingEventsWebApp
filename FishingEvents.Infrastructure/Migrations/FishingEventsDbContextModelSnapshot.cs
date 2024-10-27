@@ -22,27 +22,19 @@ namespace FishingEvents.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.Creator", b =>
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.EventParticipant", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("FishingEventId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<int>("ParticipantId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("FishingEventId", "ParticipantId");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.HasIndex("ParticipantId");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Creators");
+                    b.ToTable("EventParticipants");
                 });
 
             modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.FishCaught", b =>
@@ -70,7 +62,8 @@ namespace FishingEvents.Infrastructure.Migrations
 
                     b.Property<string>("Species")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<double>("Weight")
                         .HasColumnType("float");
@@ -81,7 +74,7 @@ namespace FishingEvents.Infrastructure.Migrations
 
                     b.HasIndex("ParticipantId");
 
-                    b.ToTable("FishCaughtRecords");
+                    b.ToTable("FishCaught");
                 });
 
             modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.FishingEvent", b =>
@@ -92,21 +85,27 @@ namespace FishingEvents.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CreatorId")
-                        .HasColumnType("int");
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("EventName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("LocationId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -117,7 +116,7 @@ namespace FishingEvents.Infrastructure.Migrations
                     b.ToTable("FishingEvents");
                 });
 
-            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.FishingEventParticipant", b =>
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.LeaderBoard", b =>
                 {
                     b.Property<int>("FishingEventId")
                         .HasColumnType("int");
@@ -125,40 +124,24 @@ namespace FishingEvents.Infrastructure.Migrations
                     b.Property<int>("ParticipantId")
                         .HasColumnType("int");
 
-                    b.HasKey("FishingEventId", "ParticipantId");
-
-                    b.HasIndex("ParticipantId");
-
-                    b.ToTable("FishingEventParticipants");
-                });
-
-            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.Leaderboard", b =>
-                {
-                    b.Property<int>("FishingEventId")
+                    b.Property<int>("TotalFishCaught")
                         .HasColumnType("int");
 
-                    b.Property<int>("ParticipantId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Rank")
-                        .HasColumnType("int");
-
-                    b.Property<double>("TotalWeightCaught")
+                    b.Property<double>("TotalWeight")
                         .HasColumnType("float");
 
                     b.HasKey("FishingEventId", "ParticipantId");
 
                     b.HasIndex("ParticipantId");
 
-                    b.ToTable("Leaderboards");
+                    b.ToTable("LeaderBoards");
                 });
 
             modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.Location", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasComment("Location Identifier");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
@@ -166,11 +149,8 @@ namespace FishingEvents.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FishingType")
+                    b.Property<string>("FishingMethod")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -190,6 +170,11 @@ namespace FishingEvents.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -404,27 +389,35 @@ namespace FishingEvents.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.Creator", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.FishCaught", b =>
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.EventParticipant", b =>
                 {
                     b.HasOne("FishingEvents.Infrastructure.Data.Models.FishingEvent", "FishingEvent")
-                        .WithMany("FishCaughtRecords")
+                        .WithMany("EventParticipants")
                         .HasForeignKey("FishingEventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FishingEvents.Infrastructure.Data.Models.Participant", "Participant")
-                        .WithMany("FishCaughtRecords")
+                        .WithMany("EventParticipants")
+                        .HasForeignKey("ParticipantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FishingEvent");
+
+                    b.Navigation("Participant");
+                });
+
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.FishCaught", b =>
+                {
+                    b.HasOne("FishingEvents.Infrastructure.Data.Models.FishingEvent", "FishingEvent")
+                        .WithMany("FishCaught")
+                        .HasForeignKey("FishingEventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FishingEvents.Infrastructure.Data.Models.Participant", "Participant")
+                        .WithMany("FishCaught")
                         .HasForeignKey("ParticipantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -436,8 +429,8 @@ namespace FishingEvents.Infrastructure.Migrations
 
             modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.FishingEvent", b =>
                 {
-                    b.HasOne("FishingEvents.Infrastructure.Data.Models.Creator", "Creator")
-                        .WithMany("FishingEvents")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Creator")
+                        .WithMany()
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -445,7 +438,7 @@ namespace FishingEvents.Infrastructure.Migrations
                     b.HasOne("FishingEvents.Infrastructure.Data.Models.Location", "Location")
                         .WithMany("FishingEvents")
                         .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Creator");
@@ -453,35 +446,16 @@ namespace FishingEvents.Infrastructure.Migrations
                     b.Navigation("Location");
                 });
 
-            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.FishingEventParticipant", b =>
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.LeaderBoard", b =>
                 {
                     b.HasOne("FishingEvents.Infrastructure.Data.Models.FishingEvent", "FishingEvent")
-                        .WithMany("Participants")
+                        .WithMany("LeaderBoards")
                         .HasForeignKey("FishingEventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FishingEvents.Infrastructure.Data.Models.Participant", "Participant")
-                        .WithMany()
-                        .HasForeignKey("ParticipantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("FishingEvent");
-
-                    b.Navigation("Participant");
-                });
-
-            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.Leaderboard", b =>
-                {
-                    b.HasOne("FishingEvents.Infrastructure.Data.Models.FishingEvent", "FishingEvent")
-                        .WithMany("Leaderboards")
-                        .HasForeignKey("FishingEventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FishingEvents.Infrastructure.Data.Models.Participant", "Participant")
-                        .WithMany("Leaderboards")
+                        .WithMany("LeaderBoards")
                         .HasForeignKey("ParticipantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -553,18 +527,13 @@ namespace FishingEvents.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.Creator", b =>
-                {
-                    b.Navigation("FishingEvents");
-                });
-
             modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.FishingEvent", b =>
                 {
-                    b.Navigation("FishCaughtRecords");
+                    b.Navigation("EventParticipants");
 
-                    b.Navigation("Leaderboards");
+                    b.Navigation("FishCaught");
 
-                    b.Navigation("Participants");
+                    b.Navigation("LeaderBoards");
                 });
 
             modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.Location", b =>
@@ -574,9 +543,11 @@ namespace FishingEvents.Infrastructure.Migrations
 
             modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.Participant", b =>
                 {
-                    b.Navigation("FishCaughtRecords");
+                    b.Navigation("EventParticipants");
 
-                    b.Navigation("Leaderboards");
+                    b.Navigation("FishCaught");
+
+                    b.Navigation("LeaderBoards");
                 });
 #pragma warning restore 612, 618
         }

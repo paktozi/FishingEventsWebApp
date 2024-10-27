@@ -1,24 +1,27 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace FishingEvents.Infrastructure.Data.Models
 {
     public class Participant
     {
-        [Key]
         public int Id { get; set; }
 
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
-
         public IdentityUser User { get; set; }
 
-        // FishCaught relationship: a participant can have multiple fish caught records
-        public ICollection<FishCaught> FishCaughtRecords { get; set; } = new List<FishCaught>();
+        [Required, MaxLength(100)]
+        public string Name { get; set; }
 
-        // Leaderboard relationship: participant can be on multiple leaderboards for various events
-        public ICollection<Leaderboard> Leaderboards { get; set; } = new List<Leaderboard>();
+        public ICollection<EventParticipant> EventParticipants { get; set; } = new List<EventParticipant>();
+        public ICollection<FishCaught> FishCaught { get; set; } = new List<FishCaught>();
+        public ICollection<LeaderBoard> LeaderBoards { get; set; } = new List<LeaderBoard>();
     }
 }

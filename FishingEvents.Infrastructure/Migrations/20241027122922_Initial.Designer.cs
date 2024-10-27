@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FishingEvents.Infrastructure.Migrations
 {
     [DbContext(typeof(FishingEventsDbContext))]
-    [Migration("20241026161014_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20241027122922_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,171 @@ namespace FishingEvents.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.EventParticipant", b =>
+                {
+                    b.Property<int>("FishingEventId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ParticipantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FishingEventId", "ParticipantId");
+
+                    b.HasIndex("ParticipantId");
+
+                    b.ToTable("EventParticipants");
+                });
+
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.FishCaught", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DateCaught")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FishImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FishingEventId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Length")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ParticipantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Species")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<double>("Weight")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FishingEventId");
+
+                    b.HasIndex("ParticipantId");
+
+                    b.ToTable("FishCaught");
+                });
+
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.FishingEvent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EventName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("LocationId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("LocationId");
+
+                    b.ToTable("FishingEvents");
+                });
+
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.LeaderBoard", b =>
+                {
+                    b.Property<int>("FishingEventId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ParticipantId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalFishCaught")
+                        .HasColumnType("int");
+
+                    b.Property<double>("TotalWeight")
+                        .HasColumnType("float");
+
+                    b.HasKey("FishingEventId", "ParticipantId");
+
+                    b.HasIndex("ParticipantId");
+
+                    b.ToTable("LeaderBoards");
+                });
+
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.Location", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Altitude")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FishingMethod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.Participant", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Participants");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -227,6 +392,93 @@ namespace FishingEvents.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.EventParticipant", b =>
+                {
+                    b.HasOne("FishingEvents.Infrastructure.Data.Models.FishingEvent", "FishingEvent")
+                        .WithMany("EventParticipants")
+                        .HasForeignKey("FishingEventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FishingEvents.Infrastructure.Data.Models.Participant", "Participant")
+                        .WithMany("EventParticipants")
+                        .HasForeignKey("ParticipantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FishingEvent");
+
+                    b.Navigation("Participant");
+                });
+
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.FishCaught", b =>
+                {
+                    b.HasOne("FishingEvents.Infrastructure.Data.Models.FishingEvent", "FishingEvent")
+                        .WithMany("FishCaught")
+                        .HasForeignKey("FishingEventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FishingEvents.Infrastructure.Data.Models.Participant", "Participant")
+                        .WithMany("FishCaught")
+                        .HasForeignKey("ParticipantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FishingEvent");
+
+                    b.Navigation("Participant");
+                });
+
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.FishingEvent", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("FishingEvents.Infrastructure.Data.Models.Location", "Location")
+                        .WithMany("FishingEvents")
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Creator");
+
+                    b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.LeaderBoard", b =>
+                {
+                    b.HasOne("FishingEvents.Infrastructure.Data.Models.FishingEvent", "FishingEvent")
+                        .WithMany("LeaderBoards")
+                        .HasForeignKey("FishingEventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FishingEvents.Infrastructure.Data.Models.Participant", "Participant")
+                        .WithMany("LeaderBoards")
+                        .HasForeignKey("ParticipantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FishingEvent");
+
+                    b.Navigation("Participant");
+                });
+
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.Participant", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -276,6 +528,29 @@ namespace FishingEvents.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.FishingEvent", b =>
+                {
+                    b.Navigation("EventParticipants");
+
+                    b.Navigation("FishCaught");
+
+                    b.Navigation("LeaderBoards");
+                });
+
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.Location", b =>
+                {
+                    b.Navigation("FishingEvents");
+                });
+
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.Participant", b =>
+                {
+                    b.Navigation("EventParticipants");
+
+                    b.Navigation("FishCaught");
+
+                    b.Navigation("LeaderBoards");
                 });
 #pragma warning restore 612, 618
         }

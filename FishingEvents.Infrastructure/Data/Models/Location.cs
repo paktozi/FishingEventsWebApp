@@ -6,21 +6,13 @@ namespace FishingEvents.Infrastructure.Data.Models
 {
     public class Location
     {
-        [Key]
-        [Comment("Location Identifier")]
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(100)]
-        public string Name { get; set; } = string.Empty;
+        [Required, MaxLength(100)]
+        public string Name { get; set; }
 
-        [Required]
-        public string Altitude { get; set; } = string.Empty;
-
-        public string? ImageUrl { get; set; }
-
-        [Required]
-        public string FishingType { get; set; } = string.Empty;
+        public string Altitude { get; set; }
+        public string FishingMethod { get; set; }
 
         public ICollection<FishingEvent> FishingEvents { get; set; } = new List<FishingEvent>();
     }

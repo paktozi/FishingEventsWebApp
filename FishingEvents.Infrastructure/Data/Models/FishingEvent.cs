@@ -5,39 +5,30 @@ using static FishingEventsApp.Common.ValidationConstants;
 
 namespace FishingEvents.Infrastructure.Data.Models
 {
+
     public class FishingEvent
     {
-        [Key]
         public int Id { get; set; }
 
-        [Required]
-        public string Title { get; set; }
+        [Required, MaxLength(100)]
+        public string EventName { get; set; }
+
+        public string Description { get; set; }
 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        // Foreign Key and relationship to Creator
-        [Required]
-        [ForeignKey(nameof(Creator))]
-        public int CreatorId { get; set; }
-
-        public Creator Creator { get; set; }
-
-        // Foreign Key and relationship to Location
-        [Required]
         [ForeignKey(nameof(Location))]
         public int LocationId { get; set; }
-
         public Location Location { get; set; }
 
-        // Navigation property for participants in this event
-        public ICollection<FishingEventParticipant> Participants { get; set; } = new List<FishingEventParticipant>();
+        [ForeignKey(nameof(Creator))]
+        public string CreatorId { get; set; }
+        public IdentityUser Creator { get; set; }
 
-        // Navigation property for leaderboard entries
-        public ICollection<Leaderboard> Leaderboards { get; set; } = new List<Leaderboard>();
-
-        // Navigation property for fish caught in this event
-        public ICollection<FishCaught> FishCaughtRecords { get; set; } = new List<FishCaught>();
+        public ICollection<EventParticipant> EventParticipants { get; set; } = new List<EventParticipant>();
+        public ICollection<FishCaught> FishCaught { get; set; } = new List<FishCaught>();
+        public ICollection<LeaderBoard> LeaderBoards { get; set; } = new List<LeaderBoard>();
     }
 
 }

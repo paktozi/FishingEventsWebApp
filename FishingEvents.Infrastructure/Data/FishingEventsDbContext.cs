@@ -10,63 +10,69 @@ namespace FishingEventsApp.Infrastructure
         public FishingEventsDbContext(DbContextOptions<FishingEventsDbContext> options)
             : base(options)
         {
-
         }
 
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-
-            // Define composite primary keys for many-to-many relationships
-            builder.Entity<FishingEventParticipant>()
-                .HasKey(fp => new { fp.FishingEventId, fp.ParticipantId });
-
-            builder.Entity<Leaderboard>()
-                .HasKey(lb => new { lb.FishingEventId, lb.ParticipantId });
-
-            // Define relationships
-            builder.Entity<FishingEvent>()
-                .HasOne(e => e.Creator)
-                .WithMany(c => c.FishingEvents)
-                .HasForeignKey(e => e.CreatorId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<FishingEvent>()
-                .HasOne(e => e.Location)
-                .WithMany(l => l.FishingEvents)
-                .HasForeignKey(e => e.LocationId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<FishCaught>()
-                .HasOne(fc => fc.Participant)
-                .WithMany(p => p.FishCaughtRecords)
-                .HasForeignKey(fc => fc.ParticipantId);
-
-            builder.Entity<FishCaught>()
-                .HasOne(fc => fc.FishingEvent)
-                .WithMany(fe => fe.FishCaughtRecords)
-                .HasForeignKey(fc => fc.FishingEventId);
-
-            builder.Entity<Leaderboard>()
-                .HasOne(lb => lb.Participant)
-                .WithMany(p => p.Leaderboards)
-                .HasForeignKey(lb => lb.ParticipantId);
-
-            builder.Entity<Leaderboard>()
-                .HasOne(lb => lb.FishingEvent)
-                .WithMany(fe => fe.Leaderboards)
-                .HasForeignKey(lb => lb.FishingEventId);
-        }
-
-
-        public DbSet<Creator> Creators { get; set; }
-        public DbSet<Participant> Participants { get; set; }
         public DbSet<FishingEvent> FishingEvents { get; set; }
-        public DbSet<FishingEventParticipant> FishingEventParticipants { get; set; }
-        public DbSet<FishCaught> FishCaughtRecords { get; set; }
-        public DbSet<Leaderboard> Leaderboards { get; set; }
+        public DbSet<Participant> Participants { get; set; }
+        public DbSet<EventParticipant> EventParticipants { get; set; }
+        public DbSet<FishCaught> FishCaught { get; set; }
+        public DbSet<LeaderBoard> LeaderBoards { get; set; }
         public DbSet<Location> Locations { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+
+            // Composite primary key for EventParticipant
+            modelBuilder.Entity<EventParticipant>()
+                .HasKey(ep => new { ep.FishingEventId, ep.ParticipantId });
+
+            modelBuilder.Entity<EventParticipant>()
+                .HasOne(ep => ep.FishingEvent)
+                .WithMany(fe => fe.EventParticipants)
+                .HasForeignKey(ep => ep.FishingEventId);
+
+            modelBuilder.Entity<EventParticipant>()
+                .HasOne(ep => ep.Participant)
+                .WithMany(p => p.EventParticipants)
+                .HasForeignKey(ep => ep.ParticipantId);
+
+            modelBuilder.Entity<FishCaught>()
+                .HasOne(fc => fc.FishingEvent)
+                .WithMany(fe => fe.FishCaught)
+                .HasForeignKey(fc => fc.FishingEventId);
+
+            modelBuilder.Entity<FishCaught>()
+                .HasOne(fc => fc.Participant)
+                .WithMany(p => p.FishCaught)
+                .HasForeignKey(fc => fc.ParticipantId);
+
+            modelBuilder.Entity<LeaderBoard>()
+                .HasKey(lb => new { lb.FishingEventId, lb.ParticipantId });
+
+            modelBuilder.Entity<LeaderBoard>()
+                .HasOne(lb => lb.FishingEvent)
+                .WithMany(fe => fe.LeaderBoards)
+                .HasForeignKey(lb => lb.FishingEventId);
+
+            modelBuilder.Entity<LeaderBoard>()
+                .HasOne(lb => lb.Participant)
+                .WithMany(p => p.LeaderBoards)
+                .HasForeignKey(lb => lb.ParticipantId);
+
+            modelBuilder.Entity<FishingEvent>()
+                .HasOne(fe => fe.Location)
+                .WithMany(l => l.FishingEvents)
+                .HasForeignKey(fe => fe.LocationId);
+
+            // Preventing multiple cascade paths
+            modelBuilder.Entity<FishingEvent>()
+                .HasOne(fe => fe.Creator)
+                .WithMany()
+                .HasForeignKey(fe => fe.CreatorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+        }
     }
 }
