@@ -10,24 +10,41 @@ namespace FishingEvents.Infrastructure.Data.Models
     {
         public int Id { get; set; }
 
-        [Required, MaxLength(100)]
-        public string EventName { get; set; }
+        [Required]
+        [MaxLength(FishingEventNameMaxLength)]
+        public string EventName { get; set; } = string.Empty;
 
-        public string Description { get; set; }
+        [Required]
+        [MaxLength(FishingEventDescriptionMaxLength)]
+        public string Description { get; set; } = string.Empty;
 
+        [Required]
         public DateTime StartDate { get; set; }
+
+        [Required]
         public DateTime EndDate { get; set; }
 
+        [Required]
         [ForeignKey(nameof(Location))]
         public int LocationId { get; set; }
-        public Location Location { get; set; }
 
+        [Required]
+        public Location Location { get; set; } = null!;
+
+        [Required]
         [ForeignKey(nameof(Creator))]
         public string CreatorId { get; set; }
-        public IdentityUser Creator { get; set; }
+
+        [Required]
+        public IdentityUser Creator { get; set; } = null!;
+
+        [Required]
+        public bool IsCompleted { get; set; }
 
         public ICollection<EventParticipant> EventParticipants { get; set; } = new List<EventParticipant>();
+
         public ICollection<FishCaught> FishCaught { get; set; } = new List<FishCaught>();
+
         public ICollection<LeaderBoard> LeaderBoards { get; set; } = new List<LeaderBoard>();
     }
 

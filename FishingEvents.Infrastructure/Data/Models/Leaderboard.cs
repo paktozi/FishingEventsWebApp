@@ -9,13 +9,16 @@ namespace FishingEvents.Infrastructure.Data.Models
 
         [ForeignKey(nameof(FishingEvent))]
         public int FishingEventId { get; set; }
-        public FishingEvent FishingEvent { get; set; }
+
+        public FishingEvent FishingEvent { get; set; } = null!;
 
         [ForeignKey(nameof(Participant))]
         public int ParticipantId { get; set; }
-        public Participant Participant { get; set; }
+
+        public Participant Participant { get; set; } = null!;
 
         public double TotalWeight { get; set; }
+
         public int TotalFishCaught { get; set; }
 
     }

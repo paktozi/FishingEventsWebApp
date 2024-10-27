@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using static FishingEventsApp.Common.ValidationConstants;
 
 namespace FishingEvents.Infrastructure.Data.Models
@@ -8,11 +7,17 @@ namespace FishingEvents.Infrastructure.Data.Models
     {
         public int Id { get; set; }
 
-        [Required, MaxLength(100)]
-        public string Name { get; set; }
+        [Required]
+        [MaxLength(LocationNameMaxLength)]
+        public string Name { get; set; } = string.Empty;
 
-        public string Altitude { get; set; }
-        public string FishingMethod { get; set; }
+        [Required]
+        [MaxLength(LocationAltitudeMaxLength)]
+        public string Altitude { get; set; } = string.Empty;
+
+        [Required]
+        [MaxLength(LocationFishingTypeMaxLength)]
+        public string FishingType { get; set; } = string.Empty;
 
         public ICollection<FishingEvent> FishingEvents { get; set; } = new List<FishingEvent>();
     }
