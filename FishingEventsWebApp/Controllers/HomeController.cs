@@ -1,4 +1,4 @@
-using FishingEventsWebApp.Models;
+using FishingEventsApp.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

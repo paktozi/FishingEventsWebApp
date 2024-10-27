@@ -8,6 +8,7 @@ namespace FishingEvents.Infrastructure.Data.Models
 
     public class FishingEvent
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]

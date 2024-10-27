@@ -1,4 +1,6 @@
 using FishingEvents.Infrastructure.Data.Models;
+using FishingEventsApp.Core.Contracts;
+using FishingEventsApp.Core.Services;
 using FishingEventsApp.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +25,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IFishingEventService, FishingEventService>();
+
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
