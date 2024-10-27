@@ -1,3 +1,4 @@
+using FishingEvents.Infrastructure.Data.Models;
 using FishingEventsApp.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,13 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<FishingEventsDbContext>();
+
+//builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+//    .AddEntityFrameworkStores<FishingEventsDbContext>()
+//    .AddDefaultTokenProviders();
+
+
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -33,6 +41,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -41,3 +50,5 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
+

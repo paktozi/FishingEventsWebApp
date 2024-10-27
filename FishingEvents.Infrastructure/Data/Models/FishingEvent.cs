@@ -10,32 +10,34 @@ namespace FishingEvents.Infrastructure.Data.Models
         [Key]
         public int Id { get; set; }
 
-        [MaxLength(FishingEventNameMaxLength)]
-        public required string Name { get; set; }
-
         [Required]
-        [MaxLength(FishingEventDescriptionMaxLength)]
-        public required string Description { get; set; }
+        public string Title { get; set; }
 
-        [Required]
         public DateTime StartDate { get; set; }
-
-        [Required]
         public DateTime EndDate { get; set; }
 
+        // Foreign Key and relationship to Creator
+        [Required]
+        [ForeignKey(nameof(Creator))]
+        public int CreatorId { get; set; }
+
+        public Creator Creator { get; set; }
+
+        // Foreign Key and relationship to Location
         [Required]
         [ForeignKey(nameof(Location))]
         public int LocationId { get; set; }
 
-        [Required]
-        public Location Location { get; set; } = null!;
+        public Location Location { get; set; }
 
-        [Required]
-        [ForeignKey(nameof(Creator))]
-        public string CreatorId { get; set; } = null!;
-        public IdentityUser Creator { get; set; } = null!;
+        // Navigation property for participants in this event
+        public ICollection<FishingEventParticipant> Participants { get; set; } = new List<FishingEventParticipant>();
 
-        [Required]
-        public bool IsCompleted { get; set; }
+        // Navigation property for leaderboard entries
+        public ICollection<Leaderboard> Leaderboards { get; set; } = new List<Leaderboard>();
+
+        // Navigation property for fish caught in this event
+        public ICollection<FishCaught> FishCaughtRecords { get; set; } = new List<FishCaught>();
     }
+
 }

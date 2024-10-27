@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 
 namespace FishingEvents.Infrastructure.Data.Models
 {
@@ -14,15 +10,15 @@ namespace FishingEvents.Infrastructure.Data.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
-        public string Name { get; set; } = String.Empty;
-
-        [Required]
         [ForeignKey(nameof(User))]
-        public string UserId { get; set; } = null!;
+        public string UserId { get; set; }
 
-        [Required]
-        public IdentityUser? User { get; set; }
+        public IdentityUser User { get; set; }
 
+        // FishCaught relationship: a participant can have multiple fish caught records
+        public ICollection<FishCaught> FishCaughtRecords { get; set; } = new List<FishCaught>();
+
+        // Leaderboard relationship: participant can be on multiple leaderboards for various events
+        public ICollection<Leaderboard> Leaderboards { get; set; } = new List<Leaderboard>();
     }
 }

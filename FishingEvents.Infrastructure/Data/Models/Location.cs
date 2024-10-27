@@ -11,16 +11,17 @@ namespace FishingEvents.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(LocationNameMaxLength)]
+        [MaxLength(100)]
         public string Name { get; set; } = string.Empty;
 
         [Required]
         public string Altitude { get; set; } = string.Empty;
 
-
         public string? ImageUrl { get; set; }
 
         [Required]
         public string FishingType { get; set; } = string.Empty;
+
+        public ICollection<FishingEvent> FishingEvents { get; set; } = new List<FishingEvent>();
     }
 }
