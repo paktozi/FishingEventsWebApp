@@ -27,23 +27,15 @@ namespace FishingEventsApp.Core.Models
         public string Description { get; set; } = string.Empty;
 
         [Required(ErrorMessage = RequiredErrorMessage)]
-        [RegularExpression(@"^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$",
-        ErrorMessage = DateErrorMessage)]
-
-        public DateTime StartDate { get; set; }
+        [RegularExpression(@"^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$", ErrorMessage = DateErrorMessage)]
+        public string StartDate { get; set; } = string.Empty;
 
         [Required(ErrorMessage = RequiredErrorMessage)]
-        [RegularExpression(@"^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$",
-          ErrorMessage = DateErrorMessage)]
-
-        public DateTime EndDate { get; set; }
+        [RegularExpression(@"^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$", ErrorMessage = DateErrorMessage)]
+        public string EndDate { get; set; } = string.Empty;
 
         [Required]
-
         public int LocationId { get; set; }
-
-        [Required]
-        public string CreatorId { get; set; } = string.Empty;
 
         public IEnumerable<FishingLocationModel>? Locations { get; set; } = new List<FishingLocationModel>();
     }

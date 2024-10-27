@@ -21,6 +21,20 @@ namespace FishingEventsWebApp.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Add(FishingEventAddModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.Locations = await service.GetLocationListAsync();
+                return View(model);
+            }
+            string? userId = GetUserId();
+            await service.AddFishingEventAsync(model, userId);
+
+            return RedirectToAction(nameof(All));
+        }
+
 
 
 
