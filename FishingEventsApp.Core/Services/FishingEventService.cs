@@ -2,19 +2,24 @@
 using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models;
 using FishingEventsApp.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Globalization;
-using System.Web.Mvc;
+
 
 
 using static FishingEventsApp.Common.ValidationConstants;
 
 namespace FishingEventsApp.Core.Services
 {
-    public class FishingEventService(FishingEventsDbContext context) : IFishingEventService
+    public class FishingEventService(FishingEventsDbContext context, UserManager<ApplicationUser> userManager) : IFishingEventService
     {
+
+
         public async Task<IEnumerable<FishingEventALLModel>> GetAllEventsAsync()
         {
+
             var model = await context.FishingEvents
                  .Where(e => e.IsCompleted == false)
                  .Select(e => new FishingEventALLModel()
@@ -24,7 +29,7 @@ namespace FishingEventsApp.Core.Services
                      StartDate = e.StartDate.ToString(DateFormat),
                      EndDate = e.EndDate.ToString(DateFormat),
                      LocationName = e.Location.Name,
-                     Creator = e.Creator.UserName
+                     Organiser = e.Organiser.User.UserName
                  })
                  .AsNoTracking()
                  .ToListAsync();
@@ -51,12 +56,9 @@ namespace FishingEventsApp.Core.Services
             return await GetLocation();
         }
 
-
-
-
-
         public async Task AddFishingEventAsync(FishingEventAddModel model, string userId)
         {
+            // var organiserId = userManager.GetUserIdAsync( );
 
             string startDate = $"{model.StartDate}";
             string endDate = $"{model.EndDate}";
@@ -73,8 +75,6 @@ namespace FishingEventsApp.Core.Services
             }
 
 
-
-
             FishingEvent entity = new FishingEvent();
             entity.Id = model.Id;
             entity.EventName = model.EventName;
@@ -82,14 +82,10 @@ namespace FishingEventsApp.Core.Services
             entity.StartDate = parseStartDate;
             entity.EndDate = parseEndDate;
             entity.LocationId = model.LocationId;
-            entity.CreatorId = userId;
+            entity.OrganiserId = ;
             await context.FishingEvents.AddAsync(entity);
             await context.SaveChangesAsync();
         }
-
-
-
-
 
         private async Task<ICollection<FishingLocationModel>> GetLocation()
         {
@@ -104,5 +100,86 @@ namespace FishingEventsApp.Core.Services
                  .AsNoTracking()
                  .ToListAsync();
         }
+
+
+
+
+
+        public async Task<FishingEvent> GetEventByIdAsync(int id)
+        {
+            return await context.FishingEvents.FirstOrDefaultAsync(f => f.Id == id);
+        }
+
+        //public Task GetJoinEvent(int id, string? userId)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public async Task JoinEventAsync(int id, string? userId)
+        //{
+
+        //    //var participantId = await context.Participants
+        //    //                          .Where(p => p.UserId == userId)
+        //    //                          .Select(p => p.Id)
+        //    //                          .FirstOrDefaultAsync();
+
+        //    //bool isAlreadyAdded = await context.EventParticipants.AnyAsync(ep => ep.FishingEventId == id && ep.ParticipantId == participantId);
+
+        //    //if (!isAlreadyAdded)
+        //    //{
+        //    //    EventParticipant model = new EventParticipant()
+        //    //    {
+        //    //        ParticipantId = participantId,
+        //    //        FishingEventId = id
+        //    //    };
+        //    //    await context.EventParticipants.AddAsync(model);
+        //    //    await context.SaveChangesAsync();
+        //    //}
+
+        //    if (userId == null)
+        //    {
+        //        throw new ArgumentNullException(nameof(userId), "User ID cannot be null.");
+        //    }
+
+        //    var participant = await context.Participants.SingleOrDefaultAsync(p => p.UserId == userId);
+
+        //    // Create participant if it doesn't exist
+        //    if (participant == null)
+        //    {
+        //        var user = await context.Users.FindAsync(userId);
+        //        if (user == null)
+        //        {
+        //            throw new Exception($"No user found with ID: {userId}");
+        //        }
+
+        //        participant = new Participant
+        //        {
+        //            UserId = userId,
+        //            User = user,
+        //            Name = user.UserName // or any other property you wish to use
+        //        };
+
+        //        context.Participants.Add(participant);
+        //        await context.SaveChangesAsync();
+        //    }
+
+        //    // Check if participant is already part of the event
+        //    bool isAlreadyAdded = await context.EventParticipants.AnyAsync(ep => ep.FishingEventId == id && ep.ParticipantId == participant.Id);
+
+        //    if (!isAlreadyAdded)
+        //    {
+        //        var eventParticipant = new EventParticipant
+        //        {
+        //            ParticipantId = participant.Id,
+        //            FishingEventId = id
+        //        };
+
+        //        await context.EventParticipants.AddAsync(eventParticipant);
+        //        await context.SaveChangesAsync();
+        //    }
+        //}
+
+
+
     }
 }

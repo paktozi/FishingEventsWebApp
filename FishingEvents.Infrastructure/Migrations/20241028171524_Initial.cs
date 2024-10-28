@@ -30,6 +30,8 @@ namespace FishingEvents.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -172,6 +174,25 @@ namespace FishingEvents.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Organisers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Organisers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Organisers_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Participants",
                 columns: table => new
                 {
@@ -202,24 +223,24 @@ namespace FishingEvents.Infrastructure.Migrations
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LocationId = table.Column<int>(type: "int", nullable: false),
-                    CreatorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    OrganiserId = table.Column<int>(type: "int", nullable: false),
                     IsCompleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FishingEvents", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FishingEvents_AspNetUsers_CreatorId",
-                        column: x => x.CreatorId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_FishingEvents_Locations_LocationId",
                         column: x => x.LocationId,
                         principalTable: "Locations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FishingEvents_Organisers_OrganiserId",
+                        column: x => x.OrganiserId,
+                        principalTable: "Organisers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -247,7 +268,7 @@ namespace FishingEvents.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FishCaught",
+                name: "FishCaughts",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -262,15 +283,15 @@ namespace FishingEvents.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FishCaught", x => x.Id);
+                    table.PrimaryKey("PK_FishCaughts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FishCaught_FishingEvents_FishingEventId",
+                        name: "FK_FishCaughts_FishingEvents_FishingEventId",
                         column: x => x.FishingEventId,
                         principalTable: "FishingEvents",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_FishCaught_Participants_ParticipantId",
+                        name: "FK_FishCaughts_Participants_ParticipantId",
                         column: x => x.ParticipantId,
                         principalTable: "Participants",
                         principalColumn: "Id",
@@ -348,19 +369,14 @@ namespace FishingEvents.Infrastructure.Migrations
                 column: "ParticipantId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FishCaught_FishingEventId",
-                table: "FishCaught",
+                name: "IX_FishCaughts_FishingEventId",
+                table: "FishCaughts",
                 column: "FishingEventId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FishCaught_ParticipantId",
-                table: "FishCaught",
+                name: "IX_FishCaughts_ParticipantId",
+                table: "FishCaughts",
                 column: "ParticipantId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FishingEvents_CreatorId",
-                table: "FishingEvents",
-                column: "CreatorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FishingEvents_LocationId",
@@ -368,14 +384,26 @@ namespace FishingEvents.Infrastructure.Migrations
                 column: "LocationId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_FishingEvents_OrganiserId",
+                table: "FishingEvents",
+                column: "OrganiserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_LeaderBoards_ParticipantId",
                 table: "LeaderBoards",
                 column: "ParticipantId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Organisers_UserId",
+                table: "Organisers",
+                column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Participants_UserId",
                 table: "Participants",
-                column: "UserId");
+                column: "UserId",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -400,7 +428,7 @@ namespace FishingEvents.Infrastructure.Migrations
                 name: "EventParticipants");
 
             migrationBuilder.DropTable(
-                name: "FishCaught");
+                name: "FishCaughts");
 
             migrationBuilder.DropTable(
                 name: "LeaderBoards");
@@ -416,6 +444,9 @@ namespace FishingEvents.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Locations");
+
+            migrationBuilder.DropTable(
+                name: "Organisers");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

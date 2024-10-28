@@ -7,12 +7,14 @@ namespace FishingEvents.Infrastructure.Data.Models
 {
     public class Participant
     {
+        [Key]
         public int Id { get; set; }
 
-        [ForeignKey(nameof(User))]
+        [Required]
         public string UserId { get; set; } = string.Empty;
 
-        public IdentityUser User { get; set; } = null!;
+        [ForeignKey(nameof(UserId))]
+        public ApplicationUser User { get; set; } = null!;
 
         [Required]
         [MaxLength(ParticipantNameMaxLength)]

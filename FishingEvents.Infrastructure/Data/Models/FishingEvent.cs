@@ -26,26 +26,20 @@ namespace FishingEvents.Infrastructure.Data.Models
         public DateTime EndDate { get; set; }
 
         [Required]
-        [ForeignKey(nameof(Location))]
         public int LocationId { get; set; }
 
-        [Required]
         public Location Location { get; set; } = null!;
 
         [Required]
-        [ForeignKey(nameof(Creator))]
-        public string CreatorId { get; set; }
+        public int OrganiserId { get; set; }
 
-        [Required]
-        public IdentityUser Creator { get; set; } = null!;
+        [ForeignKey(nameof(OrganiserId))]
+        public Organiser Organiser { get; set; } = null!;
 
-        [Required]
         public bool IsCompleted { get; set; }
 
         public ICollection<EventParticipant> EventParticipants { get; set; } = new List<EventParticipant>();
-
         public ICollection<FishCaught> FishCaught { get; set; } = new List<FishCaught>();
-
         public ICollection<LeaderBoard> LeaderBoards { get; set; } = new List<LeaderBoard>();
     }
 

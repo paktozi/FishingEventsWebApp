@@ -1,11 +1,20 @@
-﻿using FishingEventsApp.Core.Contracts;
+﻿using FishingEvents.Infrastructure.Data.Models;
+using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models;
+using FishingEventsApp.Core.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace FishingEventsWebApp.Controllers
 {
     public class FishingEventController(IFishingEventService service) : BaseController
     {
+
+
+
+
         [HttpGet]
         public async Task<IActionResult> All()
         {
@@ -35,9 +44,17 @@ namespace FishingEventsWebApp.Controllers
             return RedirectToAction(nameof(All));
         }
 
-
-
-
+        //public async Task<IActionResult> Join(int id)
+        //{
+        //    FishingEvent fishEvent = await service.GetEventByIdAsync(id);
+        //    if (fishEvent == null)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    string? userId = GetUserId();
+        //    await service.JoinEventAsync(id, userId);
+        //    return RedirectToAction(nameof(All));
+        //}
 
     }
 }

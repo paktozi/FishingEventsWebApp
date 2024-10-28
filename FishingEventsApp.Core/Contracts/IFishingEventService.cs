@@ -1,4 +1,5 @@
-﻿using FishingEventsApp.Core.Models;
+﻿using FishingEvents.Infrastructure.Data.Models;
+using FishingEventsApp.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,12 @@ namespace FishingEventsApp.Core.Contracts
     public interface IFishingEventService
     {
         Task AddFishingEventAsync(FishingEventAddModel model, string? userId);
+
         Task<IEnumerable<FishingEventALLModel>> GetAllEventsAsync();
+
+        Task<FishingEvent> GetEventByIdAsync(int id);
+
         Task<ICollection<FishingLocationModel>?> GetLocationListAsync();
+        //Task JoinEventAsync(int id, string? userId);
     }
 }

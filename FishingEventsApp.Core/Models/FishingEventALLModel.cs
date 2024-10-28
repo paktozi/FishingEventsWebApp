@@ -29,7 +29,7 @@ namespace FishingEventsApp.Core.Models
         public string LocationName { get; set; } = string.Empty;
 
 
-        public string Creator { get; set; } = string.Empty;
+        public string Organiser { get; set; } = string.Empty;
 
     }
 }

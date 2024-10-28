@@ -26,4 +26,8 @@
     <ProjectReference Include="..\FishingEventsApp.Core\FishingEventsApp.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\" />
+  </ItemGroup>
+
 </Project>
