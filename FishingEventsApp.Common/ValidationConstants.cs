@@ -33,5 +33,10 @@ namespace FishingEventsApp.Common
 
         public const int ParticipantNameMinLength = 2;
         public const int ParticipantNameMaxLength = 50;
+
+        public const int UserFirstNameMinLength = 2;
+        public const int UserFirstNameMaxLength = 50;
+        public const int UserLastNameMinLength = 2;
+        public const int UserLastNameMaxLength = 50;
     }
 }

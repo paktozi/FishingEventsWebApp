@@ -82,7 +82,7 @@ namespace FishingEventsApp.Core.Services
             entity.StartDate = parseStartDate;
             entity.EndDate = parseEndDate;
             entity.LocationId = model.LocationId;
-            entity.OrganiserId = ;
+            //  entity.OrganiserId = ;
             await context.FishingEvents.AddAsync(entity);
             await context.SaveChangesAsync();
         }
