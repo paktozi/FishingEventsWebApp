@@ -50,5 +50,4 @@ namespace FishingEvents.Infrastructure.Data.Models
 
         public ICollection<LeaderBoard> LeaderBoards { get; set; } = new List<LeaderBoard>();
     }
-
 }

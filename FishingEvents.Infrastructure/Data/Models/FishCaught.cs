@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static FishingEventsApp.Common.ValidationConstants;
 
@@ -7,6 +8,7 @@ namespace FishingEvents.Infrastructure.Data.Models
     public class FishCaught
     {
         [Key]
+        [Comment("FishCaught identifier")]
         public int Id { get; set; }
 
         [Required]
@@ -21,8 +23,12 @@ namespace FishingEvents.Infrastructure.Data.Models
 
         public ApplicationUser User { get; set; } = null!;
 
-        [Required, MaxLength(FishCaughtSpeciesMaxLength)]
-        public string Species { get; set; } = string.Empty;
+        [Required]
+        [ForeignKey(nameof(Species))]
+        public int SpeciesId { get; set; }
+
+        public Species Species { get; set; } = null!;
+
 
         [Required]
         public double Weight { get; set; }
@@ -30,10 +36,9 @@ namespace FishingEvents.Infrastructure.Data.Models
         [Required]
         public double Length { get; set; }
 
-        public string? FishImageUrl { get; set; }
+        public string? CaughtImageUrl { get; set; }
 
         [Required]
         public DateTime DateCaught { get; set; }
     }
-
 }

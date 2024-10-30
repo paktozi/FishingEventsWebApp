@@ -26,7 +26,6 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IFishingEventService, FishingEventService>();
-builder.Services.AddScoped<IOrganiserService, OrganiserService>();
 builder.Services.AddScoped<IApplicationUserService, ApplicationUserService>();
 
 

@@ -12,11 +12,12 @@ namespace FishingEventsApp.Infrastructure
         {
         }
 
-        public DbSet<FishingEvent> FishingEvents { get; set; }
-        public DbSet<Location> Locations { get; set; }
-        public DbSet<EventParticipant> EventParticipants { get; set; }
-        public DbSet<FishCaught> FishCaughts { get; set; }
-        public DbSet<LeaderBoard> LeaderBoards { get; set; }
+        public DbSet<FishingEvent> FishingEvents { get; set; } = null!;
+        public DbSet<Location> Locations { get; set; } = null!;
+        public DbSet<Species> Species { get; set; } = null!;
+        public DbSet<FishCaught> FishCaughts { get; set; } = null!;
+        public DbSet<EventParticipant> EventParticipants { get; set; } = null!;
+        public DbSet<LeaderBoard> LeaderBoards { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,7 +25,7 @@ namespace FishingEventsApp.Infrastructure
 
             // ApplicationUser table configurations
             modelBuilder.Entity<ApplicationUser>()
-                .HasMany(e => e.FishingEvents)
+                .HasMany(u => u.FishingEvents)
                 .WithOne(e => e.Organizer)
                 .HasForeignKey(e => e.OrganizerId)
                 .OnDelete(DeleteBehavior.Restrict); // Prevent cascading delete for organizer
@@ -58,6 +59,16 @@ namespace FishingEventsApp.Infrastructure
             modelBuilder.Entity<EventParticipant>()
                 .HasKey(ep => new { ep.FishingEventId, ep.UserId });
 
+            modelBuilder.Entity<EventParticipant>()
+                .HasOne(ep => ep.User)
+                .WithMany(u => u.EventParticipants)
+                .HasForeignKey(ep => ep.UserId);
+
+            modelBuilder.Entity<EventParticipant>()
+                .HasOne(ep => ep.FishingEvent)
+                .WithMany(e => e.EventParticipants)
+                .HasForeignKey(ep => ep.FishingEventId);
+
             // FishCaught configurations
             modelBuilder.Entity<FishCaught>()
                 .HasOne(fc => fc.User)
@@ -65,7 +76,13 @@ namespace FishingEventsApp.Infrastructure
                 .HasForeignKey(fc => fc.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // LeaderBoard configurations
+            modelBuilder.Entity<FishCaught>()
+                .HasOne(fc => fc.Species)
+                .WithMany(s => s.FishCaughts)
+                .HasForeignKey(fc => fc.SpeciesId)
+                .OnDelete(DeleteBehavior.Restrict); // Restrict deletion to avoid accidental removals
+
+            // LeaderBoard configurations (composite key)
             modelBuilder.Entity<LeaderBoard>()
                 .HasKey(lb => new { lb.FishingEventId, lb.UserId });
 
@@ -75,13 +92,17 @@ namespace FishingEventsApp.Infrastructure
                 .HasForeignKey(lb => lb.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<LeaderBoard>()
+                .HasOne(lb => lb.FishingEvent)
+                .WithMany(e => e.LeaderBoards)
+                .HasForeignKey(lb => lb.FishingEventId);
+
             // Location configurations
             modelBuilder.Entity<Location>()
                 .HasMany(l => l.FishingEvents)
                 .WithOne(e => e.Location)
                 .HasForeignKey(e => e.LocationId)
                 .OnDelete(DeleteBehavior.Cascade);
-
         }
     }
 }
