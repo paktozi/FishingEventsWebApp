@@ -9,18 +9,19 @@ namespace FishingEvents.Infrastructure.Data.Models
         [Key]
         public int Id { get; set; }
 
+        [Required]
         [ForeignKey(nameof(FishingEvent))]
         public int FishingEventId { get; set; }
 
         public FishingEvent FishingEvent { get; set; } = null!;
 
-        [ForeignKey(nameof(Participant))]
-        public int ParticipantId { get; set; }
-
-        public Participant Participant { get; set; } = null!;
-
         [Required]
-        [MaxLength(FishCaughtSpeciesMaxLength)]
+        [ForeignKey(nameof(User))]
+        public string UserId { get; set; } = string.Empty;
+
+        public ApplicationUser User { get; set; } = null!;
+
+        [Required, MaxLength(FishCaughtSpeciesMaxLength)]
         public string Species { get; set; } = string.Empty;
 
         [Required]
@@ -28,7 +29,6 @@ namespace FishingEvents.Infrastructure.Data.Models
 
         [Required]
         public double Length { get; set; }
-
 
         public string? FishImageUrl { get; set; }
 

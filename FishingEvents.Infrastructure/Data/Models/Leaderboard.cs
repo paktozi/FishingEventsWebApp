@@ -12,14 +12,13 @@ namespace FishingEvents.Infrastructure.Data.Models
 
         public FishingEvent FishingEvent { get; set; } = null!;
 
-        [ForeignKey(nameof(Participant))]
-        public int ParticipantId { get; set; }
+        [ForeignKey(nameof(User))]
+        public string UserId { get; set; } = string.Empty;
 
-        public Participant Participant { get; set; } = null!;
+        public ApplicationUser User { get; set; } = null!;
 
         public double TotalWeight { get; set; }
 
         public int TotalFishCaught { get; set; }
-
     }
 }

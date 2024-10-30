@@ -12,17 +12,20 @@ namespace FishingEvents.Infrastructure.Data.Models
 
     public class ApplicationUser : IdentityUser
     {
-        [Required]
-        [MaxLength(20)]
+        [Required, MaxLength(UserFirstNameMaxLength)]
         public string FirstName { get; set; } = string.Empty;
 
-        [Required]
-        [MaxLength(20)]
+        [Required, MaxLength(UserLastNameMaxLength)]
         public string LastName { get; set; } = string.Empty;
 
-        // Navigation properties for roles
-        public Organiser? Organiser { get; set; }
-        public Participant? Participant { get; set; }
+
+        public ICollection<FishingEvent> FishingEvents { get; set; } = new List<FishingEvent>();
+
+        public ICollection<EventParticipant> EventParticipants { get; set; } = new List<EventParticipant>();
+
+        public ICollection<LeaderBoard> LeaderBoards { get; set; } = new List<LeaderBoard>();
+
+        public ICollection<FishCaught> FishCaughts { get; set; } = new List<FishCaught>();
     }
 
 }

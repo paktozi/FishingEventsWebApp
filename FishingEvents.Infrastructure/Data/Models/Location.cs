@@ -7,17 +7,16 @@ namespace FishingEvents.Infrastructure.Data.Models
     {
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(LocationNameMaxLength)]
+        [Required, MaxLength(LocationNameMaxLength)]
         public string Name { get; set; } = string.Empty;
 
-        [Required]
-        [MaxLength(LocationAltitudeMaxLength)]
-        public string Altitude { get; set; } = string.Empty;
+        [Required, MaxLength(LocationAltitudeMaxLength)]
+        public string Elevation { get; set; } = string.Empty;
 
-        [Required]
-        [MaxLength(LocationFishingTypeMaxLength)]
+        [Required, MaxLength(LocationFishingTypeMaxLength)]
         public string FishingType { get; set; } = string.Empty;
+
+        public string? LocationImageUrl { get; set; }
 
         public ICollection<FishingEvent> FishingEvents { get; set; } = new List<FishingEvent>();
     }

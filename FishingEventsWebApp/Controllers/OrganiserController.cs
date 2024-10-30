@@ -10,11 +10,11 @@ namespace FishingEventsWebApp.Controllers
             return View();
         }
 
-        [Authorize]
-        [HttpPost]
-        public async Task<IActionResult> BecomeOrganiser()
-        {
-            return RedirectToAction(nameof(FishingEventController.All), "FishingEvent");
-        }
+        //[Authorize]
+        //[HttpPost]
+        //public async Task<IActionResult> BecomeOrganiser()
+        //{
+        //    return RedirectToAction(nameof(FishingEventController.All), "FishingEvent");
+        //}
     }
 }

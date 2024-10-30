@@ -10,13 +10,13 @@ namespace FishingEventsApp.Core.Contracts
 {
     public interface IFishingEventService
     {
-        Task AddFishingEventAsync(FishingEventAddModel model, string? userId);
+        //Task AddFishingEventAsync(FishingEventAddModel model, string? userId);
 
-        Task<IEnumerable<FishingEventALLModel>> GetAllEventsAsync();
+        //Task<IEnumerable<FishingEventALLModel>> GetAllEventsAsync();
 
-        Task<FishingEvent> GetEventByIdAsync(int id);
+        //Task<FishingEvent> GetEventByIdAsync(int id);
 
-        Task<ICollection<FishingLocationModel>?> GetLocationListAsync();
+        //Task<ICollection<FishingLocationModel>?> GetLocationListAsync();
         //Task JoinEventAsync(int id, string? userId);
     }
 }

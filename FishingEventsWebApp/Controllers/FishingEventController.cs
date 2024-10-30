@@ -13,36 +13,34 @@ namespace FishingEventsWebApp.Controllers
     {
 
 
+        //[HttpGet]
+        //public async Task<IActionResult> All()
+        //{
+        //    IEnumerable<FishingEventALLModel> model = await service.GetAllEventsAsync();
+        //    return View(model);
+        //}
 
+        //[HttpGet]
+        //public async Task<IActionResult> Add()
+        //{
+        //    FishingEventAddModel model = new FishingEventAddModel();
+        //    model.Locations = await service.GetLocationListAsync();
+        //    return View(model);
+        //}
 
-        [HttpGet]
-        public async Task<IActionResult> All()
-        {
-            IEnumerable<FishingEventALLModel> model = await service.GetAllEventsAsync();
-            return View(model);
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> Add(FishingEventAddModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        model.Locations = await service.GetLocationListAsync();
+        //        return View(model);
+        //    }
+        //    string? userId = GetUserId();
+        //    await service.AddFishingEventAsync(model, userId);
 
-        [HttpGet]
-        public async Task<IActionResult> Add()
-        {
-            FishingEventAddModel model = new FishingEventAddModel();
-            model.Locations = await service.GetLocationListAsync();
-            return View(model);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Add(FishingEventAddModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                model.Locations = await service.GetLocationListAsync();
-                return View(model);
-            }
-            string? userId = GetUserId();
-            await service.AddFishingEventAsync(model, userId);
-
-            return RedirectToAction(nameof(All));
-        }
+        //    return RedirectToAction(nameof(All));
+        //}
 
         //public async Task<IActionResult> Join(int id)
         //{
