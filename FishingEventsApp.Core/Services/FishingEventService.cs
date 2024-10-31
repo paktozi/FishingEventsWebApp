@@ -26,12 +26,14 @@ namespace FishingEventsApp.Core.Services
                  {
                      Id = e.Id,
                      EventName = e.EventName,
+                     EventImageUrl = e.EventImageUrl,
                      StartDate = e.StartDate.ToString(DateFormat),
                      EndDate = e.EndDate.ToString(DateFormat),
                      LocationName = e.Location.Name,
                      Organizer = e.Organizer.FirstName,
                      IsOrganizer = e.OrganizerId == userId,
-                     IsJoined = e.EventParticipants.Any(ep => ep.FishingEventId == e.Id && ep.UserId == userId)
+                     IsJoined = e.EventParticipants.Any(ep => ep.FishingEventId == e.Id && ep.UserId == userId),
+                     Mail = e.Organizer.Email
                  })
                  .AsNoTracking()
                  .ToListAsync();
@@ -39,69 +41,71 @@ namespace FishingEventsApp.Core.Services
         }
 
 
-        //public async Task<ICollection<FishingLocationModel>?> GetLocationListAsync()
-        //{
-        //    var model = await context.Locations
-        //       .Select(e => new FishingLocationModel()
-        //       {
-        //           Id = e.Id,
-        //           Name = e.Name,
-        //           Altitude = e.Altitude,
-        //           FishingType = e.FishingType
-        //       })
-        //       .AsNoTracking()
-        //       .ToListAsync();
-        //    return model;
-        //}
-        //async Task<ICollection<FishingLocationModel>?> IFishingEventService.GetLocationListAsync()
-        //{
-        //    return await GetLocation();
-        //}
+        public async Task<ICollection<FishingLocationModel>?> GetLocationListAsync()
+        {
+            var model = await context.Locations
+               .Select(e => new FishingLocationModel()
+               {
+                   Id = e.Id,
+                   Name = e.Name,
+                   Elevation = e.Elevation,
+                   FishingType = e.FishingType,
+                   LocationImageUrl = e.LocationImageUrl,
+               })
+               .AsNoTracking()
+               .ToListAsync();
+            return model;
+        }
+        async Task<ICollection<FishingLocationModel>?> IFishingEventService.GetLocationListAsync()
+        {
+            return await GetLocation();
+        }
+
+        private async Task<ICollection<FishingLocationModel>> GetLocation()
+        {
+            return await context.Locations
+                 .Select(e => new FishingLocationModel()
+                 {
+                     Id = e.Id,
+                     Name = e.Name,
+                     Elevation = e.Elevation,
+                     FishingType = e.FishingType,
+                     LocationImageUrl = e.LocationImageUrl,
+                 })
+                 .AsNoTracking()
+                 .ToListAsync();
+        }
+
+        public async Task AddFishingEventAsync(FishingEventAddModel model, string userId)
+        {
+            string startDate = $"{model.StartDate}";
+            string endDate = $"{model.EndDate}";
+
+            if (!DateTime.TryParseExact(startDate, DateFormat, CultureInfo.InvariantCulture,
+                DateTimeStyles.None, out DateTime parseStartDate))
+            {
+                throw new InvalidOperationException("Invalid date format.");
+            }
+            if (!DateTime.TryParseExact(endDate, DateFormat, CultureInfo.InvariantCulture,
+                DateTimeStyles.None, out DateTime parseEndDate))
+            {
+                throw new InvalidOperationException("Invalid date format.");
+            }
+
+            FishingEvent entity = new FishingEvent();
+            entity.Id = model.Id;
+            entity.EventName = model.EventName;
+            entity.Description = model.Description;
+            entity.StartDate = parseStartDate;
+            entity.EndDate = parseEndDate;
+            entity.LocationId = model.LocationId;
+            entity.EventImageUrl = model.EventImageUrl;
+            entity.OrganizerId = userId;
+            await context.FishingEvents.AddAsync(entity);
+            await context.SaveChangesAsync();
+        }
 
 
-
-
-        //public async Task AddFishingEventAsync(FishingEventAddModel model, string userId)
-        //{
-        //    string startDate = $"{model.StartDate}";
-        //    string endDate = $"{model.EndDate}";
-
-        //    if (!DateTime.TryParseExact(startDate, DateFormat, CultureInfo.InvariantCulture,
-        //        DateTimeStyles.None, out DateTime parseStartDate))
-        //    {
-        //        throw new InvalidOperationException("Invalid date format.");
-        //    }
-        //    if (!DateTime.TryParseExact(endDate, DateFormat, CultureInfo.InvariantCulture,
-        //        DateTimeStyles.None, out DateTime parseEndDate))
-        //    {
-        //        throw new InvalidOperationException("Invalid date format.");
-        //    }
-
-        //    FishingEvent entity = new FishingEvent();
-        //    entity.Id = model.Id;
-        //    entity.EventName = model.EventName;
-        //    entity.Description = model.Description;
-        //    entity.StartDate = parseStartDate;
-        //    entity.EndDate = parseEndDate;
-        //    entity.LocationId = model.LocationId;
-        //    // entity.OrganiserId = userManager.FindByIdAsync(userId).Id;
-        //    await context.FishingEvents.AddAsync(entity);
-        //    await context.SaveChangesAsync();
-        //}
-
-        //private async Task<ICollection<FishingLocationModel>> GetLocation()
-        //{
-        //    return await context.Locations
-        //         .Select(e => new FishingLocationModel()
-        //         {
-        //             Id = e.Id,
-        //             Name = e.Name,
-        //             Altitude = e.Altitude,
-        //             FishingType = e.FishingType
-        //         })
-        //         .AsNoTracking()
-        //         .ToListAsync();
-        //}
 
 
 

@@ -26,8 +26,7 @@
             else
             {
             <img src="~/img/no-image.jpg" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="No Image Available">
-            } 
-
+            }              
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">@e.EventName</h5>
                     <p class="card-text">Description: @e.Description</p>
@@ -37,12 +36,12 @@
                     <p class="card-text">Creator: @e.Organizer</p>
 
                     
-                    @if (User.Identity.Name == e.Organizer)
+                    @if (User.Identity.Name == e.Mail)
                     {
                         <a asp-controller="FishingEvent" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Edit</a>
                     }
                     else
-                    {
+                    {                       
                         <form class="input-group-sm " asp-controller="FishingEvent" asp-action="Join" asp-route-id="@e.Id">
                             <input type="submit" value="Join the Event" class="fs-6 btn btn-warning mb-3 w-100 p-3 fw-bold" />
                         </form>

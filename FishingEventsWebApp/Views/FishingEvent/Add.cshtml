@@ -1,4 +1,4 @@
-﻿@* @model FishingEventAddModel
+﻿ @model FishingEventAddModel
 @{
     ViewBag.Title = "Fishing Event";
     var today = DateTime.Now.ToString("dd-MM-yyyy");
@@ -18,7 +18,7 @@
             </div>          
             <div class="mb-3">
                 <label asp-for="@Model.Description" class="form-label-add-edit">Description</label>
-                <textarea asp-for="@Model.Description" class="form-control" aria-required="true" rows="5"></textarea>
+                <textarea asp-for="@Model.Description" class="form-control" aria-required="true" rows="2"></textarea>
                 <span asp-validation-for="@Model.Description" class="text-danger"></span>
             </div>
            
@@ -33,11 +33,17 @@
                 <span asp-validation-for="@Model.EndDate" class="text-danger"></span>
             </div>
 
+            <div class="mb-3">
+                <label asp-for="@Model.EventImageUrl" class="form-label-add-edit">ImageUrl</label>
+                <textarea asp-for="@Model.EventImageUrl" class="form-control" aria-required="true" rows="1"></textarea>
+                <span asp-validation-for="@Model.EventImageUrl" class="text-danger"></span>
+            </div>
+
 
             <div class="mb-3">
                 <label asp-for="@Model.LocationId" class="form-label-add-edit">Select Location</label>
                 <select asp-for="@Model.LocationId" class="form-control" aria-required="true" asp-items="@(new SelectList(Model.Locations, "Id", "Name","Altitude","FishingType"))">
-                    <option value="">Select Genre...</option>
+                    <option value="">Select Location...</option>
                 </select>
                 <span asp-validation-for="@Model.LocationId" class="text-danger"></span>
             </div>
@@ -53,4 +59,4 @@
     <partial name="_ValidationScriptsPartial" />
 }
 
- *@
+ 

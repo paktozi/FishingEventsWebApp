@@ -36,5 +36,7 @@ namespace FishingEventsApp.Core.Models
         public bool IsOrganizer { get; set; }
 
         public bool IsJoined { get; set; }
+
+        public string Mail { get; set; } = string.Empty;
     }
 }

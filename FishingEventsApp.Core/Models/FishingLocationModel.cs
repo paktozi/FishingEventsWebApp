@@ -12,9 +12,11 @@ namespace FishingEventsApp.Core.Models
         public string Name { get; set; } = string.Empty;
 
 
-        public string Altitude { get; set; } = string.Empty;
+        public string Elevation { get; set; } = string.Empty;
 
 
         public string FishingType { get; set; } = string.Empty;
+
+        public string? LocationImageUrl { get; set; }
     }
 }
