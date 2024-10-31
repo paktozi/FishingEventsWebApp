@@ -18,7 +18,7 @@
     @foreach (var e in Model)
     {
         <div class="col-md-3 mb-4">
-            <div class="card h-100" style="width: 100%;">
+            <div class="card h-100" style="width: 100%;background-color: rgba(10, 20, 0, 0.6);border-radius:10px;padding:8px;border-color:dimgrey; box-shadow:5px 5px 10px black; ">
                 @if (!string.IsNullOrEmpty(e.EventImageUrl))
                 {
                     <img src="@e.EventImageUrl" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="@e.EventName">
@@ -37,6 +37,7 @@
 
                     @if (User.Identity.IsAuthenticated)
                     {
+                        <a asp-controller="FishingEvent" asp-action="Details" asp-route-id="@e.Id" class="btn btn-info mb-2 w-100 p-3 fw-bold">Details</a>
                         // Check if the user is an organizer
                         if (User.Identity.Name == e.Mail && e.IsOrganizer)
                         {

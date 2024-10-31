@@ -109,7 +109,7 @@ namespace FishingEvents.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("EventParticipants");
+                    b.ToTable("EventParticipants", (string)null);
                 });
 
             modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.FishCaught", b =>
@@ -151,7 +151,7 @@ namespace FishingEvents.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("FishCaughts");
+                    b.ToTable("FishCaughts", (string)null);
                 });
 
             modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.FishingEvent", b =>
@@ -198,7 +198,7 @@ namespace FishingEvents.Infrastructure.Migrations
 
                     b.HasIndex("OrganizerId");
 
-                    b.ToTable("FishingEvents");
+                    b.ToTable("FishingEvents", (string)null);
 
                     b.HasData(
                         new
@@ -245,7 +245,7 @@ namespace FishingEvents.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("LeaderBoards");
+                    b.ToTable("LeaderBoards", (string)null);
                 });
 
             modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.Location", b =>
@@ -276,7 +276,7 @@ namespace FishingEvents.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Locations");
+                    b.ToTable("Locations", (string)null);
 
                     b.HasData(
                         new
@@ -330,7 +330,7 @@ namespace FishingEvents.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Species");
+                    b.ToTable("Species", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

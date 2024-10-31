@@ -43,7 +43,6 @@ namespace FishingEvents.Infrastructure.Data.Models
         [Required]
         public bool IsCompleted { get; set; }
 
-
         public ICollection<EventParticipant> EventParticipants { get; set; } = new List<EventParticipant>();
 
         public ICollection<FishCaught> FishCaughts { get; set; } = new List<FishCaught>();

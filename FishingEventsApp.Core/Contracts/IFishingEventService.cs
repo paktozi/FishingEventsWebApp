@@ -18,5 +18,8 @@ namespace FishingEventsApp.Core.Contracts
         Task<FishingEvent> GetEventByIdAsync(int id);
 
         Task JoinEventAsync(int id, string? userId);
+        Task LeaveAsync(FishingEvent model, string? userId);
+        Task DeleteEventAsync(FishingEvent entity);
+        Task<FishingEventDetailModel> GetEventDetailsAsync(int id);
     }
 }

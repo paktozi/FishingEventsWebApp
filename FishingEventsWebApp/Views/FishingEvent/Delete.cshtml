@@ -1,7 +1,7 @@
-﻿@* @model GameDeleteViewModel
+﻿ @model FishingEventDeleteModel
 
 @{
-    ViewBag.Title = "Last Hall";
+    ViewBag.Title = "Delete";
 }
 
 <h2 class="text-center">@ViewBag.Title</h2>
@@ -11,9 +11,9 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title text-center">@Model.Title</h3>
-                <p class="mb-0"><strong>Published By:</strong> @Model.Publisher</p>
-                <p class="text-danger mt-3">Are you sure you want to delete @(Model.Title)?</p>
+                <h3 class="card-title text-center">@Model.Name</h3>
+                <p class="mb-0"><strong>Published By:</strong> @Model.Organizer</p>
+                <p class="text-danger mt-3">Are you sure you want to delete @(Model.Name)?</p>
             </div>
             <div class="card-footer">
                 <form asp-action="DeleteConfirmed" method="post">
@@ -25,4 +25,4 @@
         </div>
     </div>
 </div>
- *@
+ 

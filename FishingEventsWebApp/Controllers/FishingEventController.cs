@@ -44,6 +44,7 @@ namespace FishingEventsWebApp.Controllers
             return RedirectToAction(nameof(All));
         }
 
+
         public async Task<IActionResult> Join(int id)
         {
             FishingEvent fishEvent = await service.GetEventByIdAsync(id);
@@ -56,10 +57,65 @@ namespace FishingEventsWebApp.Controllers
             return RedirectToAction(nameof(All));
         }
 
+        public async Task<IActionResult> Leave(int id)
+        {
+            var model = await service.GetEventByIdAsync(id);
+            if (model == null)
+            {
+                return NotFound();
+            }
+            var userId = GetUserId();
+            await service.LeaveAsync(model, userId);
+            return RedirectToAction(nameof(All));
+        }
+
         private string? GetCurrentUserId()
         {
             return User.FindFirstValue(ClaimTypes.NameIdentifier);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var model = await service.GetEventByIdAsync(id);
+            if (model == null)
+            {
+                return NotFound();
+            }
+            string userId = GetUserId();
+            if (model.OrganizerId != userId)
+            {
+                return Unauthorized();
+            }
+            FishingEventDeleteModel modelToDelete = new FishingEventDeleteModel()
+            {
+                Id = model.Id,
+                Name = model.EventName,
+            };
+            return View(modelToDelete);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed(int id, FishingEventDeleteModel modelToDelete)
+        {
+            var entity = await service.GetEventByIdAsync(id);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+            await service.DeleteEventAsync(entity);
+            return RedirectToAction(nameof(All));
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            FishingEventDetailModel model = await service.GetEventDetailsAsync(id);
+
+            return View(model);
+        }
+
 
     }
 }

@@ -104,29 +104,13 @@ namespace FishingEventsApp.Core.Services
         }
 
 
-
-
-
-
-
         public async Task<FishingEvent> GetEventByIdAsync(int id)
         {
             return await context.FishingEvents.FirstOrDefaultAsync(f => f.Id == id);
         }
 
-        //public Task GetJoinEvent(int id, string? userId)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public async Task JoinEventAsync(int id, string? userId)
         {
-
-            //var participantId = await context.Participants
-            //                          .Where(p => p.UserId == userId)
-            //                          .Select(p => p.Id)
-            //                          .FirstOrDefaultAsync();
-
             bool isAlreadyAdded = await context.EventParticipants.AnyAsync(ep => ep.FishingEventId == id && ep.UserId == userId);
 
             if (!isAlreadyAdded)
@@ -141,6 +125,42 @@ namespace FishingEventsApp.Core.Services
             }
         }
 
+        public async Task LeaveAsync(FishingEvent model, string? userId)
+        {
+            var entity = await context.EventParticipants.FirstOrDefaultAsync(ep => ep.FishingEventId == model.Id && ep.UserId == userId);
+            if (entity != null)
+            {
+                context.Remove(entity);
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public Task DeleteEventAsync(FishingEvent entity)
+        {
+            entity.IsCompleted = true;
+            return context.SaveChangesAsync();
+        }
+
+        public async Task<FishingEventDetailModel> GetEventDetailsAsync(int id)
+        {
+            FishingEventDetailModel model = await context.FishingEvents
+                .Where(f => f.Id == id)
+                .Select(f => new FishingEventDetailModel()
+                {
+                    Id = f.Id,
+                    EventName = f.EventName,
+                    Description = f.Description,
+                    StartDate = f.StartDate.ToString(DateFormat),
+                    EndDate = f.EndDate.ToString(DateFormat),
+                    LocationName = f.Location.Name,
+                    Organizer = f.Organizer.FirstName,
+                    ImageUrl = f.Location.LocationImageUrl
+
+                })
+                .AsNoTracking()
+                .FirstOrDefaultAsync();
+            return model;
+        }
 
 
     }
