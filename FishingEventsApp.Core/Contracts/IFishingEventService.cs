@@ -15,8 +15,8 @@ namespace FishingEventsApp.Core.Contracts
         Task<ICollection<FishingLocationModel>?> GetLocationListAsync();
         Task AddFishingEventAsync(FishingEventAddModel model, string? userId);
 
-        //Task<FishingEvent> GetEventByIdAsync(int id);
+        Task<FishingEvent> GetEventByIdAsync(int id);
 
-        //Task JoinEventAsync(int id, string? userId);
+        Task JoinEventAsync(int id, string? userId);
     }
 }

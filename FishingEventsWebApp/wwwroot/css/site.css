@@ -1,6 +1,7 @@
 html {
-  font-size: 14px;
+   
 }
+
 
 @media (min-width: 768px) {
   html {
@@ -13,10 +14,28 @@ html {
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+    font-size: 14px;
+
+   
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    color:rgb(104, 186, 181);
+    background-image: url(../img/Bass.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: soft-light;
+    background-color: rgb(0, 0, 0, 0.70);
 }
+
+/*.navbar-brand {
+    color: rgb(104, 186, 181);
+}
+
+    .navbar-brand:hover {
+        color: rgb(124, 196, 230);
+    }*/

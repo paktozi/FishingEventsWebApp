@@ -19,14 +19,14 @@
     {
         <div class="col-md-3 mb-4">
             <div class="card h-100" style="width: 100%;">
-                 @if (!string.IsNullOrEmpty(e.EventImageUrl))
-            {
+                @if (!string.IsNullOrEmpty(e.EventImageUrl))
+                {
                     <img src="@e.EventImageUrl" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="@e.EventName">
-            }
-            else
-            {
-            <img src="~/img/no-image.jpg" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="No Image Available">
-            }              
+                }
+                else
+                {
+                    <img src="~/img/no-image.jpg" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="No Image Available">
+                }
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">@e.EventName</h5>
                     <p class="card-text">Description: @e.Description</p>
@@ -35,32 +35,37 @@
                     <p class="card-text">Location Name: @e.LocationName</p>
                     <p class="card-text">Creator: @e.Organizer</p>
 
-                    
-                    @if (User.Identity.Name == e.Mail)
+                    @if (User.Identity.IsAuthenticated)
                     {
-                        <a asp-controller="FishingEvent" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Edit</a>
+                        // Check if the user is an organizer
+                        if (User.Identity.Name == e.Mail && e.IsOrganizer)
+                        {
+                            // If the user is the organizer, show Edit and Delete buttons
+                            <a asp-controller="FishingEvent" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Edit</a>
+                            <a asp-controller="FishingEvent" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger w-100">Delete</a>
+                        }
+                        else if (!e.IsOrganizer) // If the user is not the organizer
+                        {
+                            // If the user has not joined the event, show the Join button
+                            if (!e.IsJoined)
+                            {
+                                <form class="input-group-sm" asp-controller="FishingEvent" asp-action="Join" asp-route-id="@e.Id">
+                                    <input type="submit" value="Join the Event" class="fs-6 btn btn-success mb-3 w-100 p-3 fw-bold" />
+                                </form>
+                            }
+                            else // If the user has joined the event, show the Leave button
+                            {
+                                <form class="input-group-sm" asp-controller="FishingEvent" asp-action="Leave" asp-route-id="@e.Id">
+                                    <input type="submit" value="Leave the Event" class="fs-6 btn btn-danger mb-3 w-100 p-3 fw-bold" />
+                                </form>
+                            }
+                        }
                     }
                     else
-                    {                       
-                        <form class="input-group-sm " asp-controller="FishingEvent" asp-action="Join" asp-route-id="@e.Id">
-                            <input type="submit" value="Join the Event" class="fs-6 btn btn-warning mb-3 w-100 p-3 fw-bold" />
-                        </form>
+                    {
+                        // Optional: Message or button for non-authenticated users
+                       
                     }
-
-                     <div class="d-flex justify-content-between mt-auto">
-                        @if (User?.Identity?.IsAuthenticated == true && !e.IsOrganizer && !e.IsJoined)
-                {
-                <a asp-controller="FishingEvent" asp-action="Details" asp-route-id="@e.Id" class="btn btn-info me-2 w-50">Details</a>
-                            <form asp-controller="FishingEvent" asp-action="Join" method="post" class="w-50">
-                <input type="hidden" name="id" value="@e.Id" />
-                <button type="submit" class="btn btn-success w-100">Buy</button>
-                </form>
-                }
-                else
-                {
-                 <a asp-controller="FishingEvent" asp-action="Details" asp-route-id="@e.Id" class="btn btn-info w-100">Details</a>
-                } 
-                </div>  
                 </div>
             </div>
         </div>

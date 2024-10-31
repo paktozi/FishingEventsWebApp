@@ -19,7 +19,6 @@ namespace FishingEventsApp.Core.Services
 
         public async Task<IEnumerable<FishingEventALLModel>> GetAllEventsAsync(string? userId)
         {
-
             var model = await context.FishingEvents
                  .Where(e => e.IsCompleted == false)
                  .Select(e => new FishingEventALLModel()
@@ -39,7 +38,6 @@ namespace FishingEventsApp.Core.Services
                  .ToListAsync();
             return model;
         }
-
 
         public async Task<ICollection<FishingLocationModel>?> GetLocationListAsync()
         {
@@ -111,79 +109,37 @@ namespace FishingEventsApp.Core.Services
 
 
 
-        //public async Task<FishingEvent> GetEventByIdAsync(int id)
+        public async Task<FishingEvent> GetEventByIdAsync(int id)
+        {
+            return await context.FishingEvents.FirstOrDefaultAsync(f => f.Id == id);
+        }
+
+        //public Task GetJoinEvent(int id, string? userId)
         //{
-        //    return await context.FishingEvents.FirstOrDefaultAsync(f => f.Id == id);
+        //    throw new NotImplementedException();
         //}
 
-        ////public Task GetJoinEvent(int id, string? userId)
-        ////{
-        ////    throw new NotImplementedException();
-        ////}
+        public async Task JoinEventAsync(int id, string? userId)
+        {
 
-        ////public async Task JoinEventAsync(int id, string? userId)
-        ////{
+            //var participantId = await context.Participants
+            //                          .Where(p => p.UserId == userId)
+            //                          .Select(p => p.Id)
+            //                          .FirstOrDefaultAsync();
 
-        ////    //var participantId = await context.Participants
-        ////    //                          .Where(p => p.UserId == userId)
-        ////    //                          .Select(p => p.Id)
-        ////    //                          .FirstOrDefaultAsync();
+            bool isAlreadyAdded = await context.EventParticipants.AnyAsync(ep => ep.FishingEventId == id && ep.UserId == userId);
 
-        ////    //bool isAlreadyAdded = await context.EventParticipants.AnyAsync(ep => ep.FishingEventId == id && ep.ParticipantId == participantId);
-
-        ////    //if (!isAlreadyAdded)
-        ////    //{
-        ////    //    EventParticipant model = new EventParticipant()
-        ////    //    {
-        ////    //        ParticipantId = participantId,
-        ////    //        FishingEventId = id
-        ////    //    };
-        ////    //    await context.EventParticipants.AddAsync(model);
-        ////    //    await context.SaveChangesAsync();
-        ////    //}
-
-        ////    if (userId == null)
-        ////    {
-        ////        throw new ArgumentNullException(nameof(userId), "User ID cannot be null.");
-        ////    }
-
-        ////    var participant = await context.Participants.SingleOrDefaultAsync(p => p.UserId == userId);
-
-        ////    // Create participant if it doesn't exist
-        ////    if (participant == null)
-        ////    {
-        ////        var user = await context.Users.FindAsync(userId);
-        ////        if (user == null)
-        ////        {
-        ////            throw new Exception($"No user found with ID: {userId}");
-        ////        }
-
-        ////        participant = new Participant
-        ////        {
-        ////            UserId = userId,
-        ////            User = user,
-        ////            FirstName = user.FirstName // or any other property you wish to use
-        ////        };
-
-        ////        context.Participants.Add(participant);
-        ////        await context.SaveChangesAsync();
-        ////    }
-
-        ////    // Check if participant is already part of the event
-        ////    bool isAlreadyAdded = await context.EventParticipants.AnyAsync(ep => ep.FishingEventId == id && ep.ParticipantId == participant.Id);
-
-        ////    if (!isAlreadyAdded)
-        ////    {
-        ////        var eventParticipant = new EventParticipant
-        ////        {
-        ////            ParticipantId = participant.Id,
-        ////            FishingEventId = id
-        ////        };
-
-        ////        await context.EventParticipants.AddAsync(eventParticipant);
-        ////        await context.SaveChangesAsync();
-        ////    }
-        ////}
+            if (!isAlreadyAdded)
+            {
+                EventParticipant model = new EventParticipant()
+                {
+                    FishingEventId = id,
+                    UserId = userId
+                };
+                await context.EventParticipants.AddAsync(model);
+                await context.SaveChangesAsync();
+            }
+        }
 
 
 

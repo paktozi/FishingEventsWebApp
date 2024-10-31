@@ -44,17 +44,17 @@ namespace FishingEventsWebApp.Controllers
             return RedirectToAction(nameof(All));
         }
 
-        //public async Task<IActionResult> Join(int id)
-        //{
-        //    FishingEvent fishEvent = await service.GetEventByIdAsync(id);
-        //    if (fishEvent == null)
-        //    {
-        //        return BadRequest();
-        //    }
-        //    string? userId = GetUserId();
-        //    await service.JoinEventAsync(id, userId);
-        //    return RedirectToAction(nameof(All));
-        //}
+        public async Task<IActionResult> Join(int id)
+        {
+            FishingEvent fishEvent = await service.GetEventByIdAsync(id);
+            if (fishEvent == null)
+            {
+                return BadRequest();
+            }
+            string? userId = GetUserId();
+            await service.JoinEventAsync(id, userId);
+            return RedirectToAction(nameof(All));
+        }
 
         private string? GetCurrentUserId()
         {
