@@ -106,6 +106,7 @@ namespace FishingEventsApp.Infrastructure
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.ApplyConfiguration(new LocationConfiguration());
+            modelBuilder.ApplyConfiguration(new EventConfiguration());
         }
     }
 }
