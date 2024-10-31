@@ -65,7 +65,7 @@ namespace FishingEventsWebApp.Areas.Identity.Pages.Account
 
             [Required]
             [Display(Name = "Last Name")]
-            [StringLength(UserLastNameMaxLength, MinimumLength = UserLastNameMaxLength)]
+            [StringLength(UserLastNameMaxLength, MinimumLength = UserLastNameMinLength)]
             public string LastName { get; set; }
 
 

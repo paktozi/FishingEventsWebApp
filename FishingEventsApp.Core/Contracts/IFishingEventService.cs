@@ -12,7 +12,7 @@ namespace FishingEventsApp.Core.Contracts
     {
         //Task AddFishingEventAsync(FishingEventAddModel model, string? userId);
 
-        //Task<IEnumerable<FishingEventALLModel>> GetAllEventsAsync();
+        Task<IEnumerable<FishingEventALLModel>> GetAllEventsAsync(string? userId);
 
         //Task<FishingEvent> GetEventByIdAsync(int id);
 

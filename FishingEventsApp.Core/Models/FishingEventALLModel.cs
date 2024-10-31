@@ -29,7 +29,12 @@ namespace FishingEventsApp.Core.Models
         public string LocationName { get; set; } = string.Empty;
 
 
-        public string Organiser { get; set; } = string.Empty;
+        public string Organizer { get; set; } = string.Empty;
 
+        public string EventImageUrl { get; set; } = string.Empty;
+
+        public bool IsOrganizer { get; set; }
+
+        public bool IsJoined { get; set; }
     }
 }

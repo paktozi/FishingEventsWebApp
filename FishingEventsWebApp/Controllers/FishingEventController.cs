@@ -5,6 +5,7 @@ using FishingEventsApp.Core.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 
 namespace FishingEventsWebApp.Controllers
@@ -13,12 +14,13 @@ namespace FishingEventsWebApp.Controllers
     {
 
 
-        //[HttpGet]
-        //public async Task<IActionResult> All()
-        //{
-        //    IEnumerable<FishingEventALLModel> model = await service.GetAllEventsAsync();
-        //    return View(model);
-        //}
+        [HttpGet]
+        public async Task<IActionResult> All()
+        {
+            string? userId = GetCurrentUserId();
+            IEnumerable<FishingEventALLModel> model = await service.GetAllEventsAsync(userId);
+            return View(model);
+        }
 
         //[HttpGet]
         //public async Task<IActionResult> Add()
@@ -53,6 +55,11 @@ namespace FishingEventsWebApp.Controllers
         //    await service.JoinEventAsync(id, userId);
         //    return RedirectToAction(nameof(All));
         //}
+
+        private string? GetCurrentUserId()
+        {
+            return User.FindFirstValue(ClaimTypes.NameIdentifier);
+        }
 
     }
 }

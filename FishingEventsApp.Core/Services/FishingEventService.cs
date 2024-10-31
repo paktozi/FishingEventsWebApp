@@ -17,24 +17,26 @@ namespace FishingEventsApp.Core.Services
     {
 
 
-        //public async Task<IEnumerable<FishingEventALLModel>> GetAllEventsAsync()
-        //{
+        public async Task<IEnumerable<FishingEventALLModel>> GetAllEventsAsync(string? userId)
+        {
 
-        //    var model = await context.FishingEvents
-        //         .Where(e => e.IsCompleted == false)
-        //         .Select(e => new FishingEventALLModel()
-        //         {
-        //             Id = e.Id,
-        //             EventName = e.EventName,
-        //             StartDate = e.StartDate.ToString(DateFormat),
-        //             EndDate = e.EndDate.ToString(DateFormat),
-        //             LocationName = e.Location.Name,
-        //             Organiser = e.Organiser.User.UserName
-        //         })
-        //         .AsNoTracking()
-        //         .ToListAsync();
-        //    return model;
-        //}
+            var model = await context.FishingEvents
+                 .Where(e => e.IsCompleted == false)
+                 .Select(e => new FishingEventALLModel()
+                 {
+                     Id = e.Id,
+                     EventName = e.EventName,
+                     StartDate = e.StartDate.ToString(DateFormat),
+                     EndDate = e.EndDate.ToString(DateFormat),
+                     LocationName = e.Location.Name,
+                     Organizer = e.Organizer.FirstName,
+                     IsOrganizer = e.OrganizerId == userId,
+                     IsJoined = e.EventParticipants.Any(ep => ep.FishingEventId == e.Id && ep.UserId == userId)
+                 })
+                 .AsNoTracking()
+                 .ToListAsync();
+            return model;
+        }
 
 
         //public async Task<ICollection<FishingLocationModel>?> GetLocationListAsync()
