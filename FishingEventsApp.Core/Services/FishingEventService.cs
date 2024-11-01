@@ -91,7 +91,6 @@ namespace FishingEventsApp.Core.Services
             }
 
             FishingEvent entity = new FishingEvent();
-            entity.Id = model.Id;
             entity.EventName = model.EventName;
             entity.Description = model.Description;
             entity.StartDate = parseStartDate;
@@ -145,6 +144,7 @@ namespace FishingEventsApp.Core.Services
         {
             FishingEventDetailModel? model = await context.FishingEvents
                 .Where(f => f.Id == id)
+                .Include(f => f.Location)
                 .Select(f => new FishingEventDetailModel()
                 {
                     Id = f.Id,
@@ -154,7 +154,8 @@ namespace FishingEventsApp.Core.Services
                     EndDate = f.EndDate.ToString(DateFormat),
                     LocationName = f.Location.Name,
                     Organizer = f.Organizer.FirstName,
-                    ImageUrl = f.Location.LocationImageUrl ?? string.Empty
+                    ImageUrl = f.Location.LocationImageUrl ?? string.Empty,
+                    FishingType = f.Location.FishingType
                 })
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
@@ -169,7 +170,7 @@ namespace FishingEventsApp.Core.Services
                 .Where(f => f.Id == id)
                 .Select(f => new FishingEventEditModel()
                 {
-                    Id = f.Id,
+                    //Id = f.Id,
                     EventName = f.EventName,
                     Description = f.Description,
                     StartDate = f.StartDate.ToString(DateFormat),

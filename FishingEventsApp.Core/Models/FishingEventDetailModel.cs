@@ -23,5 +23,7 @@ namespace FishingEventsApp.Core.Models
         public string Organizer { get; set; } = string.Empty;
 
         public string ImageUrl { get; set; } = string.Empty;
+
+        public string FishingType { get; set; } = string.Empty;
     }
 }

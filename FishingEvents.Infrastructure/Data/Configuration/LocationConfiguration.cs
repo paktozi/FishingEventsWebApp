@@ -18,7 +18,7 @@ namespace FishingEvents.Infrastructure.Data.Configuration
                 Id = 1,
                 Name = "Vucha dam",
                 Elevation="250",
-                FishingType="Bass,Pike",
+                FishingType="Trolling,Jigging",
                 LocationImageUrl="https://svetogled.com/wp-content/uploads/2021/05/DSC_0680-800x500.jpg"
             },
             new Location()
@@ -26,7 +26,7 @@ namespace FishingEvents.Infrastructure.Data.Configuration
                 Id = 2,
                 Name = "Dospat dam",
                 Elevation="1400",
-                FishingType="Bass,Trouth",
+                FishingType="Soft Plastic Lures,Float",
                 LocationImageUrl="https://4u-luxury-villa.com/wp-content/uploads/2022/10/Dospat.jpg"
             },
         };

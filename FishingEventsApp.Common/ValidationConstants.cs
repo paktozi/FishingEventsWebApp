@@ -19,8 +19,8 @@ namespace FishingEventsApp.Common
 
         public const int LocationNameMinLength = 3;
         public const int LocationNameMaxLength = 50;
-        public const int LocationAltitudeMinLength = 1;
-        public const int LocationAltitudeMaxLength = 10;
+        public const int LocationElevationMinLength = 1;
+        public const int LocationElevationMaxLength = 10;
         public const int LocationFishingTypeMinLength = 3;
         public const int LocationFishingTypeMaxLength = 50;
 

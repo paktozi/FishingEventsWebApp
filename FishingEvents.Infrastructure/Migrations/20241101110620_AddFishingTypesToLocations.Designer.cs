@@ -4,6 +4,7 @@ using FishingEventsApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FishingEvents.Infrastructure.Migrations
 {
     [DbContext(typeof(FishingEventsDbContext))]
-    partial class FishingEventsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241101110620_AddFishingTypesToLocations")]
+    partial class AddFishingTypesToLocations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

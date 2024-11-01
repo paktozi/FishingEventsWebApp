@@ -1,0 +1,47 @@
+﻿ @model LocationAddModel
+@{
+    ViewBag.Title = "Fishing Location";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form asp-action="Add" method="post">
+            <div class="mb-3">
+                <label asp-for="@Model.Name" class="form-label-add-edit">Location Name</label>
+                <input asp-for="@Model.Name" class="form-control" aria-required="true" style="background-color: rgba(10, 20, 0, 0.6);color:greenyellow;" />
+                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Elevation" class="form-label-add-edit">Elevation in meters</label>
+                <textarea asp-for="@Model.Elevation" class="form-control" aria-required="true" rows="2" style="background-color: rgba(10, 20, 0, 0.6);color:greenyellow;"></textarea>
+                <span asp-validation-for="@Model.Elevation" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.FishingType" class="form-label-add-edit">Fishing Type</label>
+                <textarea asp-for="@Model.FishingType" class="form-control" aria-required="true" rows="2" style="background-color: rgba(10, 20, 0, 0.6);color:greenyellow;"></textarea>
+                <span asp-validation-for="@Model.FishingType" class="text-danger"></span>
+            </div>
+          
+
+            <div class="mb-3">
+                <label asp-for="@Model.LocationImageUrl" class="form-label-add-edit">ImageUrl</label>
+                <textarea asp-for="@Model.LocationImageUrl" class="form-control" aria-required="true" rows="1" style="background-color: rgba(10, 20, 0, 0.6);color:greenyellow;"></textarea>
+                <span asp-validation-for="@Model.LocationImageUrl" class="text-danger"></span>
+            </div>
+        
+            <div class="mb-3">
+                <input class="btn btn-success btn-dark-text mb-2 w-100 py-3 fw-bold rounded" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
