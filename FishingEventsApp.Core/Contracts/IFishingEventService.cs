@@ -21,5 +21,7 @@ namespace FishingEventsApp.Core.Contracts
         Task LeaveAsync(FishingEvent model, string? userId);
         Task DeleteEventAsync(FishingEvent entity);
         Task<FishingEventDetailModel> GetEventDetailsAsync(int id);
+        Task<FishingEventEditModel> GetEditEventByIdAsync(int id);
+        Task EditEventAsync(FishingEventEditModel model, FishingEvent fishEvent);
     }
 }

@@ -143,7 +143,7 @@ namespace FishingEventsApp.Core.Services
 
         public async Task<FishingEventDetailModel> GetEventDetailsAsync(int id)
         {
-            FishingEventDetailModel model = await context.FishingEvents
+            FishingEventDetailModel? model = await context.FishingEvents
                 .Where(f => f.Id == id)
                 .Select(f => new FishingEventDetailModel()
                 {
@@ -154,14 +154,58 @@ namespace FishingEventsApp.Core.Services
                     EndDate = f.EndDate.ToString(DateFormat),
                     LocationName = f.Location.Name,
                     Organizer = f.Organizer.FirstName,
-                    ImageUrl = f.Location.LocationImageUrl
-
+                    ImageUrl = f.Location.LocationImageUrl ?? string.Empty
                 })
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
             return model;
         }
 
+        public async Task<FishingEventEditModel> GetEditEventByIdAsync(int id)
+        {
+            var location = await GetLocation();
 
+            var model = await context.FishingEvents
+                .Where(f => f.Id == id)
+                .Select(f => new FishingEventEditModel()
+                {
+                    Id = f.Id,
+                    EventName = f.EventName,
+                    Description = f.Description,
+                    StartDate = f.StartDate.ToString(DateFormat),
+                    EndDate = f.EndDate.ToString(DateFormat),
+                    LocationId = f.Location.Id,
+                    Locations = location,
+                    EventImageUrl = f.EventImageUrl,
+                    OrganizerId = f.OrganizerId
+                })
+                .FirstOrDefaultAsync();
+            return model;
+        }
+
+        public async Task EditEventAsync(FishingEventEditModel model, FishingEvent fishEvent)
+        {
+            string startDate = $"{model.StartDate}";
+            string endDate = $"{model.EndDate}";
+
+            if (!DateTime.TryParseExact(startDate, DateFormat, CultureInfo.InvariantCulture,
+                DateTimeStyles.None, out DateTime parseStartDate))
+            {
+                throw new InvalidOperationException("Invalid date format.");
+            }
+            if (!DateTime.TryParseExact(endDate, DateFormat, CultureInfo.InvariantCulture,
+                DateTimeStyles.None, out DateTime parseEndDate))
+            {
+                throw new InvalidOperationException("Invalid date format.");
+            }
+
+            fishEvent.EventName = model.EventName;
+            fishEvent.Description = model.Description;
+            fishEvent.StartDate = parseStartDate;
+            fishEvent.EndDate = parseEndDate;
+            fishEvent.LocationId = model.LocationId;
+            fishEvent.EventImageUrl = model.EventImageUrl;
+            await context.SaveChangesAsync();
+        }
     }
 }

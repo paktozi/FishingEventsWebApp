@@ -116,6 +116,37 @@ namespace FishingEventsWebApp.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            FishingEventEditModel model = await service.GetEditEventByIdAsync(id);
+            string? userId = GetUserId();
 
+            if (model.OrganizerId != userId)
+            {
+                return Unauthorized();
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(FishingEventEditModel model, int id)
+        {
+            var fishEvent = await service.GetEventByIdAsync(id);
+            if (fishEvent == null)
+            {
+                return BadRequest();
+            }
+
+            string? userId = GetUserId();
+
+            //if (model.OrganizerId != userId)
+            //{
+            //    return Unauthorized();
+            //}
+
+            await service.EditEventAsync(model, fishEvent);
+            return RedirectToAction(nameof(All));
+        }
     }
 }
