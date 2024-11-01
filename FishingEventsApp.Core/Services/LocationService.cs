@@ -1,6 +1,6 @@
 ﻿using FishingEvents.Infrastructure.Data.Models;
 using FishingEventsApp.Core.Contracts;
-using FishingEventsApp.Core.Models;
+using FishingEventsApp.Core.Models.EventsModels;
 using FishingEventsApp.Core.Models.LocationModels;
 using FishingEventsApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +24,12 @@ namespace FishingEventsApp.Core.Services
                 LocationImageUrl = model.LocationImageUrl
             };
             await context.Locations.AddAsync(location);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task DeleteLocationAsync(Location entity)
+        {
+            context.Remove(entity);
             await context.SaveChangesAsync();
         }
 

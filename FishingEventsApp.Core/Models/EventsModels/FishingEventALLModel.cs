@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FishingEventsApp.Core.Models
+namespace FishingEventsApp.Core.Models.EventsModels
 {
     public class FishingEventALLModel
     {

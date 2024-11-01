@@ -1,16 +1,18 @@
-﻿using System;
+﻿using FishingEvents.Infrastructure.Data.Models;
+using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static FishingEventsApp.Common.ValidationConstants;
 
-namespace FishingEventsApp.Core.Models
+namespace FishingEventsApp.Core.Models.EventsModels
 {
-    public class FishingEventEditModel
+    public class FishingEventAddModel
     {
-
         public int Id { get; set; }
 
         [Required(ErrorMessage = RequiredErrorMessage)]
@@ -38,10 +40,6 @@ namespace FishingEventsApp.Core.Models
 
         public string? EventImageUrl { get; set; } = string.Empty;
 
-
-        public string OrganizerId { get; set; } = string.Empty;
-
         public IEnumerable<FishingLocationModel>? Locations { get; set; } = new List<FishingLocationModel>();
-
     }
 }

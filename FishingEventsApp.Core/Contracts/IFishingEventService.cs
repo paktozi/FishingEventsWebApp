@@ -1,5 +1,5 @@
 ﻿using FishingEvents.Infrastructure.Data.Models;
-using FishingEventsApp.Core.Models;
+using FishingEventsApp.Core.Models.EventsModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +15,19 @@ namespace FishingEventsApp.Core.Contracts
         Task<ICollection<FishingLocationModel>?> GetLocationListAsync();
         Task AddFishingEventAsync(FishingEventAddModel model, string? userId);
 
-        Task<FishingEvent> GetEventByIdAsync(int id);
+        Task<FishingEvent> FindEventAsync(int id);
 
         Task JoinEventAsync(int id, string? userId);
+
+
         Task LeaveAsync(FishingEvent model, string? userId);
+
         Task DeleteEventAsync(FishingEvent entity);
+
         Task<FishingEventDetailModel> GetEventDetailsAsync(int id);
-        Task<FishingEventEditModel> GetEditEventByIdAsync(int id);
+
+        Task<FishingEventEditModel> GetEventToEditAsync(int id);
+
         Task EditEventAsync(FishingEventEditModel model, FishingEvent fishEvent);
     }
 }

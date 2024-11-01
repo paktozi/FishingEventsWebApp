@@ -1,6 +1,6 @@
 ﻿using FishingEvents.Infrastructure.Data.Models;
 using FishingEventsApp.Core.Contracts;
-using FishingEventsApp.Core.Models;
+using FishingEventsApp.Core.Models.EventsModels;
 using FishingEventsApp.Core.Models.LocationModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -60,6 +60,33 @@ namespace FishingEventsWebApp.Controllers
             return RedirectToAction(nameof(All));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var model = await service.FindLocationAsync(id);
+            if (model == null)
+            {
+                return NotFound();
+            }
+            LocationDeleteModel modelToDelete = new LocationDeleteModel()
+            {
+                Id = model.Id,
+                Name = model.Name,
+            };
+            return View(modelToDelete);
+        }
 
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed(int id, LocationDeleteModel modelToDelete)
+        {
+            var entity = await service.FindLocationAsync(id);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+            await service.DeleteLocationAsync(entity);
+            return RedirectToAction(nameof(All));
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using FishingEvents.Infrastructure.Data.Models;
 using FishingEventsApp.Core.Contracts;
-using FishingEventsApp.Core.Models;
+using FishingEventsApp.Core.Models.EventsModels;
 using FishingEventsApp.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -103,9 +103,9 @@ namespace FishingEventsApp.Core.Services
         }
 
 
-        public async Task<FishingEvent> GetEventByIdAsync(int id)
+        public async Task<FishingEvent> FindEventAsync(int id)
         {
-            return await context.FishingEvents.FirstOrDefaultAsync(f => f.Id == id);
+            return await context.FishingEvents.FindAsync(id);//FirstOrDefaultAsync(f => f.Id == id);
         }
 
         public async Task JoinEventAsync(int id, string? userId)
@@ -134,10 +134,10 @@ namespace FishingEventsApp.Core.Services
             }
         }
 
-        public Task DeleteEventAsync(FishingEvent entity)
+        public async Task DeleteEventAsync(FishingEvent entity)
         {
             entity.IsCompleted = true;
-            return context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
 
         public async Task<FishingEventDetailModel> GetEventDetailsAsync(int id)
@@ -162,7 +162,7 @@ namespace FishingEventsApp.Core.Services
             return model;
         }
 
-        public async Task<FishingEventEditModel> GetEditEventByIdAsync(int id)
+        public async Task<FishingEventEditModel> GetEventToEditAsync(int id)
         {
             var location = await GetLocation();
 
@@ -170,7 +170,6 @@ namespace FishingEventsApp.Core.Services
                 .Where(f => f.Id == id)
                 .Select(f => new FishingEventEditModel()
                 {
-                    //Id = f.Id,
                     EventName = f.EventName,
                     Description = f.Description,
                     StartDate = f.StartDate.ToString(DateFormat),

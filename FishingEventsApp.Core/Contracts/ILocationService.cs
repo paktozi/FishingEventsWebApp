@@ -1,5 +1,5 @@
 ﻿using FishingEvents.Infrastructure.Data.Models;
-using FishingEventsApp.Core.Models;
+using FishingEventsApp.Core.Models.EventsModels;
 using FishingEventsApp.Core.Models.LocationModels;
 using System;
 using System.Collections.Generic;
@@ -12,6 +12,7 @@ namespace FishingEventsApp.Core.Contracts
     public interface ILocationService
     {
         Task AddLocationAsync(LocationAddModel model);
+        Task DeleteLocationAsync(Location entity);
         Task EditLocationAsync(LocationEditModel model, Location locationToEdit);
         Task<Location> FindLocationAsync(int id);
         Task<IEnumerable<FishingLocationModel>> GetAllLocationsAsync();

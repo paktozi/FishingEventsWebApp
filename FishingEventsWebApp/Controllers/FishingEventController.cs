@@ -1,6 +1,6 @@
 ﻿using FishingEvents.Infrastructure.Data.Models;
 using FishingEventsApp.Core.Contracts;
-using FishingEventsApp.Core.Models;
+using FishingEventsApp.Core.Models.EventsModels;
 using FishingEventsApp.Core.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -47,7 +47,7 @@ namespace FishingEventsWebApp.Controllers
 
         public async Task<IActionResult> Join(int id)
         {
-            FishingEvent fishEvent = await service.GetEventByIdAsync(id);
+            FishingEvent fishEvent = await service.FindEventAsync(id);
             if (fishEvent == null)
             {
                 return BadRequest();
@@ -59,7 +59,7 @@ namespace FishingEventsWebApp.Controllers
 
         public async Task<IActionResult> Leave(int id)
         {
-            var model = await service.GetEventByIdAsync(id);
+            var model = await service.FindEventAsync(id);
             if (model == null)
             {
                 return NotFound();
@@ -77,7 +77,7 @@ namespace FishingEventsWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var model = await service.GetEventByIdAsync(id);
+            var model = await service.FindEventAsync(id);
             if (model == null)
             {
                 return NotFound();
@@ -98,7 +98,7 @@ namespace FishingEventsWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteConfirmed(int id, FishingEventDeleteModel modelToDelete)
         {
-            var entity = await service.GetEventByIdAsync(id);
+            var entity = await service.FindEventAsync(id);
             if (entity == null)
             {
                 return NotFound();
@@ -119,7 +119,7 @@ namespace FishingEventsWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            FishingEventEditModel model = await service.GetEditEventByIdAsync(id);
+            FishingEventEditModel model = await service.GetEventToEditAsync(id);
             string? userId = GetUserId();
 
             if (model.OrganizerId != userId)
@@ -132,7 +132,7 @@ namespace FishingEventsWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(FishingEventEditModel model, int id)
         {
-            var fishEvent = await service.GetEventByIdAsync(id);
+            FishingEvent fishEvent = await service.FindEventAsync(id);
             if (fishEvent == null)
             {
                 return BadRequest();
