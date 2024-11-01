@@ -12,24 +12,24 @@
         <form asp-action="Edit" method="post">
             <div class="mb-3">
                 <label asp-for="@Model.Name" class="form-label-add-edit">Location Name</label>
-                <input asp-for="@Model.Name" class="form-control" aria-required="true" style="background-color: rgba(10, 20, 0, 0.6);color:greenyellow;" />
+                <input asp-for="@Model.Name" class="form-control" aria-required="true" style="background-color: rgba(10, 20, 0, 0.6);color:greenyellow;box-shadow:5px 5px 10px black; " />
                 <span asp-validation-for="@Model.Name" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="@Model.Elevation" class="form-label-add-edit">Elevation in meters</label>
-                <textarea asp-for="@Model.Elevation" class="form-control" aria-required="true" rows="2" style="background-color: rgba(10, 20, 0, 0.6) ;color:greenyellow;"></textarea>
+                <textarea asp-for="@Model.Elevation" class="form-control" aria-required="true" rows="2" style="background-color: rgba(10, 20, 0, 0.6) ;color:greenyellow;box-shadow:5px 5px 10px black; "></textarea>
                 <span asp-validation-for="@Model.Elevation" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
                 <label asp-for="@Model.FishingType" class="form-label-add-edit">FishingType</label>
-                <input asp-for="@Model.FishingType" class="form-control" type="text" aria-required="true" placeholder="dd-MM-yyyy" style="background-color: rgba(10, 20, 0, 0.6) ;color:greenyellow;" />
+                <input asp-for="@Model.FishingType" class="form-control" type="text" aria-required="true" placeholder="dd-MM-yyyy" style="background-color: rgba(10, 20, 0, 0.6) ;color:greenyellow;box-shadow:5px 5px 10px black; " />
                 <span asp-validation-for="@Model.FishingType" class="text-danger"></span>
             </div>
           
             <div class="mb-3">
                 <label asp-for="@Model.LocationImageUrl" class="form-label-add-edit">ImageUrl</label>
-                <textarea asp-for="@Model.LocationImageUrl" class="form-control" aria-required="true" rows="1" style="background-color: rgba(10, 20, 0, 0.6) ;color:greenyellow;"></textarea>
+                <textarea asp-for="@Model.LocationImageUrl" class="form-control" aria-required="true" rows="1" style="background-color: rgba(10, 20, 0, 0.6) ;color:greenyellow;box-shadow:5px 5px 10px black; "></textarea>
                 <span asp-validation-for="@Model.LocationImageUrl" class="text-danger"></span>
             </div>
            

@@ -26,7 +26,6 @@ namespace FishingEvents.Infrastructure.Data.Models
 
         public string? FishImageUrl { get; set; } = string.Empty;
 
-        //TODO  add public ICollection<Species> FishSpecies { get; set; } = new List<Species>();
 
         public ICollection<FishCaught> FishCaughts { get; set; } = new List<FishCaught>();
     }

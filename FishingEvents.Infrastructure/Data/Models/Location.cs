@@ -18,7 +18,7 @@ namespace FishingEvents.Infrastructure.Data.Models
 
         public string? LocationImageUrl { get; set; }
 
-        //ToDo add public int SpeciesId{get;set;}   public Species Species{get;set;}
+
 
 
         public ICollection<FishingEvent> FishingEvents { get; set; } = new List<FishingEvent>();

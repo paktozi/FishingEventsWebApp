@@ -107,6 +107,7 @@ namespace FishingEventsApp.Infrastructure
 
             modelBuilder.ApplyConfiguration(new LocationConfiguration());
             modelBuilder.ApplyConfiguration(new EventConfiguration());
+            modelBuilder.ApplyConfiguration(new SpeciesConfiguration());
         }
     }
 }

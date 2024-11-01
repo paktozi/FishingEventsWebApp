@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FishingEventsWebApp.Controllers
 {
+    [Authorize]
     public class LocationController(ILocationService service) : Controller
     {
         [HttpGet]

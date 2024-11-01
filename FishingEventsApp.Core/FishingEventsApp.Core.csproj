@@ -10,4 +10,8 @@
     <ProjectReference Include="..\FishingEvents.Infrastructure\FishingEvents.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\SpeciesModels\" />
+  </ItemGroup>
+
 </Project>

@@ -2,6 +2,7 @@
 using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.EventsModels;
 using FishingEventsApp.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,10 +11,11 @@ using System.Security.Claims;
 
 namespace FishingEventsWebApp.Controllers
 {
+    [Authorize]
     public class FishingEventController(IFishingEventService service) : BaseController
     {
 
-
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> All()
         {
