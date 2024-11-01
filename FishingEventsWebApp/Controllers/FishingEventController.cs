@@ -140,10 +140,10 @@ namespace FishingEventsWebApp.Controllers
 
             string? userId = GetUserId();
 
-            //if (model.OrganizerId != userId)
-            //{
-            //    return Unauthorized();
-            //}
+            if (fishEvent.OrganizerId != userId)
+            {
+                return Unauthorized();
+            }
 
             await service.EditEventAsync(model, fishEvent);
             return RedirectToAction(nameof(All));
