@@ -34,6 +34,8 @@ namespace FishingEventsApp.Common
         public const int FishSpeciesDescriptionMinLength = 5;
         public const int FishSpeciesDescriptionMaxLength = 250;
 
+        public const int SpeciesNameMinLength = 2;
+        public const int SpeciesNameMaxLength = 50;
         public const int SpeciesHabitatNameMinLength = 2;
         public const int SpeciesHabitatNameMaxLength = 50;
         public const int SpeciesFishBaitMinLength = 2;

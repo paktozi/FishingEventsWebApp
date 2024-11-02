@@ -13,8 +13,6 @@ namespace FishingEventsApp.Core.Models.EventsModels
 {
     public class FishingEventAddModel
     {
-        public int Id { get; set; }
-
         [Required(ErrorMessage = RequiredErrorMessage)]
         [StringLength(FishingEventNameMaxLength, MinimumLength = FishingEventNameMinLength, ErrorMessage = LengthErrorMessage)]
         public string EventName { get; set; } = string.Empty;
