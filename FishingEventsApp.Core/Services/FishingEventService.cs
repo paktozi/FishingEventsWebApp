@@ -1,5 +1,6 @@
 ﻿using FishingEvents.Infrastructure.Data.Models;
 using FishingEventsApp.Core.Contracts;
+using FishingEventsApp.Core.Models.ApplicationUserModels;
 using FishingEventsApp.Core.Models.EventsModels;
 using FishingEventsApp.Core.Models.FishCaughtModels;
 using FishingEventsApp.Infrastructure;
@@ -148,7 +149,7 @@ namespace FishingEventsApp.Core.Services
             await context.SaveChangesAsync();
         }
 
-        public async Task<FishingEventDetailModel> GetEventDetailsAsync(int id)
+        public async Task<FishingEventDetailModel> GetEventDetailsAsync(int id, string? userId)
         {
             FishingEventDetailModel? model = await context.FishingEvents
                 .Where(f => f.Id == id)
@@ -163,7 +164,8 @@ namespace FishingEventsApp.Core.Services
                     LocationName = f.Location.Name,
                     Organizer = f.Organizer.FirstName,
                     ImageUrl = f.Location.LocationImageUrl ?? string.Empty,
-                    FishingType = f.Location.FishingType
+                    FishingType = f.Location.FishingType,
+                    UserId = userId
                 })
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
@@ -214,6 +216,50 @@ namespace FishingEventsApp.Core.Services
             fishEvent.LocationId = model.LocationId;
             fishEvent.EventImageUrl = model.EventImageUrl;
             await context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<FishingEventAllParticipants>> GetAllParticipant(int id)
+        {
+
+            return await context.EventParticipants
+        .Where(ep => ep.FishingEventId == id)
+        .Include(ep => ep.User)
+            .ThenInclude(user => user.FishCaughts) // Include FishCaughts related to the user
+        .Select(ep => new FishingEventAllParticipants
+        {
+            FirstName = ep.User.FirstName,
+            LastName = ep.User.LastName,
+            UserId = ep.UserId,
+            EventId = id,
+            FishCaughtsList = ep.User.FishCaughts.Select(fc => new FishCaughtAllModel
+            {
+                Species = fc.Species.Name,
+                Weight = fc.Weight,
+                Length = fc.Length,
+                DateCaught = fc.DateCaught.ToString(DateFormat),
+                CaughtImageUrl = fc.CaughtImageUrl
+            }).ToList()
+        })
+        .AsNoTracking()
+        .ToListAsync();
+
+
+
+
+
+
+
+
+
+            //  return await context.EventParticipants
+            //.Where(ep => ep.FishingEventId == id)         
+            //.Select(ep => new FishingEventAllParticipants
+            //{            
+            //    FirstName = ep.User.FirstName,
+            //    LastName = ep.User.LastName,
+            //})
+            //.AsNoTracking()
+            //.ToListAsync();
         }
     }
 }

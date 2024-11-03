@@ -14,11 +14,13 @@ namespace FishingEventsApp.Core.Models.FishCaughtModels
     {
         public int Id { get; set; }
 
-        // public int FishingEventId { get; set; }
+        public int FishingEventId { get; set; }
 
-        public string FishingEventName { get; set; }
+        public string FishingEventName { get; set; } = string.Empty;
 
-        //public string UserId { get; set; } = string.Empty;
+
+
+        public string UserId { get; set; }
 
         public string Species { get; set; }
 

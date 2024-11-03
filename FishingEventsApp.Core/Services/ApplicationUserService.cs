@@ -1,6 +1,7 @@
 ﻿using FishingEvents.Infrastructure.Data.Models;
 using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.ApplicationUserModels;
+using FishingEventsApp.Core.Models.EventsModels;
 using FishingEventsApp.Core.Models.FishCaughtModels;
 using FishingEventsApp.Infrastructure;
 using Microsoft.AspNetCore.Identity;

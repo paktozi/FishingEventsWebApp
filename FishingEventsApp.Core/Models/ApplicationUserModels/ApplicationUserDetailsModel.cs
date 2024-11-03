@@ -1,4 +1,5 @@
-﻿using FishingEventsApp.Core.Models.FishCaughtModels;
+﻿using FishingEventsApp.Core.Models.EventsModels;
+using FishingEventsApp.Core.Models.FishCaughtModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,11 @@ namespace FishingEventsApp.Core.Models.ApplicationUserModels
 
         public string LastName { get; set; } = string.Empty;
 
+        public string UserId { get; set; }
+
 
         public ICollection<FishCaughtAllModel> FishCaughtsList { get; set; } = new List<FishCaughtAllModel>();
+        public ICollection<FishingEventALLModel> FishingEventsList { get; set; } = new List<FishingEventALLModel>();
 
     }
 }

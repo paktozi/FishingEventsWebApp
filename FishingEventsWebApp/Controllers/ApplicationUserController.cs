@@ -20,5 +20,7 @@ namespace FishingEventsWebApp.Controllers
             ApplicationUserDetailsModel model = await userService.GetDetailsAsync(id);
             return View(model);
         }
+
+
     }
 }

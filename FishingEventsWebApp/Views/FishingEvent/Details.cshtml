@@ -23,15 +23,21 @@
             <p class="card-text"><small class="text-muted">Start: @Model.StartDate</small></p>
             <p class="card-text"><small class="text-muted">End: @Model.EndDate</small></p>
             <p class="card-text"><small class="text-muted">Publisher: @Model.Organizer</small></p>
-            <p class="card-text"><small class="text-muted">Location: @Model.LocationName</small></p>          
+            <p class="card-text"><small class="text-muted">Location: @Model.LocationName</small></p>
             <p class="card-text"><small class="text-muted">Fishing Type: @Model.FishingType</small></p>
         </div>
+        <a asp-controller="FishCaught" asp-action="All" asp-route-userId="@Model.UserId" asp-route-id="@Model.Id" class="btn btn-success mb-2 w-100 p-3 fw-bold"> My fish caught for this event </a>
 
-        <a asp-controller="FishingEvent" asp-action="All" class="btn btn-light btn-dark-text btn-rounded mb-2 w-100 p-3 fw-bold">Back toFishing Event</a>     
+        <a asp-controller="FishingEvent" asp-action="All" class="btn btn-light btn-dark-text btn-rounded mb-2 w-100 p-3 fw-bold">Back toFishing Event</a>
+        @if (true)
+        {          
+            <a asp-controller="FishingEvent" asp-action="AllEventParticipants" asp-route-id="@Model.Id" class="btn btn-success mb-2 w-100 p-3 fw-bold"> All Participants </a>
+        }
+
+
     </div>
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
- 

@@ -1,4 +1,5 @@
 ﻿using FishingEvents.Infrastructure.Data.Models;
+using FishingEventsApp.Core.Models.ApplicationUserModels;
 using FishingEventsApp.Core.Models.EventsModels;
 using System;
 using System.Collections.Generic;
@@ -24,10 +25,11 @@ namespace FishingEventsApp.Core.Contracts
 
         Task DeleteEventAsync(FishingEvent entity);
 
-        Task<FishingEventDetailModel> GetEventDetailsAsync(int id);
+        Task<FishingEventDetailModel> GetEventDetailsAsync(int id, string? userId);
 
         Task<FishingEventEditModel> GetEventToEditAsync(int id);
 
         Task EditEventAsync(FishingEventEditModel model, FishingEvent fishEvent);
+        Task<IEnumerable<FishingEventAllParticipants>> GetAllParticipant(int id);
     }
 }

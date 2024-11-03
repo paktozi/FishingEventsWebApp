@@ -25,5 +25,7 @@ namespace FishingEventsApp.Core.Models.EventsModels
         public string ImageUrl { get; set; } = string.Empty;
 
         public string FishingType { get; set; } = string.Empty;
+
+        public string UserId { get; set; } = string.Empty;
     }
 }

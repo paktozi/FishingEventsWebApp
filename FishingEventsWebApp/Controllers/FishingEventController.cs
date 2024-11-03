@@ -1,5 +1,6 @@
 ﻿using FishingEvents.Infrastructure.Data.Models;
 using FishingEventsApp.Core.Contracts;
+using FishingEventsApp.Core.Models.ApplicationUserModels;
 using FishingEventsApp.Core.Models.EventsModels;
 using FishingEventsApp.Core.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -113,7 +114,8 @@ namespace FishingEventsWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            FishingEventDetailModel model = await service.GetEventDetailsAsync(id);
+            string? userId = GetUserId();
+            FishingEventDetailModel model = await service.GetEventDetailsAsync(id, userId);
 
             return View(model);
         }
@@ -149,6 +151,14 @@ namespace FishingEventsWebApp.Controllers
 
             await service.EditEventAsync(model, fishEvent);
             return RedirectToAction(nameof(All));
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> AllEventParticipants(int id)
+        {
+            IEnumerable<FishingEventAllParticipants> model = await service.GetAllParticipant(id);
+            return View(model);
         }
     }
 }
