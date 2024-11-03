@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FishingEventsApp.Core.Models.FishCaughtModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -38,5 +39,7 @@ namespace FishingEventsApp.Core.Models.EventsModels
         public bool IsJoined { get; set; }
 
         public string Mail { get; set; } = string.Empty;
+
+        // public ICollection<FishCaughtAllModel> FishCaughtList { get; set; } = new List<FishCaughtAllModel>();
     }
 }

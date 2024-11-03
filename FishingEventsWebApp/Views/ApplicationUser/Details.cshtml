@@ -1,0 +1,40 @@
+﻿ @model ApplicationUserDetailsModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+
+<div class="row text-center">
+    @foreach (var e in Model.FishCaughtsList)
+    {
+        <div class="col-md-3 mb-4">
+            <div class="card h-100" style="width: 100%;background-color: rgba(10, 20, 0, 0.6);border-radius:10px;padding:8px;border-color:dimgrey; box-shadow:5px 5px 10px black; ">
+
+                @if (!string.IsNullOrEmpty(e.CaughtImageUrl))
+                {
+                    <img src="@e.CaughtImageUrl" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="@e.FishingEventName">
+                }
+                else
+                {
+                    <img src="~/img/no-image.jpg" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="No Image Available">
+                }
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Name: @Model.FirstName @Model.LastName</h5>
+                    <p class="card-text">Event Name: @e.FishingEventName</p>
+                    <p class="card-text">Fish Name: @e.Species</p>
+                    <p class="card-text">Weight: @e.Weight kg</p>
+                    <p class="card-text">Length: @e.Length cm</p>
+                    <p class="card-text">Date: @e.DateCaught</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

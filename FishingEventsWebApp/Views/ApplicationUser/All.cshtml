@@ -1,0 +1,45 @@
+﻿@model ICollection< ApplicationUserAllModel>
+
+
+@{
+    ViewData["Title"] = "All users";
+}
+
+@* <div class="d-flex justify-content-between align-items-center mb-3" style="margin-top: 20px;">
+    <h2>@ViewData["Title"]</h2>
+    @if (User?.Identity?.IsAuthenticated == true)
+    {
+        <a asp-controller="Location" asp-action="Add" class="btn btn-success"><i class="fas fa-plus"></i>Add New Location</a>
+    }
+</div> *@
+<hr />
+
+<div class="row text-center">
+    @foreach (var e in Model)
+    {
+        <div class="col-md-3 mb-4">
+            <div class="card h-100" style="width: 100%;background-color: rgba(10, 20, 0, 0.6);border-radius:10px;padding:8px;border-color:dimgrey; box-shadow:5px 5px 10px black; ">
+               @*  @if (!string.IsNullOrEmpty(e.LocationImageUrl))
+                {
+                    <img src="@e.LocationImageUrl" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="@e.Name">
+                }
+                else
+                {
+                    <img src="~/img/no-image.jpg" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="No Image Available">
+                } *@
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">User Name: @e.UserName</h5>
+                    <p class="card-text">First Name: @e.FirstName</p>
+                    <p class="card-text">Last Name: @e.LastName</p>
+
+                    @if (User?.Identity?.IsAuthenticated == true)
+                    {
+                        <a asp-controller="ApplicationUser" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Edit</a>
+                        <a asp-controller="ApplicationUser" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger w-100">Delete</a>
+                        <a asp-controller="ApplicationUser" asp-action="Details" asp-route-id="@e.Id" class="btn btn-danger w-100">Details</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>  

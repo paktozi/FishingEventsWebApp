@@ -1,4 +1,5 @@
 ﻿using FishingEvents.Infrastructure.Data.Models;
+using FishingEventsApp.Core.Models.ApplicationUserModels;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace FishingEventsApp.Core.Contracts
         //Task<IdentityResult> DeleteUserAsync(ApplicationUser user);
         //Task<SignInResult> SignInUserAsync(string email, string password, bool rememberMe);
         //Task SignOutUserAsync();
-
-
+        Task<ICollection<ApplicationUserAllModel>> GetAllAsync();
+        Task<ApplicationUserDetailsModel> GetDetailsAsync(string id);
     }
 }

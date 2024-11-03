@@ -29,6 +29,7 @@ builder.Services.AddScoped<IFishingEventService, FishingEventService>();
 builder.Services.AddScoped<IApplicationUserService, ApplicationUserService>();
 builder.Services.AddScoped<ILocationService, LocationService>();
 builder.Services.AddScoped<ISpeciesService, SpeciesService>();
+builder.Services.AddScoped<IFishCaughtService, FishCaughtService>();
 
 builder.Services.AddRazorPages();
 
