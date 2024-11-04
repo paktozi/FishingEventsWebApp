@@ -13,6 +13,7 @@ namespace FishingEventsApp.Core.Models.LocationModels
 
         [Required(ErrorMessage = RequiredErrorMessage)]
         [StringLength(LocationNameMaxLength, MinimumLength = LocationNameMinLength, ErrorMessage = LengthErrorMessage)]
+        [Display(Name = "Location Name")]
         public string Name { get; set; } = string.Empty;
 
         [Required(ErrorMessage = RequiredErrorMessage)]
@@ -21,11 +22,9 @@ namespace FishingEventsApp.Core.Models.LocationModels
 
         [Required(ErrorMessage = RequiredErrorMessage)]
         [StringLength(LocationFishingTypeMaxLength, MinimumLength = LocationFishingTypeMinLength, ErrorMessage = LengthErrorMessage)]
+        [Display(Name = "Fishing Type")]
         public string FishingType { get; set; } = string.Empty;
 
         public string? LocationImageUrl { get; set; }
-
-        //ToDo add public int SpeciesId{get;set;}   public Species Species{get;set;}
-
     }
 }

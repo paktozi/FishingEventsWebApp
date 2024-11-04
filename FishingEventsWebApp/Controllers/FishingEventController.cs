@@ -47,7 +47,7 @@ namespace FishingEventsWebApp.Controllers
             return RedirectToAction(nameof(All));
         }
 
-
+        [HttpPost]
         public async Task<IActionResult> Join(int id)
         {
             FishingEvent fishEvent = await service.FindEventAsync(id);
@@ -60,6 +60,7 @@ namespace FishingEventsWebApp.Controllers
             return RedirectToAction(nameof(All));
         }
 
+        [HttpPost]
         public async Task<IActionResult> Leave(int id)
         {
             var model = await service.FindEventAsync(id);
@@ -76,6 +77,40 @@ namespace FishingEventsWebApp.Controllers
         {
             return User.FindFirstValue(ClaimTypes.NameIdentifier);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            FishingEventEditModel model = await service.GetEventToEditAsync(id);
+            string? userId = GetUserId();
+
+            if (model.OrganizerId != userId)
+            {
+                return Unauthorized();
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(FishingEventEditModel model, int id)
+        {
+            FishingEvent fishEvent = await service.FindEventAsync(id);
+            if (fishEvent == null)
+            {
+                return BadRequest();
+            }
+
+            string? userId = GetUserId();
+
+            if (fishEvent.OrganizerId != userId)
+            {
+                return Unauthorized();
+            }
+
+            await service.EditEventAsync(model, fishEvent);
+            return RedirectToAction(nameof(All));
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
@@ -118,39 +153,6 @@ namespace FishingEventsWebApp.Controllers
             FishingEventDetailModel model = await service.GetEventDetailsAsync(id, userId);
 
             return View(model);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Edit(int id)
-        {
-            FishingEventEditModel model = await service.GetEventToEditAsync(id);
-            string? userId = GetUserId();
-
-            if (model.OrganizerId != userId)
-            {
-                return Unauthorized();
-            }
-            return View(model);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(FishingEventEditModel model, int id)
-        {
-            FishingEvent fishEvent = await service.FindEventAsync(id);
-            if (fishEvent == null)
-            {
-                return BadRequest();
-            }
-
-            string? userId = GetUserId();
-
-            if (fishEvent.OrganizerId != userId)
-            {
-                return Unauthorized();
-            }
-
-            await service.EditEventAsync(model, fishEvent);
-            return RedirectToAction(nameof(All));
         }
 
 

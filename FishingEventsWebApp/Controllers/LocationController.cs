@@ -18,10 +18,9 @@ namespace FishingEventsWebApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Add()
+        public IActionResult Add()
         {
             LocationAddModel model = new LocationAddModel();
-
             return View(model);
         }
 
@@ -32,7 +31,6 @@ namespace FishingEventsWebApp.Controllers
             {
                 return View(model);
             }
-
             await service.AddLocationAsync(model);
             return RedirectToAction(nameof(All));
         }

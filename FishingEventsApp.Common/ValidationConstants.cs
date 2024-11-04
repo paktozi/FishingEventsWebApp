@@ -30,7 +30,7 @@ namespace FishingEventsApp.Common
         public const double FishCaughtLengthMinRange = 0;
         public const double FishCaughtLengthMaxRange = 5000;
         public const int FishCaughtSpeciesNameMaxLength = 50;
-        public const double FishCaughtWeightMinRange = 0;
+        public const double FishCaughtWeightMinRange = 0.00;
         public const int FishSpeciesDescriptionMinLength = 5;
         public const int FishSpeciesDescriptionMaxLength = 250;
 
