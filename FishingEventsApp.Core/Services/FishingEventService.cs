@@ -211,46 +211,31 @@ namespace FishingEventsApp.Core.Services
 
         public async Task<IEnumerable<FishingEventAllParticipants>> GetAllParticipant(int id)
         {
-
             return await context.EventParticipants
-        .Where(ep => ep.FishingEventId == id)
-        .Include(ep => ep.User)
-            .ThenInclude(user => user.FishCaughts) // Include FishCaughts related to the user
-        .Select(ep => new FishingEventAllParticipants
-        {
-            FirstName = ep.User.FirstName,
-            LastName = ep.User.LastName,
-            UserId = ep.UserId,
-            EventId = id,
-            FishCaughtsList = ep.User.FishCaughts.Select(fc => new FishCaughtAllModel
+            .Where(ep => ep.FishingEventId == id)
+            .Include(ep => ep.User)
+                .ThenInclude(user => user.FishCaughts)
+                    .ThenInclude(fc => fc.Species)
+            .Select(ep => new FishingEventAllParticipants
             {
-                Species = fc.Species.Name,
-                Weight = fc.Weight,
-                Length = fc.Length,
-                DateCaught = fc.DateCaught.ToString(DateFormat),
-                CaughtImageUrl = fc.CaughtImageUrl
-            }).ToList()
-        })
-        .AsNoTracking()
-        .ToListAsync();
-
-
-
-
-
-
-
-
-
-            //  return await context.EventParticipants
-            //.Where(ep => ep.FishingEventId == id)         
-            //.Select(ep => new FishingEventAllParticipants
-            //{            
-            //    FirstName = ep.User.FirstName,
-            //    LastName = ep.User.LastName,
-            //})
-            //.AsNoTracking()
-            //.ToListAsync();
+                FirstName = ep.User.FirstName,
+                LastName = ep.User.LastName,
+                UserId = ep.UserId,
+                EventId = id,
+                FishCaughtsList = ep.User.FishCaughts
+                    .Where(fc => fc.FishingEventId == id)
+                    .Select(fc => new FishCaughtAllModel
+                    {
+                        Species = fc.Species.Name,
+                        Weight = fc.Weight,
+                        Length = fc.Length,
+                        DateCaught = fc.DateCaught.ToString(DateFormat),
+                        CaughtImageUrl = fc.CaughtImageUrl
+                    })
+                    .ToList()
+            })
+            .AsNoTracking()
+            .ToListAsync();
         }
     }
 }
