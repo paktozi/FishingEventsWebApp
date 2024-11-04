@@ -32,8 +32,12 @@
                         <p class="card-text">Fish Weight: @f.Weight kg</p>
                         <p class="card-text">Fish Length: @f.Length cm</p>    
                         <hr />
+                    }                                   
+                      
+                    @if (true @* ToDO Add Admin *@)
+                    {
+                    <a asp-controller="FishCaught" asp-action="Add" asp-route-userId="@e.UserId" asp-route-id="@e.EventId" class="btn btn-warning mb-2 w-100 p-3 fw-bold"> Add fish caught </a>                      
                     }
-                    <a asp-controller="FishCaught" asp-action="Add" asp-route-userId="@e.UserId" asp-route-id="@e.EventId" class="btn btn-warning mb-2 w-100 p-3 fw-bold"> Add fish caught </a>
                 </div>
             </div>
         </div>

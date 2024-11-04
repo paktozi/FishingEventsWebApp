@@ -1,9 +1,11 @@
 ﻿using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.FishCaughtModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FishingEventsWebApp.Controllers
 {
+    [Authorize]
     public class FishCaughtController(IFishCaughtService service) : Controller
     {
         [HttpGet]

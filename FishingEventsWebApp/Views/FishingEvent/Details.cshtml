@@ -26,12 +26,12 @@
             <p class="card-text"><small class="text-muted">Location: @Model.LocationName</small></p>
             <p class="card-text"><small class="text-muted">Fishing Type: @Model.FishingType</small></p>
         </div>
-        <a asp-controller="FishCaught" asp-action="All" asp-route-userId="@Model.UserId" asp-route-id="@Model.Id" class="btn btn-success mb-2 w-100 p-3 fw-bold"> My fish caught for this event </a>
-
-        <a asp-controller="FishingEvent" asp-action="All" class="btn btn-light btn-dark-text btn-rounded mb-2 w-100 p-3 fw-bold">Back toFishing Event</a>
+        <a asp-controller="FishingEvent" asp-action="All" class="btn btn-outline-light mb-2 w-100 p-3 fw-bold">Back toFishing Event</a>
+        <a asp-controller="FishCaught" asp-action="All" asp-route-userId="@Model.UserId" asp-route-id="@Model.Id" class="btn btn-outline-success mb-2 w-100 p-3 fw-bold"> My fish caught for this event </a>
+        <a asp-controller="LeaderBoard" asp-action="LeaderBoard" asp-route-userId="@Model.UserId" asp-route-id="@Model.Id" class="btn btn-outline-warning mb-2 w-100 p-3 fw-bold">LeaderBoard for this event </a>     
         @if (true)
         {          
-            <a asp-controller="FishingEvent" asp-action="AllEventParticipants" asp-route-id="@Model.Id" class="btn btn-success mb-2 w-100 p-3 fw-bold"> All Participants </a>
+            <a asp-controller="FishingEvent" asp-action="AllEventParticipants" asp-route-id="@Model.Id" class="btn btn-outline-info mb-2 w-100 p-3 fw-bold"> All Participants </a>
         }
 
 

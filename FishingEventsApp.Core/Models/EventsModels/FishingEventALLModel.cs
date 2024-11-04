@@ -12,20 +12,13 @@ namespace FishingEventsApp.Core.Models.EventsModels
     {
         public int Id { get; set; }
 
-
         public string EventName { get; set; } = string.Empty;
-
 
         public string Description { get; set; } = string.Empty;
 
-
         public string StartDate { get; set; } = string.Empty;
 
-
-
         public string EndDate { get; set; } = string.Empty;
-
-
 
         public string LocationName { get; set; } = string.Empty;
 
@@ -39,7 +32,5 @@ namespace FishingEventsApp.Core.Models.EventsModels
         public bool IsJoined { get; set; }
 
         public string Mail { get; set; } = string.Empty;
-
-        // public ICollection<FishCaughtAllModel> FishCaughtList { get; set; } = new List<FishCaughtAllModel>();
     }
 }

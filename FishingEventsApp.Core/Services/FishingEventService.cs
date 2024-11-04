@@ -30,18 +30,6 @@ namespace FishingEventsApp.Core.Services
                      IsOrganizer = e.OrganizerId == userId,
                      IsJoined = e.EventParticipants.Any(ep => ep.FishingEventId == e.Id && ep.UserId == userId),
                      Mail = e.Organizer.Email,
-                     //FishCaughtList = e.FishCaughts
-                     //.Where(f => f.FishingEventId == f.Id)
-                     //.Select(f => new FishCaughtAllModel()
-                     //{
-                     //    FishingEventName = f.FishingEvent.EventName,
-                     //    Species = f.Species.Name,
-                     //    DateCaught = f.DateCaught.ToString(DateFormat),
-                     //    CaughtImageUrl = f.CaughtImageUrl,
-                     //    Weight = f.Weight,
-                     //    Length = f.Length
-                     //})
-                     //.ToList()
                  })
                  .AsNoTracking()
                  .ToListAsync();
@@ -109,6 +97,9 @@ namespace FishingEventsApp.Core.Services
             entity.OrganizerId = userId;
             await context.FishingEvents.AddAsync(entity);
             await context.SaveChangesAsync();
+
+            // JoinEventAsync(entity.Id, userId);
+
         }
 
 
