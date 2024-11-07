@@ -2,7 +2,7 @@
 
 <h1>Leaderboard</h1>
 <table class="table">
-    <thead style="background-color: rgba(10, 30, 0, 0.6);padding:8px;border-color:dimgrey;box-shadow:5px 5px 10px black;color:aquamarine;">
+    <thead class="transparent-table-head">
         <tr>
             <th>Position</th>
             <th>Name</th>
@@ -10,7 +10,7 @@
             <th>Total Weight</th>
         </tr>
     </thead>
-    <tbody style="background-color: rgba(10, 20, 0, 0.6);padding:8px;border-color:dimgrey;box-shadow:5px 5px 10px black;color:greenyellow;">
+    <tbody class="transparent-table-body ">
         @foreach (var (entry, index) in Model.Select((value, i) => (value, i + 1)))
         {
             <tr>

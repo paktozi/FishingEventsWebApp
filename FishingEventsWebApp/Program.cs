@@ -30,6 +30,7 @@ builder.Services.AddScoped<ILocationService, LocationService>();
 builder.Services.AddScoped<ISpeciesService, SpeciesService>();
 builder.Services.AddScoped<IFishCaughtService, FishCaughtService>();
 builder.Services.AddScoped<ILeaderBoardService, LeaderBoardService>();
+builder.Services.AddHttpClient<WeatherService>();
 
 builder.Services.AddRazorPages();
 
@@ -42,7 +43,9 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Errors/ServerError");
+    app.UseStatusCodePagesWithReExecute("/Errors/PageNotFound");
+    // app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
 

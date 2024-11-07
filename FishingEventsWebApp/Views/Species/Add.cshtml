@@ -11,30 +11,30 @@
         <form asp-action="Add" method="post">
             <div class="mb-3">
                 <label asp-for="@Model.Name" class="form-label-add-edit">Fish Name</label>
-                <input asp-for="@Model.Name" class="form-control" aria-required="true" style="background-color: rgba(10, 20, 0, 0.6);color:greenyellow;box-shadow:5px 5px 10px black; " />
+                <input asp-for="@Model.Name" class="form-control input-field " aria-required="true"/>
                 <span asp-validation-for="@Model.Name" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="@Model.Description" class="form-label-add-edit">Description</label>
-                <textarea asp-for="@Model.Description" class="form-control" aria-required="true" rows="2" style="background-color: rgba(10, 20, 0, 0.6);color:greenyellow;box-shadow:5px 5px 10px black; "></textarea>
+                <textarea asp-for="@Model.Description" class="form-control input-field " aria-required="true" rows="2"></textarea>
                 <span asp-validation-for="@Model.Description" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="@Model.HabitatName" class="form-label-add-edit">Fishing habitat</label>
-                <textarea asp-for="@Model.HabitatName" class="form-control" aria-required="true" rows="2" style="background-color: rgba(10, 20, 0, 0.6);color:greenyellow;box-shadow:5px 5px 10px black; "></textarea>
+                <textarea asp-for="@Model.HabitatName" class="form-control input-field " aria-required="true" rows="2"></textarea>
                 <span asp-validation-for="@Model.HabitatName" class="text-danger"></span>
             </div>
 
 
             <div class="mb-3">
                 <label asp-for="@Model.FishBait" class="form-label-add-edit">Fish Bait</label>
-                <textarea asp-for="@Model.FishBait" class="form-control" aria-required="true" rows="1" style="background-color: rgba(10, 20, 0, 0.6);color:greenyellow;box-shadow:5px 5px 10px black; "></textarea>
+                <textarea asp-for="@Model.FishBait" class="form-control input-field " aria-required="true" rows="1"></textarea>
                 <span asp-validation-for="@Model.FishBait" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
                 <label asp-for="@Model.FishImageUrl" class="form-label-add-edit">Fish ImageUrl</label>
-                <textarea asp-for="@Model.FishImageUrl" class="form-control" aria-required="true" rows="1" style="background-color: rgba(10, 20, 0, 0.6);color:greenyellow;box-shadow:5px 5px 10px black; "></textarea>
+                <textarea asp-for="@Model.FishImageUrl" class="form-control input-field " aria-required="true" rows="1"></textarea>
                 <span asp-validation-for="@Model.FishImageUrl" class="text-danger"></span>
             </div>
 

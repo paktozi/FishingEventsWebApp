@@ -46,10 +46,55 @@ body {
    
 }
 
-/*navbar-brand  {
-    color: rgb(104, 186, 181);
+.weather-list {
+
+    background-color: rgba(10, 20, 0, 0.6);
+    border-radius: 7px;
+    padding: 5px;
+    margin: 3px;
+    border-color: dimgrey;
+    box-shadow: 2px 2px 8px dimgrey;
+    border: 1px solid grey;
 }
 
-    .navbar-brand:hover {
-        color: rgb(124, 196, 230);
-    }*/
+.input-field {
+   
+    background-color: rgba(10, 20, 0, 0.6);
+    color:greenyellow;
+    box-shadow:5px 5px 10px black;
+}
+
+.transparent-card {
+    width: 100%;
+    background-color: rgba(10, 20, 0, 0.6);
+    border-radius: 10px;
+    padding: 8px;
+    border-color: dimgrey;
+    box-shadow: 5px 5px 10px black;
+}
+
+.transparent-card-weather {
+    width: 30%;
+    background-color: rgba(10, 20, 0, 0.6);
+    border-radius: 10px;
+    padding: 8px;
+    border-color: dimgrey;
+    box-shadow: 5px 5px 10px black;
+}
+
+.transparent-table-body {
+    background-color: rgba(10, 20, 0, 0.6);
+    padding: 8px;
+    border-color: dimgrey;
+    box-shadow: 5px 5px 10px black;
+    color: greenyellow;
+}
+.transparent-table-head {
+    background-color: rgba(10, 30, 0, 0.6);
+    padding: 8px;
+    border-color: dimgrey;
+    box-shadow: 5px 5px 10px black;
+    color: aquamarine;
+}
+
+    

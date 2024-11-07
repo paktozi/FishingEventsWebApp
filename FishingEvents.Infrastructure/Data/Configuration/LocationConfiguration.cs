@@ -16,7 +16,7 @@ namespace FishingEvents.Infrastructure.Data.Configuration
             new Location()
             {
                 Id = 1,
-                Name = "Vucha dam",
+                Name = "Mihalkovo",
                 Elevation="250",
                 FishingType="Trolling,Jigging",
                 LocationImageUrl="https://svetogled.com/wp-content/uploads/2021/05/DSC_0680-800x500.jpg"
@@ -24,7 +24,7 @@ namespace FishingEvents.Infrastructure.Data.Configuration
             new Location()
             {
                 Id = 2,
-                Name = "Dospat dam",
+                Name = "Dospat",
                 Elevation="1400",
                 FishingType="Soft Plastic Lures,Float",
                 LocationImageUrl="https://4u-luxury-villa.com/wp-content/uploads/2022/10/Dospat.jpg"

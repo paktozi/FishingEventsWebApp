@@ -1,0 +1,24 @@
+﻿ @using FishingEvents.Infrastructure.Data.Models.WeatherModels
+@model Weather
+
+
+<div class="text-lg-center transparent-card-weather">
+    <h3 class="text-center">@Model.ResolvedAddress</h3>
+    <p>Current Condition: @Model.Conditions.Conditions</p>
+    <hr />
+    <p>Last Update: @Model.Conditions.DateTime</p>
+    <p class="weather-list">Temperature: @Model.Conditions.Temp °C</p>
+    <p class="weather-list">Humidity:  @Model.Conditions.Humidity %</p>
+    <p class="weather-list">Pressure: @Model.Conditions.Pressure hPa</p>
+    <p class="weather-list">Cloud cover: @Model.Conditions.Cloudcover %</p>
+    <p class="weather-list">Solar Radiation @Model.Conditions.SolarRadiation w/m2</p>
+    <p class="weather-list">UvIndex: @Model.Conditions.UvIndex</p>
+    <p class="weather-list">Precipitation: @Model.Conditions.Precip  mm</p>
+    <p class="weather-list">Wind speed: @Model.Conditions.Windspeed km/h</p>
+    <p class="weather-list">Sunrise: @Model.Conditions.Sunrise h</p>
+    <p class="weather-list">Sunset: @Model.Conditions.Sunset h </p>
+    <a asp-controller="Location" asp-action="All" class="btn btn-success"><i class="fas fa-plus"></i>Back to All Locations</a>
+</div>
+
+
+

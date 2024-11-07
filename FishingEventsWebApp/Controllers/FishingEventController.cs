@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using static FishingEventsApp.Common.ValidationConstants;
 
 
 namespace FishingEventsWebApp.Controllers
@@ -81,9 +82,13 @@ namespace FishingEventsWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+
             FishingEventEditModel model = await service.GetEventToEditAsync(id);
             string? userId = GetUserId();
-
+            if (model == null)
+            {
+                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+            }
             if (model.OrganizerId != userId)
             {
                 return Unauthorized();
@@ -123,6 +128,7 @@ namespace FishingEventsWebApp.Controllers
             string userId = GetUserId();
             if (model.OrganizerId != userId)
             {
+
                 return Unauthorized();
             }
             FishingEventDeleteModel modelToDelete = new FishingEventDeleteModel()
@@ -151,7 +157,10 @@ namespace FishingEventsWebApp.Controllers
         {
             string? userId = GetUserId();
             FishingEventDetailModel model = await service.GetEventDetailsAsync(id, userId);
-
+            if (model == null)
+            {
+                return RedirectToAction(nameof(Details));
+            }
             return View(model);
         }
 
@@ -160,6 +169,10 @@ namespace FishingEventsWebApp.Controllers
         public async Task<IActionResult> AllEventParticipants(int id)
         {
             IEnumerable<FishingEventAllParticipants> model = await service.GetAllParticipant(id);
+            if (model == null)
+            {
+                return NotFound();
+            }
             return View(model);
         }
     }

@@ -10,7 +10,7 @@
     @foreach (var e in Model)
     {
         <div class="col-md-3 mb-4">
-            <div class="card h-100" style="width: 100%;background-color: rgba(10, 20, 0, 0.6);border-radius:10px;padding:8px;border-color:dimgrey; box-shadow:5px 5px 10px black; ">
+            <div class="card h-100 transparent-card">
                 @if (!string.IsNullOrEmpty(e.CaughtImageUrl))
                 {
                     <img src="@e.CaughtImageUrl" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="@e.FishingEventName">
