@@ -26,10 +26,12 @@
             <p class="card-text text-center"><small class="text-muted">Location: @Model.LocationName</small></p>
             <p class="card-text text-center"><small class="text-muted">Fishing Type: @Model.FishingType</small></p>
         </div>
+      
         <a asp-controller="FishingEvent" asp-action="All" class="btn btn-light mb-2 w-50 p-3 fw-bold" style="margin:5px;margin-left:25%;">Back toFishing Event</a>
         <a asp-controller="FishCaught" asp-action="All" asp-route-userId="@Model.UserId" asp-route-id="@Model.Id" class="btn btn-success mb-2 w-50 p-3 fw-bold" style="margin:5px;margin-left:25%;"> My fish caught for this event </a>
         <a asp-controller="LeaderBoard" asp-action="LeaderBoard" asp-route-userId="@Model.UserId" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-50 p-3 fw-bold" style="margin:5px;margin-left:25%;">LeaderBoard for this event </a>
         <a asp-controller="Weather" asp-action="Index" asp-route-locationName="@Model.LocationName" class="btn btn-info mb-2 w-50 p-3 fw-bold" style="margin:5px;margin-left:25%;">Show Weather</a>
+       
         @if (true)
         {
             <a asp-controller="FishingEvent" asp-action="AllEventParticipants" asp-route-id="@Model.Id" class="btn btn-primary mb-2 w-50 p-3 fw-bold" style="margin:5px;margin-left:25%;"> All Participants </a>

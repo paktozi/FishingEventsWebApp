@@ -13,7 +13,7 @@ namespace FishingEvents.Infrastructure.Data.Models.WeatherModels
         [JsonProperty("currentConditions")]
         public CurrentConditions Conditions { get; set; }
 
-        public string ResolvedAddress { get; set; }
+        public string? ResolvedAddress { get; set; }
 
         //[JsonProperty("alerts")]
         //public Alerts[] Alerts { get; set; }

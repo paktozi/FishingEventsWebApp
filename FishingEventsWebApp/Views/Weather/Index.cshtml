@@ -1,6 +1,12 @@
 ﻿ @using FishingEvents.Infrastructure.Data.Models.WeatherModels
 @model Weather
 
+@{
+    if (Model.Conditions.Precip == null)
+    {
+        Model.Conditions.Precip = "0.0";
+    }
+}
 
 <div class="text-lg-center transparent-card-weather">
     <h3 class="text-center">@Model.ResolvedAddress</h3>

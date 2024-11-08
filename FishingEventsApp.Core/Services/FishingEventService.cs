@@ -14,27 +14,36 @@ namespace FishingEventsApp.Core.Services
 {
     public class FishingEventService(FishingEventsDbContext context, UserManager<ApplicationUser> userManager) : IFishingEventService
     {
-        public async Task<IEnumerable<FishingEventALLModel>> GetAllEventsAsync(string? userId)
+        public async Task<IEnumerable<FishingEventALLModel>> GetAllEventsAsync(string? userId, string? eventName)
         {
-            var model = await context.FishingEvents
-                 .Where(e => e.IsCompleted == false)
-                 .Select(e => new FishingEventALLModel()
-                 {
-                     Id = e.Id,
-                     EventName = e.EventName,
-                     EventImageUrl = e.EventImageUrl,
-                     StartDate = e.StartDate.ToString(DateFormat),
-                     EndDate = e.EndDate.ToString(DateFormat),
-                     LocationName = e.Location.Name,
-                     Organizer = e.Organizer.FirstName,
-                     IsOrganizer = e.OrganizerId == userId,
-                     IsJoined = e.EventParticipants.Any(ep => ep.FishingEventId == e.Id && ep.UserId == userId),
-                     Mail = e.Organizer.Email,
-                 })
-                 .AsNoTracking()
-                 .ToListAsync();
+            var query = context.FishingEvents
+        .Where(e => e.IsCompleted == false);
+
+            if (!string.IsNullOrEmpty(eventName))
+            {
+                query = query.Where(e => e.EventName.Contains(eventName));
+            }
+
+            var model = await query
+                .Select(e => new FishingEventALLModel()
+                {
+                    Id = e.Id,
+                    EventName = e.EventName,
+                    EventImageUrl = e.EventImageUrl,
+                    StartDate = e.StartDate.ToString(DateFormat),
+                    EndDate = e.EndDate.ToString(DateFormat),
+                    LocationName = e.Location.Name,
+                    Organizer = e.Organizer.FirstName,
+                    IsOrganizer = e.OrganizerId == userId,
+                    IsJoined = e.EventParticipants.Any(ep => ep.FishingEventId == e.Id && ep.UserId == userId),
+                    Mail = e.Organizer.Email,
+                })
+                .AsNoTracking()
+                .ToListAsync();
+
             return model;
         }
+
 
         public async Task<ICollection<FishingLocationModel>?> GetLocationListAsync()
         {

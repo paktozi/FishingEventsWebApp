@@ -15,5 +15,11 @@ namespace FishingEventsWebApp.Controllers
         {
             return View();
         }
+
+        [Route("Errors/Unauthorized")]
+        public IActionResult Unauthorized()
+        {
+            return View();
+        }
     }
 }

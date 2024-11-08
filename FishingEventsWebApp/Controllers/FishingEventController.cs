@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using static FishingEventsApp.Common.ValidationConstants;
 
@@ -19,12 +20,13 @@ namespace FishingEventsWebApp.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(string? eventName)
         {
             string? userId = GetCurrentUserId();
-            IEnumerable<FishingEventALLModel> model = await service.GetAllEventsAsync(userId);
+            IEnumerable<FishingEventALLModel> model = await service.GetAllEventsAsync(userId, eventName);
             return View(model);
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Add()
@@ -54,7 +56,7 @@ namespace FishingEventsWebApp.Controllers
             FishingEvent fishEvent = await service.FindEventAsync(id);
             if (fishEvent == null)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
             string? userId = GetUserId();
             await service.JoinEventAsync(id, userId);
@@ -67,7 +69,7 @@ namespace FishingEventsWebApp.Controllers
             var model = await service.FindEventAsync(id);
             if (model == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
             var userId = GetUserId();
             await service.LeaveAsync(model, userId);
@@ -82,7 +84,6 @@ namespace FishingEventsWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-
             FishingEventEditModel model = await service.GetEventToEditAsync(id);
             string? userId = GetUserId();
             if (model == null)
@@ -91,7 +92,7 @@ namespace FishingEventsWebApp.Controllers
             }
             if (model.OrganizerId != userId)
             {
-                return Unauthorized();
+                return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
             }
             return View(model);
         }
@@ -100,16 +101,15 @@ namespace FishingEventsWebApp.Controllers
         public async Task<IActionResult> Edit(FishingEventEditModel model, int id)
         {
             FishingEvent fishEvent = await service.FindEventAsync(id);
-            if (fishEvent == null)
-            {
-                return BadRequest();
-            }
-
             string? userId = GetUserId();
 
-            if (fishEvent.OrganizerId != userId)
+            if (model == null)
             {
-                return Unauthorized();
+                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+            }
+            if (model.OrganizerId != userId)
+            {
+                return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
             }
 
             await service.EditEventAsync(model, fishEvent);
@@ -121,16 +121,17 @@ namespace FishingEventsWebApp.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var model = await service.FindEventAsync(id);
+            string userId = GetUserId();
+
             if (model == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
-            string userId = GetUserId();
             if (model.OrganizerId != userId)
             {
-
-                return Unauthorized();
+                return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
             }
+
             FishingEventDeleteModel modelToDelete = new FishingEventDeleteModel()
             {
                 Id = model.Id,
@@ -145,7 +146,7 @@ namespace FishingEventsWebApp.Controllers
             var entity = await service.FindEventAsync(id);
             if (entity == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
             await service.DeleteEventAsync(entity);
             return RedirectToAction(nameof(All));
@@ -159,7 +160,7 @@ namespace FishingEventsWebApp.Controllers
             FishingEventDetailModel model = await service.GetEventDetailsAsync(id, userId);
             if (model == null)
             {
-                return RedirectToAction(nameof(Details));
+                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
             return View(model);
         }
@@ -171,7 +172,7 @@ namespace FishingEventsWebApp.Controllers
             IEnumerable<FishingEventAllParticipants> model = await service.GetAllParticipant(id);
             if (model == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
             return View(model);
         }

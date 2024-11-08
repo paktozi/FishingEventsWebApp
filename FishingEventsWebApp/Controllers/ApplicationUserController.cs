@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FishingEventsWebApp.Controllers
 {
+    [Authorize]
     public class ApplicationUserController(IApplicationUserService userService) : Controller
     {
-        [Authorize]
 
         public async Task<IActionResult> All()
         {
