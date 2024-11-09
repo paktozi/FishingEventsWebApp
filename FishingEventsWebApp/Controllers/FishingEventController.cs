@@ -3,6 +3,7 @@ using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.ApplicationUserModels;
 using FishingEventsApp.Core.Models.EventsModels;
 using FishingEventsApp.Core.Services;
+using FishingEventsWebApp.CustomAttributes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -54,7 +55,7 @@ namespace FishingEventsWebApp.Controllers
         public async Task<IActionResult> Join(int id)
         {
             FishingEvent fishEvent = await service.FindEventAsync(id);
-            if (fishEvent == null)
+            if (fishEvent == null || User.IsInRole("Admin"))
             {
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
@@ -67,7 +68,7 @@ namespace FishingEventsWebApp.Controllers
         public async Task<IActionResult> Leave(int id)
         {
             var model = await service.FindEventAsync(id);
-            if (model == null)
+            if (model == null || User.IsInRole("Admin"))
             {
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
@@ -85,7 +86,7 @@ namespace FishingEventsWebApp.Controllers
             {
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
-            if (model.OrganizerId != userId)
+            if (model.OrganizerId != userId && !User.IsInRole("Admin"))
             {
                 return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
             }
@@ -105,7 +106,7 @@ namespace FishingEventsWebApp.Controllers
             {
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
-            if (model.OrganizerId != userId)
+            if (model.OrganizerId != userId && !User.IsInRole("Admin"))
             {
                 return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
             }
@@ -125,7 +126,7 @@ namespace FishingEventsWebApp.Controllers
             {
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
-            if (model.OrganizerId != userId)
+            if (model.OrganizerId != userId && !User.IsInRole("Admin"))
             {
                 return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
             }
