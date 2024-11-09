@@ -29,6 +29,14 @@ namespace FishingEvents.Infrastructure.Data.Configuration
                 FishingType="Soft Plastic Lures,Float",
                 LocationImageUrl="https://4u-luxury-villa.com/wp-content/uploads/2022/10/Dospat.jpg"
             },
+              new Location()
+            {
+                Id = 8,
+                Name = "Gloucester,Massachusetts",
+                Elevation="2",
+                FishingType="Live bait",
+                LocationImageUrl="https://photos.smugmug.com/Aerials/Massachusetts/Gloucester-MA-aerial-photos/i-z7TrSmq/2/LDpDV5CVDMk29PnCDcbvDK6PsqDJVQwXPwCxvTfGF/L/_MG_9999%20-%20Version%202-L.jpg"
+            },
         };
 
         public void Configure(EntityTypeBuilder<Location> builder)

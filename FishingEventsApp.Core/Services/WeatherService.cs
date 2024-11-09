@@ -1,12 +1,6 @@
 ﻿using FishingEvents.Infrastructure.Data.Models.WeatherModels;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FishingEventsApp.Core.Services
 {
@@ -21,7 +15,7 @@ namespace FishingEventsApp.Core.Services
             if (response.IsSuccessStatusCode)
             {
                 string json = await response.Content.ReadAsStringAsync();
-                Weather weatherData = JsonConvert.DeserializeObject<Weather>(json);
+                Weather? weatherData = JsonConvert.DeserializeObject<Weather>(json);
                 return weatherData;
             }
             else

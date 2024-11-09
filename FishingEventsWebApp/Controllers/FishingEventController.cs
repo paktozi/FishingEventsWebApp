@@ -22,7 +22,7 @@ namespace FishingEventsWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> All(string? eventName)
         {
-            string? userId = GetCurrentUserId();
+            string? userId = GetUserId();
             IEnumerable<FishingEventALLModel> model = await service.GetAllEventsAsync(userId, eventName);
             return View(model);
         }
@@ -76,11 +76,6 @@ namespace FishingEventsWebApp.Controllers
             return RedirectToAction(nameof(All));
         }
 
-        private string? GetCurrentUserId()
-        {
-            return User.FindFirstValue(ClaimTypes.NameIdentifier);
-        }
-
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -97,9 +92,12 @@ namespace FishingEventsWebApp.Controllers
             return View(model);
         }
 
+
+
         [HttpPost]
         public async Task<IActionResult> Edit(FishingEventEditModel model, int id)
         {
+
             FishingEvent fishEvent = await service.FindEventAsync(id);
             string? userId = GetUserId();
 

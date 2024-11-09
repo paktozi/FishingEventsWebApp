@@ -20,7 +20,9 @@ namespace FishingEventsApp.Core.Contracts
         //Task<IdentityResult> DeleteUserAsync(ApplicationUser user);
         //Task<SignInResult> SignInUserAsync(string email, string password, bool rememberMe);
         //Task SignOutUserAsync();
+
         Task<ICollection<ApplicationUserAllModel>> GetAllAsync();
+
         Task<ApplicationUserDetailsModel> GetDetailsAsync(string id);
     }
 }

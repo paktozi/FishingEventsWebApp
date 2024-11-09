@@ -47,5 +47,8 @@ namespace FishingEventsApp.Common
         public const int UserLastNameMaxLength = 50;
 
         public const string UnauthorizedMessage = "You are not authorized to edit this event.";
+
+        public const string AdminRoleName = "Administrator";
+        public const string AdminEmail = "admin@abv.bg";
     }
 }

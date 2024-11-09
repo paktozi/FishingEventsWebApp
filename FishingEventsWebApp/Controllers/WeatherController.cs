@@ -6,6 +6,11 @@ namespace FishingEventsWebApp.Controllers
 {
     public class WeatherController(WeatherService service) : Controller
     {
+        public async Task<IActionResult> SearchLocation()
+        {
+            return View();
+        }
+
         public async Task<ActionResult> Index(string locationName)
         {
             try

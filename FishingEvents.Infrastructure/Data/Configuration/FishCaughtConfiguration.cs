@@ -35,6 +35,17 @@ namespace FishingEvents.Infrastructure.Data.Configuration
                CaughtImageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJp8v1JFGqRH1BLyOwv-48FlCGg4kwxyN-VFvtYnxvUbzVAh_VaTjBjf7xGipUG4K_c4&usqp=CAU",
                DateCaught=DateTime.ParseExact("01-05-2024", "dd-MM-yyyy", null),
             },
+              new FishCaught()
+            {
+               Id=19,
+               FishingEventId=11,
+               UserId="ef082de5-9f29-4f11-adb4-a337f90e3373",
+               SpeciesId=9,
+               Weight=350,
+               Length=2.25,
+               CaughtImageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_TKag7a673r_RBIcKFqIe-_6BjB6Oob4nqw&s",
+               DateCaught=DateTime.ParseExact("01-05-2024", "dd-MM-yyyy", null),
+            },
         };
 
 

@@ -8,7 +8,12 @@
     }
 }
 
-<div class="text-lg-center transparent-card-weather">
+ 
+
+
+
+
+<div class="text-lg-center transparent-card-weather align-content-center mx-auto">
     <h3 class="text-center">@Model.ResolvedAddress</h3>
     <p>Current Condition: @Model.Conditions.Conditions</p>
     <hr />
@@ -25,6 +30,13 @@
     <p class="weather-list">Sunset: @Model.Conditions.Sunset h </p>
     <a asp-controller="Location" asp-action="All" class="btn btn-success"><i class="fas fa-plus"></i>Back to All Locations</a>
 </div>
+<br />
 
+<div class="text-lg-center">
+    <form asp-controller="Weather" asp-action="Index" method="get" class="form-inline">
+        <input type="text" name="locationName" class="align-content-center mx-auto form-control mr-2 input-field" style="width:30%" placeholder="Check Weather in your location" required />
+        <button type="submit" class="btn custom-btn-green" style="margin:6px">Search</button>
+    </form>
+</div>
 
 

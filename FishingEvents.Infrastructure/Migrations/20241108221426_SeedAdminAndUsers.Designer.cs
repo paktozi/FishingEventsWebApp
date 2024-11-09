@@ -4,6 +4,7 @@ using FishingEventsApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FishingEvents.Infrastructure.Migrations
 {
     [DbContext(typeof(FishingEventsDbContext))]
-    partial class FishingEventsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241108221426_SeedAdminAndUsers")]
+    partial class SeedAdminAndUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,7 +104,7 @@ namespace FishingEvents.Infrastructure.Migrations
                         {
                             Id = "2eff85cf-8402-45f8-bb3b-88bbafcc50d2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bd9250b1-c6a0-4663-bf1b-4c6e327f91a8",
+                            ConcurrencyStamp = "0062f8eb-1091-441c-9bec-2a8ef51ade1a",
                             Email = "admin@abv.bg",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -109,9 +112,9 @@ namespace FishingEvents.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ABV.BG",
                             NormalizedUserName = "ADMIN@ABV.BG",
-                            PasswordHash = "AQAAAAIAAYagAAAAELuxw/sXfVd2ZvA3gkAifwr7Ef0bzTrOedY+0P4G9DKZBXBxBPmPBfriFdoMb4DRnQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIKywCJwQx9VORwJA6xsKg3HBM3yOY2QhYgjWHEqwrPKHK8W4gi1A10TiSUWiXI42w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "06549f83-4297-482c-ac0d-7898e0bb2e85",
+                            SecurityStamp = "3d992cab-f469-447d-b0fc-e0036688a8d0",
                             TwoFactorEnabled = false,
                             UserName = "admin@abv.bg"
                         },
@@ -119,7 +122,7 @@ namespace FishingEvents.Infrastructure.Migrations
                         {
                             Id = "8c148075-961f-4ddc-bdb2-416c5bfa1439",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0b868028-8a18-4d6f-8fb2-e760a8a4bf7b",
+                            ConcurrencyStamp = "6cbff4de-e52c-409c-a9d6-a01f1b956163",
                             Email = "user1@abv.bg",
                             EmailConfirmed = true,
                             FirstName = "Dave",
@@ -127,9 +130,9 @@ namespace FishingEvents.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER1@ABV.BG",
                             NormalizedUserName = "USER1@ABV.BG",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAPZWFb18CvMVewX2bxmrvm7ZdtL17DsMOJ35DJGRRx/2LlmycYMaXc9vKS1tERljg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOsOjGfxFK4agcYBfldDt7GI5KEWmTwAJOFHlkI+YMvzQEUyxPQ66ZU3OuZXw5z64w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8d7076eb-ff79-4c69-8a89-c38f0f4fbe0a",
+                            SecurityStamp = "ed3add17-2e9a-4d8c-a570-03211f425b40",
                             TwoFactorEnabled = false,
                             UserName = "user1@abv.bg"
                         },
@@ -137,7 +140,7 @@ namespace FishingEvents.Infrastructure.Migrations
                         {
                             Id = "ef082de5-9f29-4f11-adb4-a337f90e3373",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bac1dd8f-06a2-4b94-ba9e-2b5f44a15e71",
+                            ConcurrencyStamp = "00993660-bd12-433e-8834-365847964cd3",
                             Email = "user2@abv.bg",
                             EmailConfirmed = true,
                             FirstName = "Tyler",
@@ -145,9 +148,9 @@ namespace FishingEvents.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER2@ABV.BG",
                             NormalizedUserName = "USER2@ABV.BG",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOzPOHzE4S6NN22IVVVGkUNcU1UMw0ASuUDNJGlGMUGLNJYgSBjMhMC+Cd2jbQW7/w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECvn0F1E4pq5YucMUdz57yMFq0aLgXydr632laNkES+o/qcT/pN617hujofq4kx1og==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fa63a502-12cb-4c25-8eb6-42146d0f283c",
+                            SecurityStamp = "7e57743c-3ef4-4e6e-b353-06c0dad3e54b",
                             TwoFactorEnabled = false,
                             UserName = "user2@abv.bg"
                         },
@@ -155,7 +158,7 @@ namespace FishingEvents.Infrastructure.Migrations
                         {
                             Id = "5667e464-5a99-44f1-81cd-6e9022965a07",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b3fd6ff4-2bea-438d-b5b2-b3292d33cc35",
+                            ConcurrencyStamp = "a7c45981-50a8-4318-9792-09cb82c6e0f3",
                             Email = "user3@abv.bg",
                             EmailConfirmed = true,
                             FirstName = "TJ",
@@ -163,9 +166,9 @@ namespace FishingEvents.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER3@ABV.BG",
                             NormalizedUserName = "USER3@ABV.BG",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFbMAZ3LIXo3+eK/0rVAhYO7pwF0GWCPDLCpmIBZ999uOFLveDaej364ugAHCx4qBw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJZcm8jpXiQRivf+YowGhELRdC6yBxpXlixh4jjGxLcOnGusx/2TswyqMxG0hleLcg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7815fa78-dfc6-4350-bc02-1ea0866bd733",
+                            SecurityStamp = "2201bf74-8364-4438-a198-0acfc0653774",
                             TwoFactorEnabled = false,
                             UserName = "user3@abv.bg"
                         });
@@ -249,17 +252,6 @@ namespace FishingEvents.Infrastructure.Migrations
                             SpeciesId = 2,
                             UserId = "f22d4414-0146-4947-8aa8-4b5179bc0160",
                             Weight = 1.45
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CaughtImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_TKag7a673r_RBIcKFqIe-_6BjB6Oob4nqw&s",
-                            DateCaught = new DateTime(2024, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FishingEventId = 11,
-                            Length = 2.25,
-                            SpeciesId = 9,
-                            UserId = "ef082de5-9f29-4f11-adb4-a337f90e3373",
-                            Weight = 350.0
                         });
                 });
 
@@ -333,18 +325,6 @@ namespace FishingEvents.Infrastructure.Migrations
                             LocationId = 2,
                             OrganizerId = "f22d4414-0146-4947-8aa8-4b5179bc0160",
                             StartDate = new DateTime(2024, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Description = "Join us for Atlantic bluefin tuna!",
-                            EndDate = new DateTime(2024, 11, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EventImageUrl = "https://play-lh.googleusercontent.com/TphogImhoiplJ6NBslILTd1eko8KCWb-NDirph-RcoMSiga-v-8YfVZWddAvhLwbVSjBJg",
-                            EventName = "Wicked Tuna",
-                            IsCompleted = false,
-                            LocationId = 8,
-                            OrganizerId = "8c148075-961f-4ddc-bdb2-416c5bfa1439",
-                            StartDate = new DateTime(2024, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -415,14 +395,6 @@ namespace FishingEvents.Infrastructure.Migrations
                             FishingType = "Soft Plastic Lures,Float",
                             LocationImageUrl = "https://4u-luxury-villa.com/wp-content/uploads/2022/10/Dospat.jpg",
                             Name = "Dospat"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Elevation = "2",
-                            FishingType = "Live bait",
-                            LocationImageUrl = "https://photos.smugmug.com/Aerials/Massachusetts/Gloucester-MA-aerial-photos/i-z7TrSmq/2/LDpDV5CVDMk29PnCDcbvDK6PsqDJVQwXPwCxvTfGF/L/_MG_9999%20-%20Version%202-L.jpg",
-                            Name = "Gloucester,Massachusetts"
                         });
                 });
 
@@ -479,15 +451,6 @@ namespace FishingEvents.Infrastructure.Migrations
                             FishImageUrl = "https://images.squarespace-cdn.com/content/v1/5be9e00d5b409b36bd17e36f/a9b6dce2-17eb-4c9c-9755-78cff2f43c87/Dorado+%28Mahi+Mahi%29+Coryphaena+Hippurus.jpeg",
                             HabitatName = "Trout need cold water to survive.",
                             Name = "Trout"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Description = "Atlantic bluefin tuna have large, torpedo-shaped bodies that are nearly circular in cross-section.",
-                            FishBait = "Live bait",
-                            FishImageUrl = "https://images.squarespace-cdn.com/content/v1/5890c07bcd0f685b13dc60bf/1490802646283-GBTVAD6YM4G07UWVZJ12/image-asset.png",
-                            HabitatName = "Near offshore islands",
-                            Name = "Atlantic bluefin tuna"
                         });
                 });
 

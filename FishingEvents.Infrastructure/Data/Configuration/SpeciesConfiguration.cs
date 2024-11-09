@@ -31,6 +31,15 @@ namespace FishingEvents.Infrastructure.Data.Configuration
                 FishBait="lures, live bait, spinner baits, jig bait,camola",
                 FishImageUrl="https://images.squarespace-cdn.com/content/v1/5be9e00d5b409b36bd17e36f/a9b6dce2-17eb-4c9c-9755-78cff2f43c87/Dorado+%28Mahi+Mahi%29+Coryphaena+Hippurus.jpeg"
             }
+            ,new Species()
+            {
+                Id= 9,
+                Name="Atlantic bluefin tuna",
+                Description="Atlantic bluefin tuna have large, torpedo-shaped bodies that are nearly circular in cross-section.",
+                HabitatName="Near offshore islands",
+                FishBait="Live bait",
+                FishImageUrl="https://images.squarespace-cdn.com/content/v1/5890c07bcd0f685b13dc60bf/1490802646283-GBTVAD6YM4G07UWVZJ12/image-asset.png"
+            }
         };
 
         public void Configure(EntityTypeBuilder<Species> builder)

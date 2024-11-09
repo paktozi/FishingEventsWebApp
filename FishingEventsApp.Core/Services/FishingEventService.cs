@@ -114,7 +114,7 @@ namespace FishingEventsApp.Core.Services
 
         public async Task<FishingEvent> FindEventAsync(int id)
         {
-            return await context.FishingEvents.FindAsync(id);//FirstOrDefaultAsync(f => f.Id == id);
+            return await context.FishingEvents.FindAsync(id);
         }
 
         public async Task JoinEventAsync(int id, string? userId)
@@ -177,7 +177,7 @@ namespace FishingEventsApp.Core.Services
             var location = await GetLocation();
 
             var model = await context.FishingEvents
-                .Where(f => f.Id == id)
+                .Where(f => f.Id == id && f.IsCompleted == false)
                 .Select(f => new FishingEventEditModel()
                 {
                     EventName = f.EventName,

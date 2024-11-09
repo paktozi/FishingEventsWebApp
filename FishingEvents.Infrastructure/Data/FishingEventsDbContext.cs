@@ -13,6 +13,10 @@ namespace FishingEventsApp.Infrastructure
         {
         }
 
+        private ApplicationUser AdminUser { get; set; }
+
+
+
         public DbSet<FishingEvent> FishingEvents { get; set; } = null!;
         public DbSet<Location> Locations { get; set; } = null!;
         public DbSet<Species> Species { get; set; } = null!;
@@ -105,6 +109,7 @@ namespace FishingEventsApp.Infrastructure
                 .HasForeignKey(e => e.LocationId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.ApplyConfiguration(new ApplicationUserConfiguration());
             modelBuilder.ApplyConfiguration(new LocationConfiguration());
             modelBuilder.ApplyConfiguration(new EventConfiguration());
             modelBuilder.ApplyConfiguration(new SpeciesConfiguration());
