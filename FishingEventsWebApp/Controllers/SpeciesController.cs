@@ -1,6 +1,7 @@
 ﻿using FishingEvents.Infrastructure.Data.Models;
 using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.SpeciesModels;
+using FishingEventsWebApp.CustomAttributes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,7 @@ namespace FishingEventsWebApp.Controllers
         }
 
         [HttpGet]
+        [AdminAuthorize]
         public IActionResult Add()
         {
             SpeciesAddModel model = new SpeciesAddModel();
@@ -24,6 +26,7 @@ namespace FishingEventsWebApp.Controllers
         }
 
         [HttpPost]
+        [AdminAuthorize]
         public async Task<IActionResult> Add(SpeciesAddModel model)
         {
             if (!ModelState.IsValid)
@@ -35,6 +38,7 @@ namespace FishingEventsWebApp.Controllers
         }
 
         [HttpGet]
+        [AdminAuthorize]
         public async Task<IActionResult> Edit(int id)
         {
             SpeciesEditModel model = await service.GetSpeciesToEdit(id);
@@ -46,6 +50,7 @@ namespace FishingEventsWebApp.Controllers
         }
 
         [HttpPost]
+        [AdminAuthorize]
         public async Task<IActionResult> Edit(SpeciesEditModel model, int id)
         {
             Species speciesToEdit = await service.FindSpeciesAsync(id);
@@ -59,6 +64,7 @@ namespace FishingEventsWebApp.Controllers
         }
 
         [HttpGet]
+        [AdminAuthorize]
         public async Task<IActionResult> Delete(int id)
         {
             var model = await service.FindSpeciesAsync(id);
@@ -74,6 +80,7 @@ namespace FishingEventsWebApp.Controllers
             return View(modelToDelete);
         }
         [HttpPost]
+        [AdminAuthorize]
         public async Task<IActionResult> DeleteConfirmed(SpeciesDeleteModel model, int id)
         {
             var modelToDelete = await service.FindSpeciesAsync(id);
@@ -84,7 +91,5 @@ namespace FishingEventsWebApp.Controllers
             await service.DeleteFishAsync(modelToDelete);
             return RedirectToAction(nameof(All));
         }
-
-
     }
 }

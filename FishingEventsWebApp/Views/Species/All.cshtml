@@ -7,7 +7,7 @@
 
 <div class="d-flex justify-content-between align-items-center mb-3" style="margin-top: 20px;">
     <h2>@ViewData["Title"]</h2>
-    @if (User?.Identity?.IsAuthenticated == true)
+    @if (User.IsInRole("Admin"))
     {
         <a asp-controller="Species" asp-action="Add" class="btn btn-success"><i class="fas fa-plus"></i>Add New Species</a>
     }
@@ -36,7 +36,7 @@
                     <br />
                     <p class="card-text">Fish Bait: @e.FishBait</p>
 
-                    @if (User?.Identity?.IsAuthenticated == true)
+                    @if (User.IsInRole("Admin")) //(User?.Identity?.IsAuthenticated == true)
                     {
                         <a asp-controller="Species" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Edit</a>
                         <a asp-controller="Species" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger w-100">Delete</a>

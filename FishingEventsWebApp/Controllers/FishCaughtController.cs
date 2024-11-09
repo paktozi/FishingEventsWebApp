@@ -1,5 +1,6 @@
 ﻿using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.FishCaughtModels;
+using FishingEventsWebApp.CustomAttributes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,13 +17,9 @@ namespace FishingEventsWebApp.Controllers
         }
 
         [HttpGet]
+        [AdminAuthorize]
         public async Task<IActionResult> Add(string userId, int id)
         {
-            if (!User.IsInRole("Admin"))
-            {
-                return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
-            }
-
             FishCaughtAddModel model = new FishCaughtAddModel();
             model.ListSpecies = await service.GetListSpeciesAsync();
             model.UserId = userId;
@@ -31,6 +28,7 @@ namespace FishingEventsWebApp.Controllers
         }
 
         [HttpPost]
+        [AdminAuthorize]
         public async Task<IActionResult> Add(FishCaughtAddModel model)
         {
             if (!ModelState.IsValid)

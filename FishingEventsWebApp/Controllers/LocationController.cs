@@ -2,6 +2,7 @@
 using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.EventsModels;
 using FishingEventsApp.Core.Models.LocationModels;
+using FishingEventsWebApp.CustomAttributes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace FishingEventsWebApp.Controllers
         }
 
         [HttpGet]
+        [AdminAuthorize]
         public IActionResult Add()
         {
             LocationAddModel model = new LocationAddModel();
@@ -25,6 +27,7 @@ namespace FishingEventsWebApp.Controllers
         }
 
         [HttpPost]
+        [AdminAuthorize]
         public async Task<IActionResult> Add(LocationAddModel model)
         {
             if (!ModelState.IsValid)
@@ -36,6 +39,7 @@ namespace FishingEventsWebApp.Controllers
         }
 
         [HttpGet]
+        [AdminAuthorize]
         public async Task<IActionResult> Edit(int id)
         {
             LocationEditModel model = await service.GetLocationToEdit(id);
@@ -45,7 +49,9 @@ namespace FishingEventsWebApp.Controllers
             }
             return View(model);
         }
+
         [HttpPost]
+        [AdminAuthorize]
         public async Task<IActionResult> Edit(LocationEditModel model, int id)
         {
             Location locationToEdit = await service.FindLocationAsync(id);
@@ -60,6 +66,7 @@ namespace FishingEventsWebApp.Controllers
         }
 
         [HttpGet]
+        [AdminAuthorize]
         public async Task<IActionResult> Delete(int id)
         {
             var model = await service.FindLocationAsync(id);
@@ -77,6 +84,7 @@ namespace FishingEventsWebApp.Controllers
 
 
         [HttpPost]
+        [AdminAuthorize]
         public async Task<IActionResult> DeleteConfirmed(int id, LocationDeleteModel modelToDelete)
         {
             var entity = await service.FindLocationAsync(id);
