@@ -1,11 +1,6 @@
 ﻿using FishingEvents.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FishingEvents.Infrastructure.Data.Configuration
 {
@@ -13,7 +8,7 @@ namespace FishingEvents.Infrastructure.Data.Configuration
     {
         private Species[] initialSpecies =
         {
-            new Species()
+           new Species()
             {
                  Id = 1,
                 Name="Bass",

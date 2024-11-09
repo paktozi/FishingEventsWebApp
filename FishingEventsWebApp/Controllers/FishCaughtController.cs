@@ -18,6 +18,11 @@ namespace FishingEventsWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Add(string userId, int id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
+            }
+
             FishCaughtAddModel model = new FishCaughtAddModel();
             model.ListSpecies = await service.GetListSpeciesAsync();
             model.UserId = userId;

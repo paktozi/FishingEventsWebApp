@@ -12,8 +12,7 @@ namespace FishingEvents.Infrastructure.Data.Configuration
     public class LocationConfiguration : IEntityTypeConfiguration<Location>
     {
         private Location[] initialLocation =
-        {
-            new Location()
+        { new Location()
             {
                 Id = 1,
                 Name = "Mihalkovo",

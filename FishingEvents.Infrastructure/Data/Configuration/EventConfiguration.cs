@@ -13,7 +13,7 @@ namespace FishingEvents.Infrastructure.Data.Configuration
     {
         private FishingEvent[] initialEvent =
         {
-            new FishingEvent()
+             new FishingEvent()
             {
                 Id=1,
                 EventName="Spring Fishing Festival",

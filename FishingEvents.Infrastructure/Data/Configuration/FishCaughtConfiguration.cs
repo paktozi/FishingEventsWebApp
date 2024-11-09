@@ -13,7 +13,7 @@ namespace FishingEvents.Infrastructure.Data.Configuration
     {
         private FishCaught[] initialFishCaught =
         {
-            new FishCaught()
+             new FishCaught()
             {
                Id=1,
                FishingEventId=1,

@@ -109,7 +109,11 @@ namespace FishingEventsApp.Infrastructure
                 .HasForeignKey(e => e.LocationId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+
+            //Initial Seed
             modelBuilder.ApplyConfiguration(new ApplicationUserConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
             modelBuilder.ApplyConfiguration(new LocationConfiguration());
             modelBuilder.ApplyConfiguration(new EventConfiguration());
             modelBuilder.ApplyConfiguration(new SpeciesConfiguration());
