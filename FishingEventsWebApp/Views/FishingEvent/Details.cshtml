@@ -3,7 +3,6 @@
     ViewBag.Title = "Details";
 }
 
-
 <h2 class="text-center">@ViewBag.Title</h2>
 <hr />
 
@@ -17,7 +16,8 @@
         {
             <img src="~/img/no-image.jpg" class="card-img-top img-fluid" style="max-height: 400px; object-fit: contain;" alt="Location Image">
         }
-        <div class="card-body text-center >
+
+            <div class="card-body text-center">
             <h5 class="card-title">@Model.EventName</h5>
             <p class="card-text text-center">Description: @Model.Description</p>
             <p class="card-text text-center"><small class="text-muted">Start: @Model.StartDate</small></p>
@@ -26,15 +26,17 @@
             <p class="card-text text-center"><small class="text-muted">Location: @Model.LocationName</small></p>
             <p class="card-text text-center"><small class="text-muted">Fishing Type: @Model.FishingType</small></p>
         </div>
-      
-        <a asp-controller="FishingEvent" asp-action="All" class="btn btn-light mb-2 w-50 p-3 fw-bold" style="margin:5px;margin-left:25%;">Back toFishing Event</a>
+
+        <p class="d-md-inline">
+        <a asp-controller="LeaderBoard" asp-action="LeaderBoard" asp-route-userId="@Model.UserId" asp-route-id="@Model.Id" class="btn btn-warning btn-custom">LeaderBoard for this event </a>
+        <a asp-controller="Weather" asp-action="Index" asp-route-locationName="@Model.LocationName" class="btn btn-info btn-custom">Check Weather</a>
+        <a asp-controller="FishingEvent" asp-action="AllEventParticipants" asp-route-id="@Model.Id" class="btn btn-primary btn-custom"> All Participants </a>
+        <a asp-controller="FishingEvent" asp-action="All" class="btn btn-light btn-custom">Back toFishing Event</a>
         @if (!User.IsInRole("Admin"))
         {
-        <a asp-controller="FishCaught" asp-action="All" asp-route-userId="@Model.UserId" asp-route-id="@Model.Id" class="btn btn-success mb-2 w-50 p-3 fw-bold" style="margin:5px;margin-left:25%;"> My fish caught for this event </a>        
+            <a asp-controller="FishCaught" asp-action="All" asp-route-userId="@Model.UserId" asp-route-id="@Model.Id" class=" btn btn-success btn-custom"> My fish caught for this event </a>
         }
-        <a asp-controller="LeaderBoard" asp-action="LeaderBoard" asp-route-userId="@Model.UserId" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-50 p-3 fw-bold" style="margin:5px;margin-left:25%;">LeaderBoard for this event </a>
-        <a asp-controller="Weather" asp-action="Index" asp-route-locationName="@Model.LocationName" class="btn btn-info mb-2 w-50 p-3 fw-bold" style="margin:5px;margin-left:25%;">Check Weather</a>           
-        <a asp-controller="FishingEvent" asp-action="AllEventParticipants" asp-route-id="@Model.Id" class="btn btn-primary mb-2 w-50 p-3 fw-bold" style="margin:5px;margin-left:25%;"> All Participants </a>     
+       </p>     
     </div>
 </div>
 

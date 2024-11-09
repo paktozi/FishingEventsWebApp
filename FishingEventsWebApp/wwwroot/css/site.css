@@ -93,6 +93,12 @@ body {
     color: aquamarine;
 }
 
+.btn-custom {
+    margin: 5px;
+    margin-left: 25%;
+    width: 20%;
+}
+
 
  
 .custom-btn-green {
@@ -130,7 +136,9 @@ body {
     width: 20px;
     height: 20px;
     background-color: rgba(173, 216, 230, 0.6); /* Light blue, semi-transparent */
-    border-radius: 50%;
+    background-color: rgb(211, 239, 236, 0.10);
+    border-radius: 50% ;
+    border:1px solid white;
     opacity: 0.8;
     animation: rise 10s infinite ease-in-out;
     transform: scale(1);
