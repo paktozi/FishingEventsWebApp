@@ -7,24 +7,23 @@
 <hr />
 
 <div class="row">
-    <div class="card mb-5 text-lg-start" style="background-color: rgba(10, 20, 0, 0.6);border-radius:10px;padding:8px;border-color:dimgrey;box-shadow:5px 5px 10px black;">
+    <div class="card mb-5 text-lg-start transparent-card">
         @if (!string.IsNullOrEmpty(@Model.ImageUrl))
         {
-            <img src="@Model.ImageUrl" class="card-img-top img-fluid" style="max-height: 400px; object-fit: contain;  " alt="Location Image">
+            <img src="@Model.ImageUrl" class="card-img-top img-fluid" style="max-height: 300px; object-fit:contain;" alt="Location Image">
         }
         else
         {
             <img src="~/img/no-image.jpg" class="card-img-top img-fluid" style="max-height: 400px; object-fit: contain;" alt="Location Image">
         }
-
-            <div class="card-body text-center">
+            <div class="card-body text-center" style="color:aquamarine">
             <h5 class="card-title">@Model.EventName</h5>
-            <p class="card-text text-center">Description: @Model.Description</p>
-            <p class="card-text text-center"><small class="text-muted">Start: @Model.StartDate</small></p>
-            <p class="card-text text-center"><small class="text-muted">End: @Model.EndDate</small></p>
-            <p class="card-text text-center"><small class="text-muted">Publisher: @Model.Organizer</small></p>
-            <p class="card-text text-center"><small class="text-muted">Location: @Model.LocationName</small></p>
-            <p class="card-text text-center"><small class="text-muted">Fishing Type: @Model.FishingType</small></p>
+            <p class="card-text text-center text-light">Description: @Model.Description</p>
+            <p class="card-text text-center"><small class="text-custom-color">Start: @Model.StartDate</small></p>
+            <p class="card-text text-center"><small class="text-custom-color">End: @Model.EndDate</small></p>
+            <p class="card-text text-center"><small class="text-custom-color">Publisher: @Model.Organizer</small></p>
+            <p class="card-text text-center"><small class="text-custom-color">Location: @Model.LocationName</small></p>
+            <p class="card-text text-center"><small class="text-custom-color">Fishing Type: @Model.FishingType</small></p>
         </div>
 
         <p class="d-md-inline">

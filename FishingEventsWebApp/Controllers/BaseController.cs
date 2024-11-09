@@ -9,7 +9,7 @@ namespace FishingEventsWebApp.Controllers
     {
         protected string? GetUserId()
         {
-            string userId = string.Empty;
+            string? userId = string.Empty;
 
             if (User != null)
             {

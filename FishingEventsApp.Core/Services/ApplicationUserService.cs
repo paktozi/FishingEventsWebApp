@@ -50,5 +50,8 @@ namespace FishingEventsApp.Core.Services
                  .FirstOrDefaultAsync();
             return model;
         }
+
+
+
     }
 }
