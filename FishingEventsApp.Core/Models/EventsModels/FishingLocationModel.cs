@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using static FishingEventsApp.Common.ValidationConstants;
-
-namespace FishingEventsApp.Core.Models.EventsModels
+﻿namespace FishingEventsApp.Core.Models.EventsModels
 {
     public class FishingLocationModel
     {

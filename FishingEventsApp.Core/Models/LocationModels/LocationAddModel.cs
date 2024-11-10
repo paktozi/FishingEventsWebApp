@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using static FishingEventsApp.Common.ValidationConstants;
 
 namespace FishingEventsApp.Core.Models.LocationModels
 {
     public class LocationAddModel
     {
-
         [Required(ErrorMessage = RequiredErrorMessage)]
         [StringLength(LocationNameMaxLength, MinimumLength = LocationNameMinLength, ErrorMessage = LengthErrorMessage)]
         [Display(Name = "Location Name")]
@@ -25,6 +19,7 @@ namespace FishingEventsApp.Core.Models.LocationModels
         [Display(Name = "Fishing Type")]
         public string FishingType { get; set; } = string.Empty;
 
+        [Display(Name = "Location Image Url")]
         public string? LocationImageUrl { get; set; }
     }
 }

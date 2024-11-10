@@ -24,7 +24,7 @@
     <p class="weather-list">Sunrise: @Model.Conditions.Sunrise h</p>
     <p class="weather-list">Sunset: @Model.Conditions.Sunset h </p>
     @foreach (var a in Model.Alerts)
-    {  <h3>Alerts:</h3>
+    {  <h3 class="text-danger">Alerts:</h3>
         <div>           
             <p>@a.Event</p>
             <p>@a.Headline</p>

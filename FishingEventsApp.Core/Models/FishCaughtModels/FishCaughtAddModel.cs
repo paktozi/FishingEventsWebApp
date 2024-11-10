@@ -1,10 +1,5 @@
 ﻿using FishingEventsApp.Core.Models.SpeciesModels;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static FishingEventsApp.Common.ValidationConstants;
 
 namespace FishingEventsApp.Core.Models.FishCaughtModels

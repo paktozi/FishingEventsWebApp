@@ -1,10 +1,5 @@
 ﻿using FishingEventsApp.Core.Models.SpeciesModels;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static FishingEventsApp.Common.ValidationConstants;
 
 namespace FishingEventsApp.Core.Models.FishCaughtModels
@@ -15,7 +10,7 @@ namespace FishingEventsApp.Core.Models.FishCaughtModels
         public int FishingEventId { get; set; }
 
         [Required]
-        public string UserId { get; set; }
+        public string UserId { get; set; } = null!;
 
         [Required]
         public int SpeciesId { get; set; }
@@ -33,6 +28,7 @@ namespace FishingEventsApp.Core.Models.FishCaughtModels
 
         [RegularExpression(@"^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$", ErrorMessage = DateErrorMessage)]
         [Required]
+        [Display(Name = "Date Caught")]
         public string DateCaught { get; set; } = string.Empty;
 
         public IEnumerable<SpeciesCaughtModel> ListSpecies { get; set; } = new List<SpeciesCaughtModel>();

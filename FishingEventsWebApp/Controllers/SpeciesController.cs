@@ -79,6 +79,7 @@ namespace FishingEventsWebApp.Controllers
             };
             return View(modelToDelete);
         }
+
         [HttpPost]
         [AdminAuthorize]
         public async Task<IActionResult> DeleteConfirmed(SpeciesDeleteModel model, int id)

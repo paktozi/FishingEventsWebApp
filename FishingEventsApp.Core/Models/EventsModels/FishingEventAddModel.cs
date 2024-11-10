@@ -1,12 +1,4 @@
-﻿using FishingEvents.Infrastructure.Data.Models;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using static FishingEventsApp.Common.ValidationConstants;
 
 namespace FishingEventsApp.Core.Models.EventsModels
@@ -38,6 +30,7 @@ namespace FishingEventsApp.Core.Models.EventsModels
 
         [Required]
         public int LocationId { get; set; }
+
 
         [Display(Name = "Event Image Url")]
         public string? EventImageUrl { get; set; } = string.Empty;

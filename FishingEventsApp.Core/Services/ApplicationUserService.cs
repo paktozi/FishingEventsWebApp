@@ -51,7 +51,5 @@ namespace FishingEventsApp.Core.Services
             return model;
         }
 
-
-
     }
 }

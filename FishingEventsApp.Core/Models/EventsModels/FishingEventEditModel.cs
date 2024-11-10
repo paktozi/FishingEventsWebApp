@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using static FishingEventsApp.Common.ValidationConstants;
 
 namespace FishingEventsApp.Core.Models.EventsModels
 {
     public class FishingEventEditModel
     {
-
         [Required(ErrorMessage = RequiredErrorMessage)]
         [StringLength(FishingEventNameMaxLength, MinimumLength = FishingEventNameMinLength, ErrorMessage = LengthErrorMessage)]
         [Display(Name = "Event Name")]
@@ -40,10 +34,8 @@ namespace FishingEventsApp.Core.Models.EventsModels
         [Display(Name = "Event Image Url")]
         public string? EventImageUrl { get; set; } = string.Empty;
 
-
         public string OrganizerId { get; set; } = string.Empty;
 
         public IEnumerable<FishingLocationModel>? Locations { get; set; } = new List<FishingLocationModel>();
-
     }
 }

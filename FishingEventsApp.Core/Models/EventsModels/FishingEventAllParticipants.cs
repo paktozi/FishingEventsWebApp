@@ -1,15 +1,11 @@
 ﻿using FishingEventsApp.Core.Models.FishCaughtModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FishingEventsApp.Core.Models.EventsModels
 {
     public class FishingEventAllParticipants
     {
         public int Id { get; set; }
+
         public string UserId { get; set; } = null!;
 
         public int EventId { get; set; }

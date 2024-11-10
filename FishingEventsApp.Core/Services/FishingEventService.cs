@@ -1,12 +1,10 @@
 ﻿using FishingEvents.Infrastructure.Data.Models;
 using FishingEventsApp.Core.Contracts;
-using FishingEventsApp.Core.Models.ApplicationUserModels;
 using FishingEventsApp.Core.Models.EventsModels;
 using FishingEventsApp.Core.Models.FishCaughtModels;
 using FishingEventsApp.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System.Globalization;
 using static FishingEventsApp.Common.ValidationConstants;
 
@@ -36,14 +34,12 @@ namespace FishingEventsApp.Core.Services
                     Organizer = e.Organizer.FirstName,
                     IsOrganizer = e.OrganizerId == userId,
                     IsJoined = e.EventParticipants.Any(ep => ep.FishingEventId == e.Id && ep.UserId == userId),
-                    Mail = e.Organizer.Email,
                 })
                 .AsNoTracking()
                 .ToListAsync();
 
             return model;
         }
-
 
         public async Task<ICollection<FishingLocationModel>?> GetLocationListAsync()
         {
@@ -60,6 +56,7 @@ namespace FishingEventsApp.Core.Services
                .ToListAsync();
             return model;
         }
+
         async Task<ICollection<FishingLocationModel>?> IFishingEventService.GetLocationListAsync()
         {
             return await GetLocation();
@@ -110,7 +107,6 @@ namespace FishingEventsApp.Core.Services
             // JoinEventAsync(entity.Id, userId);
 
         }
-
 
         public async Task<FishingEvent> FindEventAsync(int id)
         {

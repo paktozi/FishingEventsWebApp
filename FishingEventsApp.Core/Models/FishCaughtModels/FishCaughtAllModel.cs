@@ -1,14 +1,4 @@
-﻿using FishingEvents.Infrastructure.Data.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FishingEventsApp.Core.Models.FishCaughtModels
+﻿namespace FishingEventsApp.Core.Models.FishCaughtModels
 {
     public class FishCaughtAllModel
     {
@@ -18,9 +8,9 @@ namespace FishingEventsApp.Core.Models.FishCaughtModels
 
         public string FishingEventName { get; set; } = string.Empty;
 
-        public string UserId { get; set; }
+        public string? UserId { get; set; }
 
-        public string Species { get; set; }
+        public string Species { get; set; } = string.Empty;
 
         public double Weight { get; set; }
 

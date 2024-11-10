@@ -4,11 +4,6 @@ using FishingEventsApp.Core.Models.EventsModels;
 using FishingEventsApp.Core.Models.LocationModels;
 using FishingEventsApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FishingEventsApp.Core.Services
 {

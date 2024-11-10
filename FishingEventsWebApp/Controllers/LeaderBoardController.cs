@@ -1,6 +1,5 @@
 ﻿using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.LeaderBoardModels;
-using FishingEventsApp.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FishingEventsWebApp.Controllers
