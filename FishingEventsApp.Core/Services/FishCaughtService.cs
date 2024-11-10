@@ -1,5 +1,6 @@
 ﻿using FishingEvents.Infrastructure.Data.Models;
 using FishingEventsApp.Core.Contracts;
+using FishingEventsApp.Core.Models.EventsModels;
 using FishingEventsApp.Core.Models.FishCaughtModels;
 using FishingEventsApp.Core.Models.SpeciesModels;
 using FishingEventsApp.Infrastructure;
@@ -22,7 +23,7 @@ namespace FishingEventsApp.Core.Services
             if (!DateTime.TryParseExact(caughDate, DateFormat, CultureInfo.InvariantCulture,
                 DateTimeStyles.None, out DateTime parseStartDate))
             {
-                throw new InvalidOperationException("Invalid date format.");
+                throw new InvalidOperationException(DateErrorMessage);
             }
 
             FishCaught entity = new FishCaught();
@@ -34,8 +35,64 @@ namespace FishingEventsApp.Core.Services
             entity.Weight = model.Weight;
             entity.Length = model.Length;
             entity.CaughtImageUrl = model.CaughtImageUrl;
+
             await context.FishCaughts.AddAsync(entity);
             await context.SaveChangesAsync();
+        }
+
+        public async Task DeleteCaughtAsync(FishCaught entity)
+        {
+            context.Remove(entity);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task EditCaughtAsync(FishCaughtEditModel model, FishCaught fishCaught)
+        {
+            string dateCaught = $"{model.DateCaught}";
+            if (!DateTime.TryParseExact(dateCaught, DateFormat, CultureInfo.InvariantCulture,
+               DateTimeStyles.None, out DateTime parseDateCaught))
+            {
+                throw new InvalidOperationException(DateErrorMessage);
+            }
+
+            fishCaught.DateCaught = parseDateCaught;
+            fishCaught.Length = model.Length;
+            fishCaught.Weight = model.Weight;
+            fishCaught.CaughtImageUrl = model.CaughtImageUrl;
+            fishCaught.SpeciesId = model.SpeciesId;
+
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<FishCaught> FindCaughtAsync(int id)
+        {
+            return await context.FishCaughts.FindAsync(id);
+        }
+
+        public async Task<FishCaught> FindCaughtToDeleteAsync(int id)
+        {
+            return await context.FishCaughts
+                 .Include(fc => fc.FishingEvent)
+                 .Include(fc => fc.Species)
+                 .FirstOrDefaultAsync(fc => fc.Id == id);
+        }
+
+        public async Task<FishCaughtEditModel> GetCaughtToEditAsync(int id)
+        {
+
+            var caught = await context.FishCaughts
+                .Where(c => c.Id == id)
+                .Select(c => new FishCaughtEditModel()
+                {
+                    CaughtImageUrl = c.CaughtImageUrl,
+                    Weight = c.Weight,
+                    Length = c.Length,
+                    DateCaught = c.DateCaught.ToString(DateFormat),
+                    SpeciesId = c.SpeciesId,
+                })
+                .AsNoTracking()
+                .FirstOrDefaultAsync();
+            return caught;
         }
 
         public async Task<IEnumerable<SpeciesCaughtModel>> GetListSpeciesAsync()

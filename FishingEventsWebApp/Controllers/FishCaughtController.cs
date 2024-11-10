@@ -1,4 +1,5 @@
-﻿using FishingEventsApp.Core.Contracts;
+﻿using FishingEvents.Infrastructure.Data.Models;
+using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.FishCaughtModels;
 using FishingEventsWebApp.CustomAttributes;
 using Microsoft.AspNetCore.Authorization;
@@ -38,6 +39,68 @@ namespace FishingEventsWebApp.Controllers
             }
             await service.AddFishAsync(model);
             return RedirectToAction("AllEventParticipants", "FishingEvent", new { id = model.FishingEventId });
+        }
+
+        [HttpGet]
+        [AdminAuthorize]
+        public async Task<IActionResult> Edit(string userId, int eventId, int id)
+        {
+            FishCaughtEditModel model = await service.GetCaughtToEditAsync(id);
+            model.ListSpecies = await service.GetListSpeciesAsync();
+            if (model == null)
+            {
+                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        [AdminAuthorize]
+        public async Task<IActionResult> Edit(FishCaughtEditModel model, int id)
+        {
+            FishCaught fishCaught = await service.FindCaughtAsync(id);
+            if (fishCaught == null)
+            {
+                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+            }
+            await service.EditCaughtAsync(model, fishCaught);
+            return RedirectToAction("AllEventParticipants", "FishingEvent", new { id = fishCaught.FishingEventId });
+        }
+
+        [HttpGet]
+        [AdminAuthorize]
+        public async Task<IActionResult> Delete(int id, int eventId)
+        {
+            FishCaught model = await service.FindCaughtToDeleteAsync(id);
+
+            if (model == null)
+            {
+                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+            }
+
+            FishCaughtDeleteModel modelToDelete = new FishCaughtDeleteModel()
+            {
+                Id = model.Id,
+                EventName = model.FishingEvent.EventName,
+                FishName = model.Species.Name,
+                Weight = model.Weight,
+                Length = model.Length,
+            };
+            return View(modelToDelete);
+        }
+
+        [HttpPost]
+        [AdminAuthorize]
+        public async Task<IActionResult> DeleteConfirmed(FishCaughtDeleteModel modelToDelete, int id)
+        {
+            var entity = await service.FindCaughtAsync(id);
+            var fishingEventId = entity.FishingEventId;
+            if (entity == null)
+            {
+                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+            }
+            await service.DeleteCaughtAsync(entity);
+            return RedirectToAction("AllEventParticipants", "FishingEvent", new { id = fishingEventId });
         }
     }
 }

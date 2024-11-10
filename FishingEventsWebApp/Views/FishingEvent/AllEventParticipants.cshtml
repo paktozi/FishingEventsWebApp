@@ -20,15 +20,22 @@
                       <hr />
                     @foreach(var f in e.FishCaughtsList)
                     {
+                        <p class="card-text">Id: @f.Id</p>
                         <p class="card-text">Fish Name: @f.Species</p>
                         <p class="card-text">Fish Weight: @f.Weight kg</p>
-                        <p class="card-text">Fish Length: @f.Length cm</p>    
+                        <p class="card-text">Fish Length: @f.Length cm</p>
+                        @if (User.IsInRole("Admin"))
+                        {
+                        <a asp-controller="FishCaught" asp-action="Edit" asp-route-userId="@e.UserId" asp-route-eventId="@e.EventId" asp-route-id="@f.Id"  class="btn btn-warning mb-2 w-100 p-1 fw-bold "> Edit fish caught </a>
+                            <a asp-controller="FishCaught" asp-action="Delete" asp-route-eventId="@e.EventId" asp-route-id="@f.Id" class="btn btn-danger mb-2 w-100 p-1 fw-bold "> Delete fish caught </a>
+                        }
                         <hr />
                     }                                   
                       
+                    <hr />
                     @if (User.IsInRole("Admin"))
                     {
-                    <a asp-controller="FishCaught" asp-action="Add" asp-route-userId="@e.UserId" asp-route-id="@e.EventId" class="btn btn-warning mb-2 w-100 p-3 fw-bold"> Add fish caught </a>                      
+                        <a asp-controller="FishCaught" asp-action="Add" asp-route-userId="@e.UserId" asp-route-id="@e.EventId" class="btn btn-success mb-2 w-100 p-1 fw-bold "> Add fish caught </a>
                     }
                 </div>
             </div>

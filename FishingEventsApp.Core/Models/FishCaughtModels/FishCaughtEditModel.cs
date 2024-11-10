@@ -9,7 +9,7 @@ using static FishingEventsApp.Common.ValidationConstants;
 
 namespace FishingEventsApp.Core.Models.FishCaughtModels
 {
-    public class FishCaughtAddModel
+    public class FishCaughtEditModel
     {
         [Required]
         public int FishingEventId { get; set; }

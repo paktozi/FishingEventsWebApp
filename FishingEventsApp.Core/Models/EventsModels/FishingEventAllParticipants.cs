@@ -9,6 +9,7 @@ namespace FishingEventsApp.Core.Models.EventsModels
 {
     public class FishingEventAllParticipants
     {
+        public int Id { get; set; }
         public string UserId { get; set; } = null!;
 
         public int EventId { get; set; }
@@ -17,10 +18,6 @@ namespace FishingEventsApp.Core.Models.EventsModels
 
         public string LastName { get; set; } = null!;
 
-
-
         public ICollection<FishCaughtAllModel> FishCaughtsList { get; set; } = new List<FishCaughtAllModel>();
-        //public ICollection<FishingEventALLModel> FishingEventsList { get; set; } = new List<FishingEventALLModel>();
-
     }
 }

@@ -1,6 +1,5 @@
 ﻿@model ICollection< SpeciesAllModel>
 
-
 @{
     ViewData["Title"] = "Species";
 }
@@ -29,14 +28,13 @@
                 }
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">@e.Name</h5>
-                   <br />
+                    <br />
                     <p class="card-text">Description: @e.Description</p>
-                    
                     <p class="card-text">Habitat Name: @e.HabitatName</p>
                     <br />
                     <p class="card-text">Fish Bait: @e.FishBait</p>
 
-                    @if (User.IsInRole("Admin")) //(User?.Identity?.IsAuthenticated == true)
+                    @if (User.IsInRole("Admin"))
                     {
                         <a asp-controller="Species" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-1 fw-bold">Edit</a>
                         <a asp-controller="Species" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger mb-2 w-100 p-1 fw-bold">Delete</a>

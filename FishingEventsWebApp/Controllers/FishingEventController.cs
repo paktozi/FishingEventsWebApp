@@ -1,16 +1,8 @@
 ﻿using FishingEvents.Infrastructure.Data.Models;
 using FishingEventsApp.Core.Contracts;
-using FishingEventsApp.Core.Models.ApplicationUserModels;
 using FishingEventsApp.Core.Models.EventsModels;
-using FishingEventsApp.Core.Services;
-using FishingEventsWebApp.CustomAttributes;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System.Security.Claims;
-using static FishingEventsApp.Common.ValidationConstants;
 
 
 namespace FishingEventsWebApp.Controllers
@@ -27,7 +19,6 @@ namespace FishingEventsWebApp.Controllers
             IEnumerable<FishingEventALLModel> model = await service.GetAllEventsAsync(userId, eventName);
             return View(model);
         }
-
 
         [HttpGet]
         public async Task<IActionResult> Add()
@@ -61,6 +52,7 @@ namespace FishingEventsWebApp.Controllers
             }
             string? userId = GetUserId();
             await service.JoinEventAsync(id, userId);
+
             return RedirectToAction(nameof(All));
         }
 
@@ -74,6 +66,7 @@ namespace FishingEventsWebApp.Controllers
             }
             var userId = GetUserId();
             await service.LeaveAsync(model, userId);
+
             return RedirectToAction(nameof(All));
         }
 
@@ -92,7 +85,6 @@ namespace FishingEventsWebApp.Controllers
             }
             return View(model);
         }
-
 
 
         [HttpPost]

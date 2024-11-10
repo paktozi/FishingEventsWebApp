@@ -6,7 +6,7 @@ namespace FishingEventsWebApp.Controllers
 {
     public class WeatherController(WeatherService service) : Controller
     {
-        public async Task<IActionResult> SearchLocation()
+        public IActionResult SearchLocation()
         {
             return View();
         }

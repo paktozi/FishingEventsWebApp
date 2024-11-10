@@ -201,12 +201,12 @@ namespace FishingEventsApp.Core.Services
             if (!DateTime.TryParseExact(startDate, DateFormat, CultureInfo.InvariantCulture,
                 DateTimeStyles.None, out DateTime parseStartDate))
             {
-                throw new InvalidOperationException("Invalid date format.");
+                throw new InvalidOperationException(DateErrorMessage);
             }
             if (!DateTime.TryParseExact(endDate, DateFormat, CultureInfo.InvariantCulture,
                 DateTimeStyles.None, out DateTime parseEndDate))
             {
-                throw new InvalidOperationException("Invalid date format.");
+                throw new InvalidOperationException(DateErrorMessage);
             }
 
             fishEvent.EventName = model.EventName;
@@ -215,6 +215,7 @@ namespace FishingEventsApp.Core.Services
             fishEvent.EndDate = parseEndDate;
             fishEvent.LocationId = model.LocationId;
             fishEvent.EventImageUrl = model.EventImageUrl;
+
             await context.SaveChangesAsync();
         }
 
@@ -235,6 +236,7 @@ namespace FishingEventsApp.Core.Services
                     .Where(fc => fc.FishingEventId == id)
                     .Select(fc => new FishCaughtAllModel
                     {
+                        Id = fc.Id,
                         Species = fc.Species.Name,
                         Weight = fc.Weight,
                         Length = fc.Length,
