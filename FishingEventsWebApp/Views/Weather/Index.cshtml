@@ -8,11 +8,6 @@
     }
 }
 
- 
-
-
-
-
 <div class="text-lg-center transparent-card-weather align-content-center mx-auto">
     <h3 class="text-center">@Model.ResolvedAddress</h3>
     <p>Current Condition: @Model.Conditions.Conditions</p>
@@ -28,6 +23,15 @@
     <p class="weather-list">Wind speed: @Model.Conditions.Windspeed km/h</p>
     <p class="weather-list">Sunrise: @Model.Conditions.Sunrise h</p>
     <p class="weather-list">Sunset: @Model.Conditions.Sunset h </p>
+    @foreach (var a in Model.Alerts)
+    {  <h3>Alerts:</h3>
+        <div>           
+            <p>@a.Event</p>
+            <p>@a.Headline</p>
+            <p>@a.Description</p>
+        </div>
+    }
+
     <a asp-controller="Location" asp-action="All" class="btn btn-success"><i class="fas fa-plus"></i>Back to All Locations</a>
     <a asp-controller="FishingEvent" asp-action="All" class="btn btn-success"><i class="fas fa-plus"></i>Back to All Events</a>
 </div>

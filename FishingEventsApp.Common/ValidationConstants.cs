@@ -9,9 +9,6 @@ namespace FishingEventsApp.Common
         public const string DateFormat = "dd-MM-yyyy";
         public const string DateErrorMessage = "Date must be in the format dd-MM-yyyy";
 
-        //  [RegularExpression(@"^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4} (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$",
-        //  ErrorMessage = "Date and time must be in the format dd-MM-yyyy HH:mm")]
-
         public const int FishingEventNameMinLength = 5;
         public const int FishingEventNameMaxLength = 50;
         public const int FishingEventDescriptionMinLength = 5;

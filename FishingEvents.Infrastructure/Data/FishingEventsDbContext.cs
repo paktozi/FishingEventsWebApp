@@ -13,8 +13,7 @@ namespace FishingEventsApp.Infrastructure
         {
         }
 
-        private ApplicationUser AdminUser { get; set; }
-
+        private ApplicationUser? AdminUser { get; set; }
 
 
         public DbSet<FishingEvent> FishingEvents { get; set; } = null!;

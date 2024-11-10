@@ -28,5 +28,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Generate bubbles at regular intervals
-    setInterval(createBubble, 500); // Adjust frequency as needed
+    setInterval(createBubble, 1500); // Adjust frequency as needed
 });

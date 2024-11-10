@@ -19,9 +19,5 @@ namespace FishingEventsApp.Core.Models.ApplicationUserModels
         public string UserName { get; set; } = null!;
 
         public string Email { get; set; } = null!;
-
-        // public ICollection<FishCaughtAllModel> FishCaughtsList { get; set; } = new List<FishCaughtAllModel>();
-        // public ICollection<FishingEventALLModel> FishingEventsList { get; set; } = new List<FishingEventALLModel>();
-
     }
 }

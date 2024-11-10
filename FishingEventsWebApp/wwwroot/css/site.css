@@ -121,44 +121,48 @@ body {
     }
 
 
-/* Bubble container */
 .bubble-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    top: 0;
-    left: 0;
-    pointer-events: none; /* Allows interaction with underlying elements */
+ 
+    position: absolute; /* Positions the container relative to the closest positioned ancestor */
+    width: 75%; /* Sets the width of the container to 75% of the viewport width */
+    height: 100%; /* Sets the container height to the full height of the viewport */
+    overflow: hidden; /* Hides any content that exceeds the container’s bounds */
+    top: 0; /* Aligns the top edge of the container to the top of the viewport */
+    left: 50%; /* Positions the container 50% from the left of the viewport */
+    transform: translateX(-50%); /* Center the container horizontally by shifting it 50% to the left */
+    pointer-events: none; /* Allows interaction with elements beneath the container */
 }
 
 /* Bubble style */
 .bubble {
-    position: absolute;
-    bottom: -10px;
-    width: 20px;
-    height: 20px;
-    background-color: rgba(173, 216, 230, 0.6); /* Light blue, semi-transparent */
-    background-color: rgb(211, 239, 236, 0.10);
-    border-radius: 50% ;
-    border:1px solid white;
-    opacity: 0.8;
-    animation: rise 10s infinite ease-in-out;
-    transform: scale(1);
-    transition: transform 0.2s;
+    position: absolute; /* Positions each bubble absolutely within the container */
+    bottom: -10px; /* Positions bubbles slightly below the container's bottom edge */
+    width: 20px; /* Sets the width of each bubble */
+    height: 20px; /* Sets the height of each bubble, making it circular when combined with border-radius */
+    background-color: rgba(173, 216, 230, 0.6); /* Sets initial bubble color: light blue, semi-transparent */
+    background-color: rgb(211, 239, 236, 0.10); /* Second background color, used as a fallback */
+    border-radius: 50%; /* Makes bubbles circular */
+    border: 1px solid white; /* Adds a thin white border to each bubble */
+    opacity: 0.8; /* Makes bubbles slightly transparent */
+    animation: rise 10s infinite ease-in-out; /* Animates bubbles to rise over 10 seconds repeatedly */
+    transform: scale(1); /* Sets initial scale to normal size */
+    transition: transform 0.2s; /* Smoothly changes size when hovered */
 }
 
     .bubble:hover {
-        transform: scale(1.2); /* Slightly enlarge on hover */
+        transform: scale(0.2); /* Shrinks bubble size slightly when hovered */
     }
 
 /* Bubble rise animation */
 @keyframes rise {
     0% {
-        transform: translateY(0) scale(1);
+        transform: translateY(0) scale(1); /* Starts bubble at the bottom, normal size */
+        background-color: rgb(211, 239, 236, 0.10); /* Sets initial color for animation */
     }
 
     100% {
-        transform: translateY(-100vh) scale(0.5); /* Moves up and shrinks */
+        transform: translateY(-100vh) scale(0.5); /* Moves bubble upward out of view and shrinks it */
+        background-color: rgb(211, 239, 236, 0.05); /* Lightens the color slightly at the end */
+        border: 1px solid rgb(211, 239, 236, 0.1); /* Makes border more transparent at the end */
     }
 }
