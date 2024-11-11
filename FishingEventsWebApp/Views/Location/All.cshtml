@@ -2,17 +2,16 @@
 
 
 @{
-    ViewData["Title"] = "Events Location";
+    ViewData["Title"] = "Events Locations";
 }
 
 <div class="d-flex justify-content-between align-items-center mb-3" style="margin-top: 20px;">
-    <h2>@ViewData["Title"]</h2>
+    <h2 class="text-center">@ViewData["Title"]</h2>
     @if (User.IsInRole("Admin"))
     {
     <a asp-controller="Location" asp-action="Add" class="btn btn-success"><i class="fas fa-plus"></i>Add New Location</a>       
     }
 </div>
-<hr />
 
 <div class="row text-center">
     @foreach (var e in Model)
@@ -34,9 +33,9 @@
                     <p class="card-text">Fishing Type: @e.FishingType</p>
 
                     @if (User.IsInRole("Admin"))
-                    {                
-                        <a asp-controller="Location" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-1 fw-bold">Edit</a>                    
-                        <a asp-controller="Location" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger w-100">Delete</a>
+                    {
+                        <a asp-controller="Location" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-20 p-1 fw-bold">Edit</a>
+                        <a asp-controller="Location" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger mb-2 w-20 p-1 fw-bold">Delete</a>
                     }
                 </div>
             </div>
