@@ -22,7 +22,6 @@
     }
 </div>
 
-
 <div class="row text-center">
     @foreach (var e in Model)
     {
@@ -30,7 +29,7 @@
             <div class="card h-100 transparent-card">
                 @if (!string.IsNullOrEmpty(e.LocationImageUrl))
                 {
-                    <img src="@e.LocationImageUrl" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="@e.Name">
+                    <img src="@e.LocationImageUrl" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="@e.Name">                  
                 }
                 else
                 {

@@ -18,5 +18,6 @@ namespace FishingEvents.Infrastructure.Data.Models.WeatherModels
         public double Windspeed { get; set; }
         public string Sunrise { get; set; } = string.Empty;
         public string Sunset { get; set; } = string.Empty;
+        public string Icon { get; set; } = string.Empty;
     }
 }
