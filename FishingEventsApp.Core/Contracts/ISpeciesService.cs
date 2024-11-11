@@ -9,7 +9,7 @@ namespace FishingEventsApp.Core.Contracts
         Task DeleteFishAsync(Species modelToDelete);
         Task EditSpeciesAsync(SpeciesEditModel model, Species speciesToEdit);
         Task<Species> FindSpeciesAsync(int id);
-        Task<IEnumerable<SpeciesAllModel>> GetAllSpeciesAsync();
+        Task<IEnumerable<SpeciesAllModel>> GetAllSpeciesAsync(string? specieName);
         Task<SpeciesEditModel> GetSpeciesToEdit(int id);
     }
 }

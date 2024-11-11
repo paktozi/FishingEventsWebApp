@@ -42,19 +42,26 @@ namespace FishingEventsApp.Core.Services
             return await context.Locations.FindAsync(id);
         }
 
-        public async Task<IEnumerable<FishingLocationModel>> GetAllLocationsAsync()
+        public async Task<IEnumerable<FishingLocationModel>> GetAllLocationsAsync(string? locationName)
         {
-            var model = await context.Locations
-                .Select(l => new FishingLocationModel
-                {
-                    Id = l.Id,
-                    Name = l.Name,
-                    Elevation = l.Elevation,
-                    FishingType = l.FishingType,
-                    LocationImageUrl = l.LocationImageUrl,
-                })
-                .AsNoTracking()
-                .ToListAsync();
+            IQueryable<Location> query = context.Locations;
+
+            if (!string.IsNullOrEmpty(locationName))
+            {
+                query = query.Where(l => l.Name.Contains(locationName));
+            }
+
+            var model = await query
+                  .Select(l => new FishingLocationModel
+                  {
+                      Id = l.Id,
+                      Name = l.Name,
+                      Elevation = l.Elevation,
+                      FishingType = l.FishingType,
+                      LocationImageUrl = l.LocationImageUrl,
+                  })
+                  .AsNoTracking()
+                  .ToListAsync();
             return model;
         }
 

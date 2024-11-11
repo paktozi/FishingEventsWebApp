@@ -43,9 +43,16 @@ namespace FishingEventsApp.Core.Services
             return await context.Species.FindAsync(id);
         }
 
-        public async Task<IEnumerable<SpeciesAllModel>> GetAllSpeciesAsync()
+        public async Task<IEnumerable<SpeciesAllModel>> GetAllSpeciesAsync(string? specieName)
         {
-            var allSpecies = await context.Species
+            IQueryable<Species> query = context.Species;
+
+            if (!string.IsNullOrEmpty(specieName))
+            {
+                query = query.Where(s => s.Name.Contains(specieName));
+            }
+
+            var allSpecies = await query
                  .Select(s => new SpeciesAllModel()
                  {
                      Id = s.Id,

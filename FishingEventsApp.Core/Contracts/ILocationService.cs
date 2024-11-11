@@ -10,7 +10,7 @@ namespace FishingEventsApp.Core.Contracts
         Task DeleteLocationAsync(Location entity);
         Task EditLocationAsync(LocationEditModel model, Location locationToEdit);
         Task<Location> FindLocationAsync(int id);
-        Task<IEnumerable<FishingLocationModel>> GetAllLocationsAsync();
+        Task<IEnumerable<FishingLocationModel>> GetAllLocationsAsync(string? locationName);
         Task<LocationEditModel> GetLocationToEdit(int id);
     }
 }

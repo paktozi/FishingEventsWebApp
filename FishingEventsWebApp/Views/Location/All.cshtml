@@ -1,17 +1,27 @@
 ﻿@model ICollection< FishingLocationModel>
 
-
 @{
-    ViewData["Title"] = "Events Locations";
+    ViewData["Title"] = "Event Locations";
 }
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <form asp-controller="Location" asp-action="All" method="get" class="form-inline">
+        <input type="text" name="locationName" class="form-control mr-2 input-field" style="width:40%" placeholder="Enter Location name" required />
+        <button type="submit" class="btn custom-btn-green" style="margin:6px">Search Location by Name</button>
+    </form>
+}
+
 
 <div class="d-flex justify-content-between align-items-center mb-3" style="margin-top: 20px;">
     <h2 class="text-center">@ViewData["Title"]</h2>
     @if (User.IsInRole("Admin"))
     {
-    <a asp-controller="Location" asp-action="Add" class="btn btn-success"><i class="fas fa-plus"></i>Add New Location</a>       
+        <a asp-controller="Location" asp-action="Add" class="btn btn-success"><i class="fas fa-plus"></i>Add New Location</a>
     }
 </div>
+
 
 <div class="row text-center">
     @foreach (var e in Model)

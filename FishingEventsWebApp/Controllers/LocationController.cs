@@ -12,9 +12,9 @@ namespace FishingEventsWebApp.Controllers
     public class LocationController(ILocationService service) : Controller
     {
         [HttpGet]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(string? locationName)
         {
-            IEnumerable<FishingLocationModel> model = await service.GetAllLocationsAsync();
+            IEnumerable<FishingLocationModel> model = await service.GetAllLocationsAsync(locationName);
             return View(model);
         }
 
@@ -81,7 +81,6 @@ namespace FishingEventsWebApp.Controllers
             };
             return View(modelToDelete);
         }
-
 
         [HttpPost]
         [AdminAuthorize]

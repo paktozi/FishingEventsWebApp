@@ -11,9 +11,9 @@ namespace FishingEventsWebApp.Controllers
     public class SpeciesController(ISpeciesService service) : Controller
     {
         [HttpGet]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(string? specieName)
         {
-            IEnumerable<SpeciesAllModel> model = await service.GetAllSpeciesAsync();
+            IEnumerable<SpeciesAllModel> model = await service.GetAllSpeciesAsync(specieName);
             return View(model);
         }
 

@@ -11,9 +11,18 @@ namespace FishingEventsApp.Core.Services
     public class ApplicationUserService(UserManager<ApplicationUser> userManager) : IApplicationUserService
     {
 
-        public async Task<ICollection<ApplicationUserAllModel>> GetAllAsync()
+        public async Task<ICollection<ApplicationUserAllModel>> GetAllAsync(string? userName)
         {
-            var model = await userManager.Users
+            var query = userManager.Users.AsQueryable();
+
+            if (!string.IsNullOrEmpty(userName))
+            {
+                query = query.Where(u => u.FirstName.Contains(userName)
+                || u.LastName.Contains(userName)
+                || u.UserName.Contains(userName));
+            }
+
+            var model = await query
                 .Select(u => new ApplicationUserAllModel()
                 {
                     Id = u.Id,
