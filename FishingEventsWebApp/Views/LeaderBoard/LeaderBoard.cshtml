@@ -5,8 +5,7 @@
     <thead class="transparent-table-head">
         <tr>
             <th>Position</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Name</th>           
             <th>Total Fish Caught</th>
             <th>Total Weight (kg)</th>
         </tr>
@@ -17,8 +16,7 @@
             var item = Model.ElementAt(i);
             <tr>
                 <td>@(i + 1)</td>
-                <td>@item.FirstName</td>
-                <td>@item.LastName</td>
+                <td>@item.FirstName @item.LastName</td>              
                 <td>@item.TotalFishCaught</td>
                 <td>@item.TotalWeight</td>
             </tr>

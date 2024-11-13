@@ -9,7 +9,7 @@
 }
 
 <div class="text-lg-center transparent-card-weather align-content-center mx-auto">
-    <h3 class="text-center">@Model.ResolvedAddress  <img src="~/img/weathericons/@($"{Model.Conditions.Icon}.png")" alt="Weather Icon" style="display: inline; width: 40px; height: 40px;" /></h3>
+    <h3 class="text-center text-custom-color">@Model.ResolvedAddress  <img src="~/img/weathericons/@($"{Model.Conditions.Icon}.png")" alt="Weather Icon" style="display: inline; width: 40px; height: 40px;" /></h3>
     <p>Current Condition: @Model.Conditions.Conditions</p>
     <hr />
     <p>Last Update: @Model.Conditions.DateTime</p>
@@ -23,14 +23,33 @@
     <p class="weather-list">Wind speed: @Model.Conditions.Windspeed km/h</p>
     <p class="weather-list">Sunrise: @Model.Conditions.Sunrise h</p>
     <p class="weather-list">Sunset: @Model.Conditions.Sunset h </p>
+   
     @foreach (var a in Model.Alerts)
     {
-          <h3 class="text-danger">Alerts:</h3>
+        <h3 class="text-danger">Alerts:</h3>
         <div>
             <p>@a.Event</p>
             <p>@a.Headline</p>
             <p>@a.Description</p>
         </div>
+    }
+    @{
+        int dayCount = 1;
+        <h3 class="text-custom-color">3-Day Weather Forecast</h3>
+        @foreach (var d in Model.Days)
+        {
+            if (dayCount > 3)
+            {
+                break;
+            }
+            <hr />
+            <p>@d.DateTime.ToString("ddd dd.MM") <img src="~/img/weathericons/@($"{d.Icon}.png")" alt="Weather Icon" style="display: inline; width: 40px; height: 40px;" /></p>
+            <p>@d.Conditions</p>
+            <p> Min: @d.TempMin°C</p>
+            <p>Max: @d.TempMax°C</p>
+            dayCount++;
+            <hr />
+        }
     }
 
     <a asp-controller="Location" asp-action="All" class="btn btn-success"><i class="fas fa-plus"></i>Back to All Locations</a>

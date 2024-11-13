@@ -10,7 +10,6 @@ namespace FishingEventsWebApp.Controllers
     [Authorize]
     public class FishingEventController(IFishingEventService service) : BaseController
     {
-
         [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> All(string? eventName)
@@ -28,6 +27,7 @@ namespace FishingEventsWebApp.Controllers
             return View(model);
         }
 
+        // [AutoValidateAntiforgeryToken]
         [HttpPost]
         public async Task<IActionResult> Add(FishingEventAddModel model)
         {
@@ -86,7 +86,6 @@ namespace FishingEventsWebApp.Controllers
             return View(model);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> Edit(FishingEventEditModel model, int id)
         {
@@ -106,7 +105,6 @@ namespace FishingEventsWebApp.Controllers
             await service.EditEventAsync(model, fishEvent);
             return RedirectToAction(nameof(All));
         }
-
 
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
@@ -143,7 +141,6 @@ namespace FishingEventsWebApp.Controllers
             return RedirectToAction(nameof(All));
         }
 
-
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
@@ -155,7 +152,6 @@ namespace FishingEventsWebApp.Controllers
             }
             return View(model);
         }
-
 
         [HttpGet]
         public async Task<IActionResult> AllEventParticipants(int id)

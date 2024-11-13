@@ -13,6 +13,6 @@ namespace FishingEvents.Infrastructure.Data.Models.WeatherModels
         [JsonProperty("alerts")]
         public Alerts[] Alerts { get; set; }
 
-        //public Days[] Days { get; set; }
+        public Days[] Days { get; set; }
     }
 }

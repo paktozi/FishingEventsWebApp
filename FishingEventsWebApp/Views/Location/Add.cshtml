@@ -12,24 +12,24 @@
             <div class="mb-3">
                 <label asp-for="@Model.Name" class="form-label-add-edit">Location Name</label>
                 <input asp-for="@Model.Name" class="form-control input-field" aria-required="true" />
-                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                <span asp-validation-for="@Model.Name" class="text-custom-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="@Model.Elevation" class="form-label-add-edit">Elevation in meters</label>
-                <textarea asp-for="@Model.Elevation" class="form-control input-field" aria-required="true" rows="2"></textarea>
-                <span asp-validation-for="@Model.Elevation" class="text-danger"></span>
+                <textarea asp-for="@Model.Elevation" class="form-control input-field" aria-required="true" rows="1"></textarea>
+                <span asp-validation-for="@Model.Elevation" class="text-custom-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="@Model.FishingType" class="form-label-add-edit">Fishing Type</label>
-                <textarea asp-for="@Model.FishingType" class="form-control input-field" aria-required="true" rows="2"></textarea>
-                <span asp-validation-for="@Model.FishingType" class="text-danger"></span>
+                <textarea asp-for="@Model.FishingType" class="form-control input-field" aria-required="true" rows="1"></textarea>
+                <span asp-validation-for="@Model.FishingType" class="text-custom-danger"></span>
             </div>
           
 
             <div class="mb-3">
                 <label asp-for="@Model.LocationImageUrl" class="form-label-add-edit">ImageUrl</label>
                 <textarea asp-for="@Model.LocationImageUrl" class="form-control input-field" aria-required="true" rows="1"></textarea>
-                <span asp-validation-for="@Model.LocationImageUrl" class="text-danger"></span>
+                <span asp-validation-for="@Model.LocationImageUrl" class="text-custom-danger"></span>
             </div>
         
             <div class="mb-3">

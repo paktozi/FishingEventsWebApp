@@ -110,6 +110,12 @@ body {
     box-shadow: 5px 5px 10px black;
 }
 
+.transparent-drop-menu {
+   background-color: rgba(10, 20, 0, 0.6);
+   color:greenyellow;
+   box-shadow:5px 5px 10px black; 
+}
+
 .transparent-card-weather {
     width: 30%;
     background-color: rgba(10, 20, 0, 0.6);
@@ -145,6 +151,9 @@ body {
         color: antiquewhite;
     }
 
+   .text-custom-danger{
+       color:rgb(166, 249, 11);
+   }
 
  
 .custom-btn-green {

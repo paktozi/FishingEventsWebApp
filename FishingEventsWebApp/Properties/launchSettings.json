@@ -34,13 +34,13 @@
       "applicationUrl": "https://192.168.0.239:5102;https://192.168.0.239:7217",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "IIS Express": {
-        "commandName": "IISExpress",
-        "launchBrowser": true,
-        "environmentVariables": {
-          "ASPNETCORE_ENVIRONMENT": "Development"
+      },   
+        "IIS Express": {
+          "commandName": "IISExpress",
+          "launchBrowser": true,
+          "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development"
+          }
         }
       }
     }
-}

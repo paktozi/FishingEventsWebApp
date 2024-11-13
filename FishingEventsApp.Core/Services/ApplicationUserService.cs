@@ -53,6 +53,7 @@ namespace FishingEventsApp.Core.Services
                          Length = fc.Length,
                          DateCaught = fc.DateCaught.ToString(DateFormat),
                      })
+                     .OrderByDescending(w => w.Weight)
                      .ToList()
                  })
                  .AsNoTracking()
