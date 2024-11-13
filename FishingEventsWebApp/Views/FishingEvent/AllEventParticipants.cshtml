@@ -1,46 +1,49 @@
 ﻿@model ICollection< FishingEventAllParticipants>
 
-
 @{
-    ViewData["Title"] = "All Participants";
+    ViewData["Title"] = "All Participants:";
 }
     <h2>@ViewData["Title"]</h2>
 
+@if (Model.Any())
+{
+    <div class="row text-center">
+        @foreach (var e in Model)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="card h-100 transparent-card">
+                    <div class="card-body d-flex flex-column">
+                        <p class="card-text" style="color:greenyellow">First Name: @e.FirstName</p>
+                        <p class="card-text" style="color:greenyellow">Last Name: @e.LastName</p>
 
+                        <hr />
+                        @foreach (var f in e.FishCaughtsList)
+                        {
+                            <p class="card-text">Fish Name: @f.Species</p>
+                            <p class="card-text">Fish Weight: @f.Weight kg</p>
+                            <p class="card-text">Fish Length: @f.Length cm</p>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a asp-controller="FishCaught" asp-action="Edit" asp-route-userId="@e.UserId" asp-route-eventId="@e.EventId" asp-route-id="@f.Id" class="btn btn-warning mb-2 w-100 p-1 fw-bold "> Edit fish caught </a>
+                                <a asp-controller="FishCaught" asp-action="Delete" asp-route-eventId="@e.EventId" asp-route-id="@f.Id" class="btn btn-danger mb-2 w-100 p-1"> Delete fish caught </a>
+                            }
+                            <hr />
+                        }
 
-<div class="row text-center">
-    @foreach (var e in Model)
-    {
-        <div class="col-md-3 mb-4">
-            <div class="card h-100 transparent-card">
-                <div class="card-body d-flex flex-column">
-                    <p class="card-text" style="color:greenyellow">First Name: @e.FirstName</p>
-                    <p class="card-text" style="color:greenyellow">Last Name: @e.LastName</p>
-                     
-                      <hr />
-                    @foreach(var f in e.FishCaughtsList)
-                    {
-                        <p class="card-text">Id: @f.Id</p>
-                        <p class="card-text">Fish Name: @f.Species</p>
-                        <p class="card-text">Fish Weight: @f.Weight kg</p>
-                        <p class="card-text">Fish Length: @f.Length cm</p>
+                        <hr />
                         @if (User.IsInRole("Admin"))
                         {
-                        <a asp-controller="FishCaught" asp-action="Edit" asp-route-userId="@e.UserId" asp-route-eventId="@e.EventId" asp-route-id="@f.Id"  class="btn btn-warning mb-2 w-100 p-1 fw-bold "> Edit fish caught </a>
-                            <a asp-controller="FishCaught" asp-action="Delete" asp-route-eventId="@e.EventId" asp-route-id="@f.Id" class="btn btn-danger mb-2 w-100 p-1 fw-bold "> Delete fish caught </a>
+                            <a asp-controller="FishCaught" asp-action="Add" asp-route-userId="@e.UserId" asp-route-id="@e.EventId" class="btn btn-success mb-2 w-100 p-1"> Add fish caught </a>
                         }
-                        <hr />
-                    }                                   
-                      
-                    <hr />
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <a asp-controller="FishCaught" asp-action="Add" asp-route-userId="@e.UserId" asp-route-id="@e.EventId" class="btn btn-success mb-2 w-100 p-1 fw-bold "> Add fish caught </a>
-                    }
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
+}
+else
+{
+    <h2 class="text-custom-color">No participants added yet.</h2>
+}
+    <a asp-controller="FishingEvent" asp-action="All" class="btn btn-warning mb-2 w-20 p-1 fw-bold ">Back to all events</a>
 
-   
-</div>  

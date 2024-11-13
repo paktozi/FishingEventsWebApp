@@ -33,21 +33,16 @@
             <p>@a.Description</p>
         </div>
     }
-    @{
-        int dayCount = 1;
+    @{      
         <h3 class="text-custom-color">3-Day Weather Forecast</h3>
-        @foreach (var d in Model.Days)
-        {
-            if (dayCount > 3)
-            {
-                break;
-            }
+
+        @foreach (var d in Model.Days.Take(3))
+        {          
             <hr />
             <p>@d.DateTime.ToString("ddd dd.MM") <img src="~/img/weathericons/@($"{d.Icon}.png")" alt="Weather Icon" style="display: inline; width: 40px; height: 40px;" /></p>
-            <p>@d.Conditions</p>
-            <p> Min: @d.TempMin°C</p>
-            <p>Max: @d.TempMax°C</p>
-            dayCount++;
+            <p style="color:antiquewhite">@d.Conditions</p>
+            <p style="color:deepskyblue"> Min: @d.TempMin°C</p>
+            <p style="color:indianred">Max: @d.TempMax°C</p>        
             <hr />
         }
     }

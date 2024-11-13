@@ -11,8 +11,9 @@ namespace FishingEvents.Infrastructure.Data.Models.WeatherModels
         public string? ResolvedAddress { get; set; }
 
         [JsonProperty("alerts")]
-        public Alerts[] Alerts { get; set; }
+        public Alerts[] Alerts { get; set; } = null!;
 
-        public Days[] Days { get; set; }
+        public Days[] Days { get; set; } = null!;
+
     }
 }

@@ -19,13 +19,13 @@
 
             <div class="mb-3">
                 <label asp-for="@Model.Description" class="form-label-add-edit">Description</label>
-                <textarea asp-for="@Model.Description" class="form-control input-field" aria-required="true" rows="2"></textarea>
+                <textarea asp-for="@Model.Description" class="form-control input-field" aria-required="true" rows="1"></textarea>
                 <span asp-validation-for="@Model.Description" class="text-custom-danger"></span>
             </div>
 
             <div class="mb-3">
                 <label asp-for="@Model.StartDate" class="form-label-add-edit">Start Date</label>
-                <input asp-for="@Model.StartDate" class="form-control input-field" type="text" aria-required="true" placeholder="dd-MM-yyyy"/>
+                <input asp-for="@Model.StartDate" class="form-control input-field" type="text" aria-required="true" placeholder="dd-MM-yyyy" />
                 <span asp-validation-for="@Model.StartDate" class="text-custom-danger"></span>
             </div>
 
@@ -47,7 +47,7 @@
                     <option value="">Select Location...</option>
                 </select>
                 <span asp-validation-for="@Model.LocationId" class="text-custom-danger"></span>
-            </div>
+            </div> 
 
             <div class="mb-3">
                 <input class="btn btn-success btn-dark-text mb-2 w-20 py-1 fw-bold rounded" type="submit" value="Save" />

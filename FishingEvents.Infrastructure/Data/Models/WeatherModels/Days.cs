@@ -10,8 +10,6 @@ namespace FishingEvents.Infrastructure.Data.Models.WeatherModels
     {
         public DateTime DateTime { get; set; }
 
-        public string Description { get; set; } = string.Empty;
-
         public string Conditions { get; set; } = string.Empty;
 
         public string Icon { get; set; } = string.Empty;

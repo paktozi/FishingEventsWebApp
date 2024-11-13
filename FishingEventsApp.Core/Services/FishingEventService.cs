@@ -23,6 +23,7 @@ namespace FishingEventsApp.Core.Services
             }
 
             var model = await query
+                .OrderByDescending(e => e.StartDate)
                 .Select(e => new FishingEventALLModel()
                 {
                     Id = e.Id,
