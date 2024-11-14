@@ -9,17 +9,20 @@
 }
 
 <div class="text-lg-center transparent-card-weather align-content-center mx-auto">
+   <div class="weather-forecast">
     <h3 class="text-center text-custom-color">@Model.ResolvedAddress  <img src="~/img/weathericons/@($"{Model.Conditions.Icon}.png")" alt="Weather Icon" style="display: inline; width: 40px; height: 40px;" /></h3>
     <p>Current Condition: @Model.Conditions.Conditions</p>
+    </div>
     <hr />
     <p>Last Update: @Model.Conditions.DateTime</p>
     <p class="weather-list">Temperature: @Model.Conditions.Temp °C</p>
     <p class="weather-list">Humidity:  @Model.Conditions.Humidity %</p>
     <p class="weather-list">Pressure: @Model.Conditions.Pressure hPa</p>
     <p class="weather-list">Cloud cover: @Model.Conditions.Cloudcover %</p>
-    <p class="weather-list">Solar Radiation @Model.Conditions.SolarRadiation w/m2</p>
-    <p class="weather-list">UvIndex: @Model.Conditions.UvIndex</p>
     <p class="weather-list">Precipitation: @Model.Conditions.Precip  mm</p>
+    <br />
+    <p class="weather-list">UvIndex: @Model.Conditions.UvIndex</p>
+    <p class="weather-list">Solar Radiation @Model.Conditions.SolarRadiation w/m2</p>
     <p class="weather-list">Wind speed: @Model.Conditions.Windspeed km/h</p>
     <p class="weather-list">Sunrise: @Model.Conditions.Sunrise h</p>
     <p class="weather-list">Sunset: @Model.Conditions.Sunset h </p>
@@ -37,13 +40,15 @@
         <h3 class="text-custom-color">3-Day Weather Forecast</h3>
 
         @foreach (var d in Model.Days.Take(3))
-        {          
+        {
+            <div class="weather-forecast">
             <hr />
             <p>@d.DateTime.ToString("ddd dd.MM") <img src="~/img/weathericons/@($"{d.Icon}.png")" alt="Weather Icon" style="display: inline; width: 40px; height: 40px;" /></p>
             <p style="color:antiquewhite">@d.Conditions</p>
             <p style="color:deepskyblue"> Min: @d.TempMin°C</p>
             <p style="color:indianred">Max: @d.TempMax°C</p>        
             <hr />
+            </div>
         }
     }
 
