@@ -58,26 +58,6 @@ namespace FishingEventsApp.Core.Services
             return model;
         }
 
-        async Task<ICollection<FishingLocationModel>?> IFishingEventService.GetLocationListAsync()
-        {
-            return await GetLocation();
-        }
-
-        private async Task<ICollection<FishingLocationModel>> GetLocation()
-        {
-            return await context.Locations
-                 .Select(e => new FishingLocationModel()
-                 {
-                     Id = e.Id,
-                     Name = e.Name,
-                     Elevation = e.Elevation,
-                     FishingType = e.FishingType,
-                     LocationImageUrl = e.LocationImageUrl,
-                 })
-                 .AsNoTracking()
-                 .ToListAsync();
-        }
-
         public async Task AddFishingEventAsync(FishingEventAddModel model, string userId)
         {
             string startDate = $"{model.StartDate}";
@@ -104,9 +84,6 @@ namespace FishingEventsApp.Core.Services
             entity.OrganizerId = userId;
             await context.FishingEvents.AddAsync(entity);
             await context.SaveChangesAsync();
-
-            // JoinEventAsync(entity.Id, userId);
-
         }
 
         public async Task<FishingEvent> FindEventAsync(int id)
@@ -171,7 +148,7 @@ namespace FishingEventsApp.Core.Services
 
         public async Task<FishingEventEditModel> GetEventToEditAsync(int id)
         {
-            var location = await GetLocation();
+            var location = await GetLocationListAsync();
 
             var model = await context.FishingEvents
                 .Where(f => f.Id == id && f.IsCompleted == false)
@@ -212,6 +189,7 @@ namespace FishingEventsApp.Core.Services
             fishEvent.EndDate = parseEndDate;
             fishEvent.LocationId = model.LocationId;
             fishEvent.EventImageUrl = model.EventImageUrl;
+            fishEvent.OrganizerId = model.OrganizerId;
 
             await context.SaveChangesAsync();
         }

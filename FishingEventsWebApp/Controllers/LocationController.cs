@@ -20,7 +20,6 @@ namespace FishingEventsWebApp.Controllers
 
         [HttpGet]
         [AdminAuthorize]
-        [ValidateAntiForgeryToken]
         public IActionResult Add()
         {
             LocationAddModel model = new LocationAddModel();
@@ -29,6 +28,7 @@ namespace FishingEventsWebApp.Controllers
 
         [HttpPost]
         [AdminAuthorize]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(LocationAddModel model)
         {
             if (!ModelState.IsValid)
@@ -68,7 +68,6 @@ namespace FishingEventsWebApp.Controllers
             }
 
             await service.EditLocationAsync(model, locationToEdit);
-
             return RedirectToAction(nameof(All));
         }
 

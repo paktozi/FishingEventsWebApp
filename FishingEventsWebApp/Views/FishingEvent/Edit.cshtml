@@ -10,7 +10,8 @@
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
         <form asp-action="Edit" method="post">
            @Html.AntiForgeryToken()
-           
+            <input type="hidden" asp-for="OrganizerId" />
+
            <div class="mb-3">
                 <label asp-for="@Model.EventName" class="form-label-add-edit">Event Name</label>
                 <input asp-for="@Model.EventName" class="form-control input-field" aria-required="true" />
@@ -43,7 +44,7 @@
 
             <div class="mb-3">
                 <label asp-for="@Model.LocationId" class="form-label-add-edit">Select Location</label>
-                <select asp-for="@Model.LocationId" class="form-control" aria-required="true" asp-items="@(new SelectList(Model.Locations, "Id", "Name"))" style="background-color: rgba(10, 20, 0, 0.6);color:greenyellow;box-shadow:5px 5px 10px black; ">
+                <select asp-for="@Model.LocationId" class="form-control transparent-drop-menu" aria-required="true" asp-items="@(new SelectList(Model.Locations, "Id", "Name"))">
                     <option value="">Select Location...</option>
                 </select>
                 <span asp-validation-for="@Model.LocationId" class="text-custom-danger"></span>

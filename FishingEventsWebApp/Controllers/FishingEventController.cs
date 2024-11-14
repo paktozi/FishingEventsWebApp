@@ -27,8 +27,8 @@ namespace FishingEventsWebApp.Controllers
             return View(model);
         }
 
-        [ValidateAntiForgeryToken]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(FishingEventAddModel model)
         {
             if (!ModelState.IsValid)
