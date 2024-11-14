@@ -30,6 +30,7 @@ namespace FishingEventsWebApp.Controllers
 
         [HttpPost]
         [AdminAuthorize]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(FishCaughtAddModel model)
         {
             if (!ModelState.IsValid)
@@ -56,9 +57,16 @@ namespace FishingEventsWebApp.Controllers
 
         [HttpPost]
         [AdminAuthorize]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(FishCaughtEditModel model, int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             FishCaught fishCaught = await service.FindCaughtAsync(id);
+
             if (fishCaught == null)
             {
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
@@ -91,8 +99,13 @@ namespace FishingEventsWebApp.Controllers
 
         [HttpPost]
         [AdminAuthorize]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(FishCaughtDeleteModel modelToDelete, int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(modelToDelete);
+            }
             var entity = await service.FindCaughtAsync(id);
             var fishingEventId = entity.FishingEventId;
             if (entity == null)

@@ -27,6 +27,7 @@ namespace FishingEventsWebApp.Controllers
 
         [HttpPost]
         [AdminAuthorize]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(SpeciesAddModel model)
         {
             if (!ModelState.IsValid)
@@ -51,9 +52,16 @@ namespace FishingEventsWebApp.Controllers
 
         [HttpPost]
         [AdminAuthorize]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(SpeciesEditModel model, int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             Species speciesToEdit = await service.FindSpeciesAsync(id);
+
             if (speciesToEdit == null)
             {
                 return RedirectToAction(nameof(All));
@@ -82,9 +90,16 @@ namespace FishingEventsWebApp.Controllers
 
         [HttpPost]
         [AdminAuthorize]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(SpeciesDeleteModel model, int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             var modelToDelete = await service.FindSpeciesAsync(id);
+
             if (modelToDelete == null)
             {
                 return NotFound();

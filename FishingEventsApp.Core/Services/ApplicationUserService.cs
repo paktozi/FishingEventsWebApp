@@ -2,6 +2,7 @@
 using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.ApplicationUserModels;
 using FishingEventsApp.Core.Models.FishCaughtModels;
+using FishingEventsApp.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using static FishingEventsApp.Common.ValidationConstants;
@@ -18,11 +19,11 @@ namespace FishingEventsApp.Core.Services
             if (!string.IsNullOrEmpty(userName))
             {
                 query = query.Where(u => u.FirstName.Contains(userName)
-                || u.LastName.Contains(userName)
-                || u.UserName.Contains(userName));
+                                      || u.LastName.Contains(userName)
+                                      || u.UserName.Contains(userName));
             }
 
-            var model = await query
+            var users = await query
                 .Select(u => new ApplicationUserAllModel()
                 {
                     Id = u.Id,
@@ -32,7 +33,20 @@ namespace FishingEventsApp.Core.Services
                 })
                 .AsNoTracking()
                 .ToListAsync();
-            return model;
+
+
+            var usersWithoutAdminRole = new List<ApplicationUserAllModel>();
+
+            foreach (var user in users)
+            {
+                var applicationUser = await userManager.FindByIdAsync(user.Id);
+                if (!await userManager.IsInRoleAsync(applicationUser, "admin"))
+                {
+                    usersWithoutAdminRole.Add(user);
+                }
+            }
+
+            return usersWithoutAdminRole;
         }
 
         public async Task<ApplicationUserDetailsModel> GetDetailsAsync(string id)
@@ -60,6 +74,5 @@ namespace FishingEventsApp.Core.Services
                  .FirstOrDefaultAsync();
             return model;
         }
-
     }
 }

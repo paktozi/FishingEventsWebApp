@@ -27,7 +27,7 @@ namespace FishingEventsWebApp.Controllers
             return View(model);
         }
 
-        // [AutoValidateAntiforgeryToken]
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public async Task<IActionResult> Add(FishingEventAddModel model)
         {
@@ -75,6 +75,7 @@ namespace FishingEventsWebApp.Controllers
         {
             FishingEventEditModel model = await service.GetEventToEditAsync(id);
             string? userId = GetUserId();
+
             if (model == null)
             {
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
@@ -87,8 +88,13 @@ namespace FishingEventsWebApp.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(FishingEventEditModel model, int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
             FishingEvent fishEvent = await service.FindEventAsync(id);
             string? userId = GetUserId();
@@ -130,8 +136,14 @@ namespace FishingEventsWebApp.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id, FishingEventDeleteModel modelToDelete)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(modelToDelete);
+            }
+
             var entity = await service.FindEventAsync(id);
             if (entity == null)
             {

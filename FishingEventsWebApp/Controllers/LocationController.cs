@@ -20,6 +20,7 @@ namespace FishingEventsWebApp.Controllers
 
         [HttpGet]
         [AdminAuthorize]
+        [ValidateAntiForgeryToken]
         public IActionResult Add()
         {
             LocationAddModel model = new LocationAddModel();
@@ -52,8 +53,14 @@ namespace FishingEventsWebApp.Controllers
 
         [HttpPost]
         [AdminAuthorize]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(LocationEditModel model, int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             Location locationToEdit = await service.FindLocationAsync(id);
             if (locationToEdit == null)
             {
@@ -84,8 +91,14 @@ namespace FishingEventsWebApp.Controllers
 
         [HttpPost]
         [AdminAuthorize]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id, LocationDeleteModel modelToDelete)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(modelToDelete);
+            }
+
             var entity = await service.FindLocationAsync(id);
             if (entity == null)
             {
