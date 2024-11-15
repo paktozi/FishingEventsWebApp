@@ -120,6 +120,11 @@ namespace FishingEventsApp.Core.Services
         public async Task DeleteEventAsync(FishingEvent entity)
         {
             entity.IsCompleted = true;
+
+            var participant = context.EventParticipants
+                .Where(ep => ep.FishingEventId == entity.Id);
+
+            context.EventParticipants.RemoveRange(participant);
             await context.SaveChangesAsync();
         }
 

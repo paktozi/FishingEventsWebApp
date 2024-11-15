@@ -97,13 +97,14 @@ namespace FishingEventsWebApp.Controllers
             }
 
             FishingEvent fishEvent = await service.FindEventAsync(id);
-            string? userId = GetUserId();
 
-            if (model == null)
+            if (fishEvent == null)
             {
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
-            if (model.OrganizerId != userId && !User.IsInRole("Admin"))
+            string? userId = GetUserId();
+
+            if (fishEvent.OrganizerId != userId && !User.IsInRole("Admin"))
             {
                 return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
             }
