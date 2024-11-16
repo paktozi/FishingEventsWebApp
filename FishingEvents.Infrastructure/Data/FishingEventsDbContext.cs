@@ -6,14 +6,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FishingEventsApp.Infrastructure
 {
-    public class FishingEventsDbContext : IdentityDbContext<ApplicationUser>
+    public class FishingEventsDbContext : IdentityDbContext<ApplicationUser/*, IdentityRole, string*/>
     {
         public FishingEventsDbContext(DbContextOptions<FishingEventsDbContext> options)
             : base(options)
         {
         }
 
-        private ApplicationUser? AdminUser { get; set; }
+        // private ApplicationUser? AdminUser { get; set; }
 
 
         public DbSet<FishingEvent> FishingEvents { get; set; } = null!;

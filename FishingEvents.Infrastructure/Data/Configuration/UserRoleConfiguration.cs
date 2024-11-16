@@ -9,6 +9,7 @@ namespace FishingEvents.Infrastructure.Data.Configuration
         public void Configure(EntityTypeBuilder<IdentityUserRole<string>> builder)
         {
             builder.HasData(
+
                 new IdentityUserRole<string>
                 {
                     UserId = "2eff85cf-8402-45f8-bb3b-88bbafcc50d2", // Admin user ID
@@ -28,7 +29,12 @@ namespace FishingEvents.Infrastructure.Data.Configuration
                 {
                     UserId = "5667e464-5a99-44f1-81cd-6e9022965a07", // User3 ID
                     RoleId = "e6c4f4e6-5f17-4a65-bfb7-64f6a33d5128" // User role ID
-                }
+                },
+                 new IdentityUserRole<string>
+                 {
+                     UserId = "f0c1090f-ba41-4420-8446-26f4efb810f1", // GlobalAdmin user ID
+                     RoleId = "d1d7ca33-a54c-4ea0-b96e-6ca509a57ec1" // GlobalAdmin role ID
+                 }
             );
         }
     }

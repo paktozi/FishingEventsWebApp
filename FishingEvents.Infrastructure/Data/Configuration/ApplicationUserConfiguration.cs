@@ -73,7 +73,22 @@ namespace FishingEvents.Infrastructure.Data.Configuration
                 PasswordHash = hasher.HashPassword(null, "qazwsx")
             };
 
-            builder.HasData(adminUser, user1, user2, user3);
+            var globalAdmin = new ApplicationUser
+            {
+                Id = "f0c1090f-ba41-4420-8446-26f4efb810f1",
+                UserName = "globaladmin@abv.bg",
+                NormalizedUserName = "GLOBALADMIN@ABV.BG",
+                Email = "globaladmin@abv.bg",
+                NormalizedEmail = "GLOBALADMIN@ABV.BG",
+                EmailConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString("D"),
+                ConcurrencyStamp = Guid.NewGuid().ToString("D"),
+                FirstName = "Global",
+                LastName = "User",
+                PasswordHash = hasher.HashPassword(null, "qazwsx")
+            };
+
+            builder.HasData(adminUser, user1, user2, user3, globalAdmin);
         }
     }
 }

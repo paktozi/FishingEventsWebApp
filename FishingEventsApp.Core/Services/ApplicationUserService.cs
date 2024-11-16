@@ -34,7 +34,6 @@ namespace FishingEventsApp.Core.Services
                 .AsNoTracking()
                 .ToListAsync();
 
-
             var usersWithoutAdminRole = new List<ApplicationUserAllModel>();
 
             foreach (var user in users)
@@ -45,7 +44,6 @@ namespace FishingEventsApp.Core.Services
                     usersWithoutAdminRole.Add(user);
                 }
             }
-
             return usersWithoutAdminRole;
         }
 
