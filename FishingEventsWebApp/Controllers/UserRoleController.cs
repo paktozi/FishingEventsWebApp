@@ -44,7 +44,7 @@ namespace FishingEventsWebApp.Controllers
                 if (result.Succeeded)
                 {
                     TempData["SuccessMessage"] = $"User {user.UserName} has been successfully assigned to the {model.SelectedRole} role.";
-                    return RedirectToAction("AssignRole");
+                    return RedirectToAction(nameof(AssignRole));
                 }
 
                 foreach (var error in result.Errors)
@@ -92,7 +92,7 @@ namespace FishingEventsWebApp.Controllers
                 if (result.Succeeded)
                 {
                     TempData["SuccessMessage"] = $"Role {model.SelectedRole} has been removed from {user.UserName}.";
-                    return RedirectToAction("RemoveRole");
+                    return RedirectToAction(nameof(RemoveRole));
                 }
 
                 foreach (var error in result.Errors)

@@ -13,9 +13,6 @@ namespace FishingEventsApp.Infrastructure
         {
         }
 
-        // private ApplicationUser? AdminUser { get; set; }
-
-
         public DbSet<FishingEvent> FishingEvents { get; set; } = null!;
         public DbSet<Location> Locations { get; set; } = null!;
         public DbSet<Species> Species { get; set; } = null!;

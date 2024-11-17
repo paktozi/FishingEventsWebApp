@@ -12,7 +12,6 @@ namespace FishingEventsApp.Core.Services
     public class UserRoleService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager) : IUserRoleService
     {
 
-
         public async Task<List<ApplicationUser>> GetUsersAsync()
         {
             return userManager.Users.ToList();

@@ -31,7 +31,7 @@
         <a asp-controller="Weather" asp-action="Index" asp-route-locationName="@Model.LocationName" class="btn btn-info btn-custom">Check Weather</a>
         <a asp-controller="FishingEvent" asp-action="AllEventParticipants" asp-route-id="@Model.Id" class="btn btn-primary btn-custom"> All Participants </a>
         <a asp-controller="FishingEvent" asp-action="All" class="btn btn-light btn-custom">Back toFishing Event</a>
-        @if (!User.IsInRole("Admin"))
+        @if (!User.IsInRole("Admin")&&!User.IsInRole("GlobalAdmin"))
         {
             <a asp-controller="FishCaught" asp-action="All" asp-route-userId="@Model.UserId" asp-route-id="@Model.Id" class=" btn btn-success btn-custom"> My fish caught for this event </a>
         }
