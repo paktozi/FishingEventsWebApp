@@ -9,16 +9,12 @@ namespace FishingEventsApp.Core.Models.UserRoleModel
 {
     public class AssignRoleViewModel
     {
-        // Selected user ID for role assignment or removal
-        public string UserId { get; set; }
+        public string UserId { get; set; } = string.Empty;
 
-        // Selected role for assignment or removal
-        public string SelectedRole { get; set; }
+        public string SelectedRole { get; set; } = null!;
 
-        // List of users to be displayed in the dropdown
         public IEnumerable<ApplicationUser> Users { get; set; } = new List<ApplicationUser>();
 
-        // List of roles to be displayed in the dropdown
         public IEnumerable<SelectListItemModel> Roles { get; set; } = new List<SelectListItemModel>();
     }
 }

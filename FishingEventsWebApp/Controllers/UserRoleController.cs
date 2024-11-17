@@ -1,9 +1,7 @@
 ﻿using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.UserRoleModel;
-using FishingEventsApp.Core.Services;
 using FishingEventsWebApp.CustomAttributes;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FishingEventsWebApp.Controllers
 {

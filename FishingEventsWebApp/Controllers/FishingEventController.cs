@@ -46,7 +46,7 @@ namespace FishingEventsWebApp.Controllers
         public async Task<IActionResult> Join(int id)
         {
             FishingEvent fishEvent = await service.FindEventAsync(id);
-            if (fishEvent == null || User.IsInRole("Admin"))
+            if (fishEvent == null || User.IsInRole("Admin") || User.IsInRole("GlobalAdmin"))
             {
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
@@ -60,7 +60,7 @@ namespace FishingEventsWebApp.Controllers
         public async Task<IActionResult> Leave(int id)
         {
             var model = await service.FindEventAsync(id);
-            if (model == null || User.IsInRole("Admin"))
+            if (model == null || User.IsInRole("Admin") || User.IsInRole("GlobalAdmin"))
             {
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
@@ -80,7 +80,7 @@ namespace FishingEventsWebApp.Controllers
             {
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
-            if (model.OrganizerId != userId && !User.IsInRole("Admin"))
+            if (model.OrganizerId != userId && !User.IsInRole("Admin") && !User.IsInRole("GlobalAdmin"))
             {
                 return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
             }
@@ -104,7 +104,7 @@ namespace FishingEventsWebApp.Controllers
             }
             string? userId = GetUserId();
 
-            if (fishEvent.OrganizerId != userId && !User.IsInRole("Admin"))
+            if (fishEvent.OrganizerId != userId && !User.IsInRole("Admin") && !User.IsInRole("GlobalAdmin"))
             {
                 return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
             }
@@ -123,7 +123,7 @@ namespace FishingEventsWebApp.Controllers
             {
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
-            if (model.OrganizerId != userId && !User.IsInRole("Admin"))
+            if (model.OrganizerId != userId && !User.IsInRole("Admin") && !User.IsInRole("GlobalAdmin"))
             {
                 return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
             }

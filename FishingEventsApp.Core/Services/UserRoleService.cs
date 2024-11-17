@@ -81,10 +81,6 @@ namespace FishingEventsApp.Core.Services
 
             return usersInRole;
         }
-
-
-
-
     }
 }
 

@@ -7,6 +7,7 @@
 <h2>Remove Role</h2>
 
 <form asp-action="RemoveRole" method="post">
+    @Html.AntiForgeryToken()
     <div class="form-group">
         <label for="UserId">Select User</label>
         <select asp-for="UserId" class="form-control input-field" style="width:30%" asp-items="@(new SelectList(Model.Users, "Id", "UserName"))">
@@ -34,3 +35,5 @@
         @TempData["SuccessMessage"]
     </div>
 }
+
+

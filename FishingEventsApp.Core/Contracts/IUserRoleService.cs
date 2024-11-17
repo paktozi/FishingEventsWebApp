@@ -17,6 +17,5 @@ namespace FishingEventsApp.Core.Contracts
         Task<ApplicationUser> GetUserByIdAsync(string userId);
         Task<List<ApplicationUser>> GetUsersNotInRoleAsync(string role);
         Task<List<ApplicationUser>> GetUsersInRoleAsync(string role);
-
     }
 }

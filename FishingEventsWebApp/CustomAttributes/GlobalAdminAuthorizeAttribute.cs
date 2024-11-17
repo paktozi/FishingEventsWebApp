@@ -20,5 +20,6 @@ namespace FishingEventsWebApp.CustomAttributes
                 context.Result = new RedirectToActionResult("Unauthorized", "Errors", null); // Redirect unauthorized users
             }
         }
+
     }
 }

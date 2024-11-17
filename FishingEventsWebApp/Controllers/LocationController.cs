@@ -20,6 +20,7 @@ namespace FishingEventsWebApp.Controllers
 
         [HttpGet]
         [AdminAuthorize]
+
         public IActionResult Add()
         {
             LocationAddModel model = new LocationAddModel();

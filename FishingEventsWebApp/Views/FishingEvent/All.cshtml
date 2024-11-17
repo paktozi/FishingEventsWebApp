@@ -42,13 +42,13 @@
                     {
                         <a asp-controller="FishingEvent" asp-action="Details" asp-route-id="@e.Id" class="btn btn-info mb-2 w-100 p-1 fw-bold">Details</a>
 
-                        @if (e.IsOrganizer || User.IsInRole("Admin"))
+                        @if (e.IsOrganizer || User.IsInRole("Admin")||User.IsInRole("GlobalAdmin"))
                         {
                             <a asp-controller="FishingEvent" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-1 fw-bold">Edit</a>
                             <a asp-controller="FishingEvent" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger w-100">Delete</a>
 
                             // Don't show "Join" or "Leave" buttons if the user is an admin
-                            if (!User.IsInRole("Admin"))
+                            if (!User.IsInRole("Admin") && !User.IsInRole("GlobalAdmin"))
                             {
                                 if (!e.IsJoined)
                                 {
