@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "All Participants:";
 }
-    <h2>@ViewData["Title"]</h2>
+<h2>@ViewData["Title"]</h2>
 
 @if (Model.Any())
 {
@@ -22,7 +22,7 @@
                             <p class="card-text">Fish Name: @f.Species</p>
                             <p class="card-text">Fish Weight: @f.Weight kg</p>
                             <p class="card-text">Fish Length: @f.Length cm</p>
-                            @if (User.IsInRole("Admin"))
+                            @if (User.IsInRole("Admin") || User.IsInRole("GlobalAdmin"))
                             {
                                 <a asp-controller="FishCaught" asp-action="Edit" asp-route-userId="@e.UserId" asp-route-eventId="@e.EventId" asp-route-id="@f.Id" class="btn btn-warning mb-2 w-100 p-1 fw-bold "> Edit fish caught </a>
                                 <a asp-controller="FishCaught" asp-action="Delete" asp-route-eventId="@e.EventId" asp-route-id="@f.Id" class="btn btn-danger mb-2 w-100 p-1"> Delete fish caught </a>
@@ -31,7 +31,7 @@
                         }
 
                         <hr />
-                        @if (User.IsInRole("Admin"))
+                        @if (User.IsInRole("Admin") || User.IsInRole("GlobalAdmin"))
                         {
                             <a asp-controller="FishCaught" asp-action="Add" asp-route-userId="@e.UserId" asp-route-id="@e.EventId" class="btn btn-success mb-2 w-100 p-1"> Add fish caught </a>
                         }
@@ -45,5 +45,6 @@ else
 {
     <h2 class="text-custom-color">No participants added yet.</h2>
 }
-    <a asp-controller="FishingEvent" asp-action="All" class="btn btn-warning mb-2 w-20 p-1 fw-bold ">Back to all events</a>
-
+<div>
+    <button type="button" class="btn btn-warning btn-dark-text mb-2 w-20 py-1 fw-bold rounded" onclick="history.back()">Back</button>
+</div>
