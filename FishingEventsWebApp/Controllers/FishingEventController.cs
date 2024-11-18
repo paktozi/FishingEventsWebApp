@@ -39,7 +39,7 @@ namespace FishingEventsWebApp.Controllers
             string? userId = GetUserId();
             await service.AddFishingEventAsync(model, userId);
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction(nameof(All), new { model.EventName });
         }
 
         [HttpPost]
@@ -53,7 +53,7 @@ namespace FishingEventsWebApp.Controllers
             string? userId = GetUserId();
             await service.JoinEventAsync(id, userId);
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction(nameof(All), new { fishEvent.EventName });
         }
 
         [HttpPost]
@@ -67,7 +67,7 @@ namespace FishingEventsWebApp.Controllers
             var userId = GetUserId();
             await service.LeaveAsync(model, userId);
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction(nameof(All), new { model.EventName });
         }
 
         [HttpGet]
@@ -79,6 +79,7 @@ namespace FishingEventsWebApp.Controllers
             if (model == null)
             {
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+
             }
             if (model.OrganizerId != userId && !User.IsInRole("Admin") && !User.IsInRole("GlobalAdmin"))
             {
@@ -110,7 +111,7 @@ namespace FishingEventsWebApp.Controllers
             }
 
             await service.EditEventAsync(model, fishEvent);
-            return RedirectToAction(nameof(All));
+            return RedirectToAction(nameof(All), new { fishEvent.EventName });
         }
 
         [HttpGet]

@@ -39,7 +39,7 @@ namespace FishingEventsApp.Core.Services
             foreach (var user in users)
             {
                 var applicationUser = await userManager.FindByIdAsync(user.Id);
-                if (!await userManager.IsInRoleAsync(applicationUser, "admin"))
+                if (!await userManager.IsInRoleAsync(applicationUser, "admin") && !await userManager.IsInRoleAsync(applicationUser, "globalAdmin"))
                 {
                     usersWithoutAdminRole.Add(user);
                 }

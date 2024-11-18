@@ -40,7 +40,7 @@
                     <h5 class="card-title">@e.Name</h5>
                     <p class="card-text">Elevation: @e.Elevation m</p>
                     <p class="card-text">Fishing Type: @e.FishingType</p>
-
+                   
                     @if (User.IsInRole("Admin") || User.IsInRole("GlobalAdmin"))
                     {
                         <a asp-controller="Location" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-20 p-1 fw-bold">Edit</a>

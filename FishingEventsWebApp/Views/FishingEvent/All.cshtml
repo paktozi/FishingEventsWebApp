@@ -67,7 +67,7 @@
                         else if (!e.IsOrganizer) // If the user is not the organizer
                         {
                             // Don't show "Join" or "Leave" buttons if the user is an admin
-                            if (!User.IsInRole("Admin"))
+                            if (!User.IsInRole("Admin") && !User.IsInRole("GlobalAdmin"))
                             {
                                 if (!e.IsJoined)
                                 {
@@ -92,5 +92,5 @@
 </div>
 
 <div>
-    <button type="button" class="btn btn-warning btn-dark-text mb-2 w-20 py-1 fw-bold rounded" style="width:10%" onclick="history.back()">Back</button>
+    <a asp-controller="FishingEvent" asp-action="All" class="btn btn-warning mb-2 w-20 p-1 fw-bold">Back to All Events</a>
 </div>
