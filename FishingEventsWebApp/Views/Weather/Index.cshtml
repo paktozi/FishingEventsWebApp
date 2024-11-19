@@ -9,7 +9,7 @@
 
 <div class="text-lg-center transparent-card-weather align-content-center mx-auto">
    <div >
-        <h3 class="text-center text-custom-color">@Model.ResolvedAddress  <img src="~/img/weathericons/@($"{Model.Conditions.Icon}.png")" alt="Weather Icon" class="weather-icon-big" /></h3>
+        <h3 class="text-center text-custom-color">@Model.ResolvedAddress  <img src="~/img/weathericons/@($"{Model.Conditions.Icon}.svg")" alt="Weather Icon" class="weather-icon-big" /></h3>
     <p>Current Condition: @Model.Conditions.Conditions</p>
     </div>
     <hr />
@@ -42,7 +42,7 @@
         {
             <div>
             <hr />
-                <p>@d.DateTime.ToString("ddd dd.MM") <img src="~/img/weathericons/@($"{d.Icon}.png")" alt="Weather Icon" class="weather-icon-normal" /></p>
+                <p>@d.DateTime.ToString("ddd dd.MM") <img src="~/img/weathericons/@($"{d.Icon}.svg")" alt="Weather Icon" class="weather-icon-normal" /></p>
             <p style="color:antiquewhite">@d.Conditions</p>
             <p style="color:deepskyblue"> Min: @d.TempMin°C</p>
             <p style="color:indianred">Max: @d.TempMax°C</p>        

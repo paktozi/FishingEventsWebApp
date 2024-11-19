@@ -124,7 +124,7 @@ namespace FishingEventsApp.Core.Services
             var participant = context.EventParticipants
                 .Where(ep => ep.FishingEventId == entity.Id);
 
-            context.EventParticipants.RemoveRange(participant);
+            context.EventParticipants.RemoveRange(participant);           //  Remove participants from completed event.
             await context.SaveChangesAsync();
         }
 

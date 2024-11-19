@@ -1,9 +1,10 @@
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAppDataBase(builder.Configuration);
 builder.Services.AddAppIdentity(builder.Configuration);
-builder.Services.AddControllersWithViews();
 builder.Services.AddAppServices(builder.Configuration);
+builder.Services.AddControllersWithViews();
 
 builder.Services.AddRazorPages();
 
@@ -20,7 +21,6 @@ else
     app.UseExceptionHandler("/Errors/ServerError");
     app.UseStatusCodePagesWithReExecute("/Errors/PageNotFound");
     app.UseStatusCodePagesWithReExecute("/Errors/Unauthorized");
-    // app.UseExceptionHandler("/Home/Error");     
     app.UseHsts();
 }
 

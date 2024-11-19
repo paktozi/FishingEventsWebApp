@@ -7,17 +7,17 @@
             <th>Position</th>
             <th>Name</th>
             <th>Total Fish Caught</th>
-            <th>Total Weight</th>
+            <th>Total Weight</th>           
         </tr>
     </thead>
-    <tbody class="transparent-table-body ">
+    <tbody class="transparent-table-body">
         @foreach (var (entry, index) in Model.Select((value, i) => (value, i + 1)))
         {
             <tr>
                 <td>@index</td>
                 <td>@entry.FirstName @entry.LastName</td>
                 <td>@entry.TotalFishCaught</td>
-                <td>@entry.TotalWeight kg</td>
+                <td>@entry.TotalWeight kg</td>               
             </tr>
         }
     </tbody>

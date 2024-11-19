@@ -24,12 +24,14 @@
                     @if (user.Roles.Contains("Admin"))
                     {
                         <form method="post" asp-action="RemoveAdminRole" asp-route-userId="@user.UserId" style="display:inline">
+                            @Html.AntiForgeryToken()
                             <button class="btn btn-danger" type="submit">Remove Admin</button>
                         </form>
                     }
                     else
                     {
                         <form method="post" asp-action="AddAdminRole" asp-route-userId="@user.UserId" style="display:inline">
+                            @Html.AntiForgeryToken()
                             <button class="btn btn-success" type="submit">Add Admin</button>
                         </form>
                     }
