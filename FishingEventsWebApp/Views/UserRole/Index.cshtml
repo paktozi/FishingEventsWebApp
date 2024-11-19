@@ -1,0 +1,50 @@
+﻿@model List<UserWithRolesViewModel>
+
+@{
+    ViewData["Title"] = "User Roles Management";
+}
+
+<h1>User Roles Management</h1>
+
+<table class="table table-bordered ">
+    <thead class="transparent-table-head">
+        <tr style="color:cadetblue">
+            <th>User Name</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody class="transparent-table-body">
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td style="color:antiquewhite">@user.UserName</td>
+                <td style="color:bisque">@string.Join(", ", user.Roles)</td>
+                <td>
+                    @if (user.Roles.Contains("Admin"))
+                    {
+                        <form method="post" asp-action="RemoveAdminRole" asp-route-userId="@user.UserId" style="display:inline">
+                            <button class="btn btn-danger" type="submit">Remove Admin</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form method="post" asp-action="AddAdminRole" asp-route-userId="@user.UserId" style="display:inline">
+                            <button class="btn btn-success" type="submit">Add Admin</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-controller="Home" asp-action="Index" class="btn btn-warning mb-2 w-20 p-1 fw-bold">Home</a>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success input-field" style="width:15rem">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger input-field" style="width:15rem;color:orangered">@TempData["Error"]</div>
+}

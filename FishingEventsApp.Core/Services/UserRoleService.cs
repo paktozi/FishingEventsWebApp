@@ -1,84 +1,71 @@
 ﻿using FishingEvents.Infrastructure.Data.Models;
 using FishingEventsApp.Core.Contracts;
+using FishingEventsApp.Core.Models.UserRoleModel;
+using FishingEventsApp.Infrastructure;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace FishingEventsApp.Core.Services
 {
-    public class UserRoleService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager) : IUserRoleService
+    public class UserRoleService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, FishingEventsDbContext context) : IUserRoleService
     {
-
-        public async Task<List<ApplicationUser>> GetUsersAsync()
+        public async Task<List<UserWithRolesViewModel>> GetUsersWithRolesAsync()
         {
-            return userManager.Users.ToList();
+            var users = await context.Users
+        .Where(user => !context.UserRoles      // Exclude users with the GlobalAdmin role
+            .Where(ur => ur.UserId == user.Id)
+            .Join(context.Roles,
+                  ur => ur.RoleId,
+                  role => role.Id,
+                  (ur, role) => role.Name)
+            .Contains("GlobalAdmin"))
+
+        .Select(user => new UserWithRolesViewModel
+        {
+            UserId = user.Id,
+            UserName = user.UserName,
+            Roles = context.UserRoles
+                .Where(ur => ur.UserId == user.Id)
+                .Join(context.Roles,
+                      ur => ur.RoleId,
+                      role => role.Id,
+                      (ur, role) => role.Name)
+                .ToList()
+        })
+        .OrderBy(n => n.UserName)
+        .ToListAsync();
+
+            return users;
         }
 
-        public async Task<List<string>> GetRolesAsync()
+        public async Task<bool> AddRoleToUserAsync(string userId, string roleName)
         {
-            return roleManager.Roles.Select(r => r.Name).ToList();
-        }
-
-        public async Task<IdentityResult> AddUserToRoleAsync(ApplicationUser user, string role)
-        {
-            var currentRoles = await userManager.GetRolesAsync(user);
-            if (currentRoles.Contains(role))
+            var user = await userManager.FindByIdAsync(userId);
+            if (user == null)
             {
-                return IdentityResult.Failed(new IdentityError { Description = "User is already assigned to this role." });
+                return false;
             }
 
-            return await userManager.AddToRoleAsync(user, role);
-        }
-
-        public async Task<IdentityResult> RemoveUserFromRoleAsync(ApplicationUser user, string role)
-        {
-            var currentRoles = await userManager.GetRolesAsync(user);
-            if (!currentRoles.Contains(role))
+            var roleExists = await roleManager.RoleExistsAsync(roleName);
+            if (!roleExists)
             {
-                return IdentityResult.Failed(new IdentityError { Description = "User is not in the specified role." });
+                return false;
             }
 
-            return await userManager.RemoveFromRoleAsync(user, role);
+            var result = await userManager.AddToRoleAsync(user, roleName);
+            return result.Succeeded;
         }
 
-        public async Task<ApplicationUser> GetUserByIdAsync(string userId)
+        public async Task<bool> RemoveRoleFromUserAsync(string userId, string roleName)
         {
-            return await userManager.FindByIdAsync(userId);
-        }
-
-        public async Task<List<ApplicationUser>> GetUsersNotInRoleAsync(string role)
-        {
-            var users = userManager.Users.ToList();
-            var usersNotInRole = new List<ApplicationUser>();
-
-            foreach (var user in users)
+            var user = await userManager.FindByIdAsync(userId);
+            if (user == null)
             {
-                if (!await userManager.IsInRoleAsync(user, role))
-                {
-                    usersNotInRole.Add(user);
-                }
+                return false;
             }
 
-            return usersNotInRole;
-        }
-
-        public async Task<List<ApplicationUser>> GetUsersInRoleAsync(string role)
-        {
-            var users = userManager.Users.ToList();
-            var usersInRole = new List<ApplicationUser>();
-
-            foreach (var user in users)
-            {
-                if (await userManager.IsInRoleAsync(user, role))
-                {
-                    usersInRole.Add(user);
-                }
-            }
-
-            return usersInRole;
+            var result = await userManager.RemoveFromRoleAsync(user, roleName);
+            return result.Succeeded;
         }
     }
 }
