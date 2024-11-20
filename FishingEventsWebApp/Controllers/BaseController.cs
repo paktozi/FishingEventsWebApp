@@ -15,7 +15,6 @@ namespace FishingEventsWebApp.Controllers
             {
                 userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             }
-
             return userId;
         }
     }

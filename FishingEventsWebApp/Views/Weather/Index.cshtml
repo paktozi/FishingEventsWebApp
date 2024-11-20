@@ -35,26 +35,24 @@
             <p>@a.Description</p>
         </div>
     }
-    @{      
-        <h3 class="text-custom-color">3-Day Weather Forecast</h3>
 
-        @foreach (var d in Model.Days.Take(3))
-        {
-            <div>
-            <hr />
-                <p>@d.DateTime.ToString("ddd dd.MM") <img src="~/img/weathericons/@($"{d.Icon}.svg")" alt="Weather Icon" class="weather-icon-normal" /></p>
-            <p style="color:antiquewhite">@d.Conditions</p>
-            <p style="color:deepskyblue"> Min: @d.TempMin°C</p>
-            <p style="color:indianred">Max: @d.TempMax°C</p>        
-            <hr />
-            </div>
-        }
-    }
     <a asp-controller="Location" asp-action="All" class="btn btn-info btn-dark-text mb-2 w-20 py-1  rounded">Back to all Locations</a>
     <button type="button" class="btn btn-warning btn-dark-text mb-2 w-20 py-1 fw-bold rounded" onclick="history.back()">Back</button>
 
 </div>
-<br />
+
+@foreach (var d in Model.Days.Take(7))
+{
+    <div style="display:inline-block;margin:1rem">
+
+        <p >@d.DateTime.ToString("ddd dd.MM") <img src="~/img/weathericons/@($"{d.Icon}.svg")" alt="Weather Icon" class="weather-icon-normal" /></p>
+        <p class="weather-condition-custom ">@d.Conditions</p>
+        <p style="color:deepskyblue"> Min: @d.TempMin°C</p>
+        <p style="color:indianred">Max: @d.TempMax°C</p>
+       
+    </div>
+}
+
 
 <div class="text-lg-center">
     <form asp-controller="Weather" asp-action="Index" method="get" class="form-inline">

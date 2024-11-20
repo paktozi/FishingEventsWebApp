@@ -21,5 +21,11 @@ namespace FishingEventsWebApp.Controllers
         {
             return View();
         }
+
+        [Route("Errors/DontBeClever")]
+        public IActionResult DontBeClever()
+        {
+            return View();
+        }
     }
 }

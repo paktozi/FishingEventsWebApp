@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FishingEventsWebApp.Controllers
 {
     [Authorize]
-    public class FishCaughtController(IFishCaughtService service) : Controller
+    public class FishCaughtController(IFishCaughtService service) : BaseController
     {
         [HttpGet]
         public async Task<IActionResult> All(string userId, int id)
@@ -21,11 +21,17 @@ namespace FishingEventsWebApp.Controllers
         [AdminAuthorize]
         public async Task<IActionResult> Add(string userId, int id)
         {
-            FishCaughtAddModel model = new FishCaughtAddModel();
-            model.ListSpecies = await service.GetListSpeciesAsync();
-            model.UserId = userId;
-            model.FishingEventId = id;
-            return View(model);
+            string currentUserId = GetUserId();
+
+            if (userId != currentUserId)      //  if the user is an admin, he cannot add fish to himself
+            {
+                FishCaughtAddModel model = new FishCaughtAddModel();
+                model.ListSpecies = await service.GetListSpeciesAsync();
+                model.UserId = userId;
+                model.FishingEventId = id;
+                return View(model);
+            }
+            return RedirectToAction(nameof(ErrorsController.DontBeClever), "Errors");
         }
 
         [HttpPost]
@@ -46,13 +52,20 @@ namespace FishingEventsWebApp.Controllers
         [AdminAuthorize]
         public async Task<IActionResult> Edit(string userId, int eventId, int id)
         {
-            FishCaughtEditModel model = await service.GetCaughtToEditAsync(id);
-            model.ListSpecies = await service.GetListSpeciesAsync();
-            if (model == null)
+            string currentUserId = GetUserId();
+
+            if (userId != currentUserId)      //  if the user is an admin, he cannot edit fish to himself
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                FishCaughtEditModel model = await service.GetCaughtToEditAsync(id);
+                model.ListSpecies = await service.GetListSpeciesAsync();
+                if (model == null)
+                {
+                    return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                }
+                return View(model);
             }
-            return View(model);
+
+            return RedirectToAction(nameof(ErrorsController.DontBeClever), "Errors");
         }
 
         [HttpPost]
@@ -79,7 +92,7 @@ namespace FishingEventsWebApp.Controllers
         [AdminAuthorize]
         public async Task<IActionResult> Delete(int id, int eventId)
         {
-            FishCaught model = await service.FindCaughtToDeleteAsync(id);
+            FishCaught model = await service.FindCaughtToDeleteAsync(id);   //if the user is an admin, he can delete fish to himself,which will lower his rating :) 
 
             if (model == null)
             {

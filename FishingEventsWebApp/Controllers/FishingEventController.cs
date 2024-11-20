@@ -170,6 +170,8 @@ namespace FishingEventsWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> AllEventParticipants(int id)
         {
+            ViewData["CurrentUserId"] = GetUserId();
+
             IEnumerable<FishingEventAllParticipants> model = await service.GetAllParticipant(id);
             if (model == null)
             {

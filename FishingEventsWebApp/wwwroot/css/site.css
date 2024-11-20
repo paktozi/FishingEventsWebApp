@@ -111,6 +111,13 @@ body {
     height: 70px;
 }
 
+.weather-condition-custom {
+    color: antiquewhite;
+    white-space: normal;
+    word-wrap: break-word;
+    max-width: 15rem;
+}
+
 
 .input-field {
     background-color: rgba(10, 20, 0, 0.6);
