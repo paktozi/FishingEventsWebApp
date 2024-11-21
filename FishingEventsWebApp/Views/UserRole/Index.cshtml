@@ -12,6 +12,7 @@
             <th>User Name</th>
             <th>Roles</th>
             <th>Actions</th>
+            <th></th>
         </tr>
     </thead>
     <tbody class="transparent-table-body">
@@ -34,8 +35,9 @@
                             @Html.AntiForgeryToken()
                             <button class="btn btn-success" type="submit">Add Admin</button>
                         </form>
-                    }
+                    }                 
                 </td>
+                <td> <a asp-controller="UserRole" asp-action="Delete" asp-route-userId="@user.UserId" class="btn btn-warning mb-2 w-20 p-1 fw-bold">Delete User</a></td>
             </tr>
         }
     </tbody>

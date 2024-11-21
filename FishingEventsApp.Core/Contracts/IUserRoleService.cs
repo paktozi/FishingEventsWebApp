@@ -1,4 +1,5 @@
-﻿using FishingEventsApp.Core.Models.UserRoleModel;
+﻿using FishingEvents.Infrastructure.Data.Models;
+using FishingEventsApp.Core.Models.UserRoleModel;
 
 namespace FishingEventsApp.Core.Contracts
 {
@@ -7,5 +8,7 @@ namespace FishingEventsApp.Core.Contracts
         Task<List<UserWithRolesViewModel>> GetUsersWithRolesAsync();
         Task<bool> AddRoleToUserAsync(string userId, string roleName);
         Task<bool> RemoveRoleFromUserAsync(string userId, string roleName);
+        Task<ApplicationUser> FindUserAsync(string id);
+        Task DeleteUserAsync(ApplicationUser entity, string userId);
     }
 }

@@ -25,10 +25,12 @@
                 @if (!string.IsNullOrEmpty(e.EventImageUrl))
                 {
                     <img src="@e.EventImageUrl" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="@e.EventName">
+                    <p class="text-custom-danger">@(e.IsOrganizer ? "My Event" : "")</p>
                 }
                 else
                 {
                     <img src="~/img/no-image.jpg" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="No Image Available">
+                    <p class="text-custom-danger">@(e.IsOrganizer ? "My Event" : "")</p>
                 }
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">@e.EventName</h5>
@@ -43,10 +45,10 @@
                         <a asp-controller="FishingEvent" asp-action="Details" asp-route-id="@e.Id" class="btn btn-info mb-2 w-100 p-1 fw-bold">Details</a>
 
                         @if (e.IsOrganizer || User.IsInRole("Admin") || User.IsInRole("GlobalAdmin"))
-                        {
+                        {                     
                             <a asp-controller="FishingEvent" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-1 fw-bold">Edit</a>
                             <a asp-controller="FishingEvent" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger w-100">Delete</a>
-
+                                                   
                             // Don't show "Join" or "Leave" buttons if the user is an admin
                             if (!User.IsInRole("Admin") && !User.IsInRole("GlobalAdmin"))
                             {
@@ -62,12 +64,12 @@
                                         <input type="submit" value="Leave the Event" class="fs-6 btn btn-warning mb-3 w-50 p-1 fw-bold" />
                                     </form>
                                 }
-                            }
+                            }                                  
                         }
                         else if (!e.IsOrganizer) // If the user is not the organizer
                         {
-                            // Don't show "Join" or "Leave" buttons if the user is an admin
-                            if (!User.IsInRole("Admin") && !User.IsInRole("GlobalAdmin"))
+
+                            if (!User.IsInRole("Admin") && !User.IsInRole("GlobalAdmin")) // Don't show "Join" or "Leave" buttons if the user is an admin
                             {
                                 if (!e.IsJoined)
                                 {

@@ -1,6 +1,9 @@
-﻿using FishingEventsApp.Core.Contracts;
+﻿using FishingEvents.Infrastructure.Data.Models;
+using FishingEventsApp.Core.Contracts;
+using FishingEventsApp.Core.Models.ApplicationUserModels;
 using FishingEventsWebApp.CustomAttributes;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 
 namespace FishingEventsWebApp.Controllers
 {
@@ -42,6 +45,48 @@ namespace FishingEventsWebApp.Controllers
             {
                 TempData["Error"] = "Failed to remove role.";
             }
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(string userId)
+        {
+            ApplicationUser model = await userRoleService.FindUserAsync(userId);
+
+            if (model == null)
+            {
+                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+            }
+            if (!User.IsInRole("GlobalAdmin"))
+            {
+                return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
+            }
+
+            ApplicationUserDeleteModel userToDelete = new ApplicationUserDeleteModel()
+            {
+                UserId = model.Id,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+            };
+
+            return View(userToDelete);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed(ApplicationUserDeleteModel userToDelete, string userId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(userToDelete);
+            }
+
+            var entity = await userRoleService.FindUserAsync(userId);
+
+            if (entity == null)
+            {
+                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+            }
+            await userRoleService.DeleteUserAsync(entity, userId);
             return RedirectToAction(nameof(Index));
         }
     }

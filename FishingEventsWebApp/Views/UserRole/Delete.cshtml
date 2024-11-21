@@ -1,0 +1,28 @@
+﻿ @model ApplicationUserDeleteModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card transparent-card">
+            <div class="card-body">
+                <h3 >@Model.FirstName</h3>
+                <p> @Model.LastName</p>
+                <p class="text-danger mt-3">Are you sure you want to delete @($"{Model.FirstName} {Model.LastName}")?</p>
+            </div>
+            <div class="card-footer">
+                <form asp-action="DeleteConfirmed" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="UserId" />
+                    <button type="submit" class="btn btn-danger">Confirm Delete</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

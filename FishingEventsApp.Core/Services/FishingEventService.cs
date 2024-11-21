@@ -58,7 +58,7 @@ namespace FishingEventsApp.Core.Services
             return model;
         }
 
-        public async Task AddFishingEventAsync(FishingEventAddModel model, string userId)
+        public async Task AddFishingEventAsync(FishingEventAddModel model, string? userId)
         {
             string startDate = $"{model.StartDate}";
             string endDate = $"{model.EndDate}";
@@ -86,7 +86,7 @@ namespace FishingEventsApp.Core.Services
             await context.SaveChangesAsync();
         }
 
-        public async Task<FishingEvent> FindEventAsync(int id)
+        public async Task<FishingEvent?> FindEventAsync(int id)
         {
             return await context.FishingEvents.FindAsync(id);
         }

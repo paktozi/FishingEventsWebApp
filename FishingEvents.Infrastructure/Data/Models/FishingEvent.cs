@@ -38,10 +38,10 @@ namespace FishingEvents.Infrastructure.Data.Models
         [Comment("URL of an image representing the event (optional)")]
         public string? EventImageUrl { get; set; }
 
-        [Required]
+
         [ForeignKey(nameof(Organizer))]
         [Comment("Foreign key referencing the Organizer of the event")]
-        public string OrganizerId { get; set; } = string.Empty;
+        public string? OrganizerId { get; set; }  // todo make it nullable
 
         [Comment("Navigation property to the Organizer (user) of the event")]
         public ApplicationUser Organizer { get; set; } = null!;

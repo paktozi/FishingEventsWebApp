@@ -10,7 +10,7 @@
 <div class="text-lg-center transparent-card-weather align-content-center mx-auto">
    <div >
         <h3 class="text-center text-custom-color">@Model.ResolvedAddress  <img src="~/img/weathericons/@($"{Model.Conditions.Icon}.svg")" alt="Weather Icon" class="weather-icon-big" /></h3>
-    <p>Current Condition: @Model.Conditions.Conditions</p>
+        <p>Current Condition: @Model.Conditions.Conditions</p>                         
     </div>
     <hr />
     <p>Last Update: @Model.Conditions.DateTime</p>
@@ -43,13 +43,12 @@
 
 @foreach (var d in Model.Days.Take(7))
 {
-    <div style="display:inline-block;margin:1rem">
+    <div style="display:inline-block;margin:1rem;">
 
         <p >@d.DateTime.ToString("ddd dd.MM") <img src="~/img/weathericons/@($"{d.Icon}.svg")" alt="Weather Icon" class="weather-icon-normal" /></p>
         <p class="weather-condition-custom ">@d.Conditions</p>
         <p style="color:deepskyblue"> Min: @d.TempMin°C</p>
-        <p style="color:indianred">Max: @d.TempMax°C</p>
-       
+        <p style="color:indianred;">Max: @d.TempMax°C</p>
     </div>
 }
 

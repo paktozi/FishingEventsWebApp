@@ -67,6 +67,27 @@ namespace FishingEventsApp.Core.Services
             var result = await userManager.RemoveFromRoleAsync(user, roleName);
             return result.Succeeded;
         }
+
+        public async Task<ApplicationUser> FindUserAsync(string id)
+        {
+            return await context.Users.FirstAsync(u => u.Id == id);
+        }
+
+        public async Task DeleteUserAsync(ApplicationUser entity, string userId)
+        {
+            await context.EventParticipants.Where(ep => ep.UserId == userId).ExecuteDeleteAsync();
+            await context.FishCaughts.Where(fc => fc.UserId == userId).ExecuteDeleteAsync();
+            await context.UserRoles.Where(ur => ur.UserId == userId).ExecuteDeleteAsync();
+
+            await context.FishingEvents
+              .Where(f => f.OrganizerId == userId)
+              .ExecuteUpdateAsync(setters => setters
+              .SetProperty(e => e.IsCompleted, true)
+             .SetProperty(e => e.OrganizerId, (string?)null));
+
+            context.Users.Remove(entity);
+            await context.SaveChangesAsync();
+        }
     }
 }
 
