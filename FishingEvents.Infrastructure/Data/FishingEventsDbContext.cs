@@ -18,8 +18,6 @@ namespace FishingEventsApp.Infrastructure
         public DbSet<Species> Species { get; set; } = null!;
         public DbSet<FishCaught> FishCaughts { get; set; } = null!;
         public DbSet<EventParticipant> EventParticipants { get; set; } = null!;
-        public DbSet<LeaderBoard> LeaderBoards { get; set; } = null!;
-
         public DbSet<Comment> Comments { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -52,12 +50,6 @@ namespace FishingEventsApp.Infrastructure
                 .HasForeignKey(fc => fc.FishingEventId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<FishingEvent>()
-                .HasMany(e => e.LeaderBoards)
-                .WithOne(lb => lb.FishingEvent)
-                .HasForeignKey(lb => lb.FishingEventId)
-                .OnDelete(DeleteBehavior.Cascade);
-
             // EventParticipant configurations (composite key)
             modelBuilder.Entity<EventParticipant>()
                 .HasKey(ep => new { ep.FishingEventId, ep.UserId });
@@ -83,23 +75,7 @@ namespace FishingEventsApp.Infrastructure
                 .HasOne(fc => fc.Species)
                 .WithMany(s => s.FishCaughts)
                 .HasForeignKey(fc => fc.SpeciesId)
-                .OnDelete(DeleteBehavior.Restrict); // Restrict deletion to avoid accidental removals
-
-            // LeaderBoard configurations (composite key)
-            modelBuilder.Entity<LeaderBoard>()
-                .HasKey(lb => new { lb.FishingEventId, lb.UserId });
-
-            modelBuilder.Entity<LeaderBoard>()
-                .HasOne(lb => lb.User)
-                .WithMany(u => u.LeaderBoards)
-                .HasForeignKey(lb => lb.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<LeaderBoard>()
-                .HasOne(lb => lb.FishingEvent)
-                .WithMany(e => e.LeaderBoards)
-                .HasForeignKey(lb => lb.FishingEventId);
-
+                .OnDelete(DeleteBehavior.Restrict); // Restrict deletion to avoid accidental removals        
 
             // Location configurations
             modelBuilder.Entity<Location>()

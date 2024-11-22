@@ -56,9 +56,6 @@ namespace FishingEvents.Infrastructure.Data.Models
         [Comment("Collection of fish caught during the event")]
         public ICollection<FishCaught> FishCaughts { get; set; } = new List<FishCaught>();
 
-        [Comment("Collection of leaderboards associated with the event")]
-        public ICollection<LeaderBoard> LeaderBoards { get; set; } = new List<LeaderBoard>();
-
         [Comment("Collection of comments for fishing events")]
         public ICollection<Comment> Comments { get; set; } = new List<Comment>();
     }

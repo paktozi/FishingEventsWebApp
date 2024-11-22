@@ -11,7 +11,8 @@
     <div class="col-md-6">
         <div class="card transparent-card">
             <div class="card-body">
-                <h3 class="card-title text-center">@Model.CommentText</h3>              
+                <h3 class="text-danger text-center mt-3">Are you sure you want to delete ?</h3>
+                <p class="card-title text-center">@Model.CommentText</p>
             </div>
             <div class="card-footer">
                 <form asp-action="DeleteConfirmed" method="post">

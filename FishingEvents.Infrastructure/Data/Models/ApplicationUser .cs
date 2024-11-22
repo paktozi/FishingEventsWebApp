@@ -21,9 +21,6 @@ namespace FishingEvents.Infrastructure.Data.Models
         [Comment("Collection of events the user is a participant in")]
         public ICollection<EventParticipant> EventParticipants { get; set; } = new List<EventParticipant>();
 
-        [Comment("Collection of leaderboards associated with the user's events")]
-        public ICollection<LeaderBoard> LeaderBoards { get; set; } = new List<LeaderBoard>();
-
         [Comment("Collection of fish caught by the user in various events")]
         public ICollection<FishCaught> FishCaughts { get; set; } = new List<FishCaught>();
 
