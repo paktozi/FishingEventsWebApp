@@ -44,5 +44,8 @@ namespace FishingEventsApp.Common
         public const int UserLastNameMaxLength = 50;
 
         public const string UnauthorizedMessage = "You are not authorized to edit this event.";
+
+        public const int CommentTextMinLength = 2;
+        public const int CommentTextMaxLength = 500;
     }
 }

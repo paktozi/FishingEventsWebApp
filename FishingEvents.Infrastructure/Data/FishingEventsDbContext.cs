@@ -20,6 +20,8 @@ namespace FishingEventsApp.Infrastructure
         public DbSet<EventParticipant> EventParticipants { get; set; } = null!;
         public DbSet<LeaderBoard> LeaderBoards { get; set; } = null!;
 
+        public DbSet<Comment> Comments { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -98,12 +100,25 @@ namespace FishingEventsApp.Infrastructure
                 .WithMany(e => e.LeaderBoards)
                 .HasForeignKey(lb => lb.FishingEventId);
 
+
             // Location configurations
             modelBuilder.Entity<Location>()
                 .HasMany(l => l.FishingEvents)
                 .WithOne(e => e.Location)
                 .HasForeignKey(e => e.LocationId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Comment>()
+               .HasOne(c => c.Author)
+               .WithMany(u => u.Comments)
+               .HasForeignKey(c => c.AuthorId)
+               .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Comment>()
+              .HasOne(c => c.FishingEvent)
+              .WithMany(fe => fe.Comments)
+              .HasForeignKey(c => c.FishingEventId)
+              .OnDelete(DeleteBehavior.Cascade);
 
 
             //Initial Seed

@@ -47,6 +47,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ILeaderBoardService, LeaderBoardService>();
             services.AddHttpClient<WeatherService>();
             services.AddScoped<IUserRoleService, UserRoleService>();
+            services.AddScoped<ICommentService, CommentService>();
 
             return services;
         }

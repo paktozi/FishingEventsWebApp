@@ -1,0 +1,38 @@
+﻿
+ @model ICollection<CommentAllModel>
+
+@{
+    ViewData["Title"] = "All Comments";   
+}
+
+
+<div class="row text-center">
+    <h2 class="text-center">@ViewData["Title"]</h2>
+
+    @foreach (var c in Model)
+    {
+       
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 transparent-card">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Author: @c.AuthorName</h5>
+                    <hr />
+                    <p class="card-text">@c.CommentText</p>
+                    <hr />
+                    <p class="card-text">Created: @c.CreatedOn</p>
+                    @if (c.IsAuthor || User.IsInRole("Admin") || User.IsInRole("GlobalAdmin"))
+                    {
+                        <div class="d-flex justify-content-center">
+                            <a asp-controller="Comment" asp-action="Edit" asp-route-commentId="@c.Id" asp-route-eventId="@c.FishingEventId" asp-route-authorId="@c.AuthorId" class="btn btn-warning mb-2 w-20 p-1 fw-bold">Edit</a>
+                            <a asp-controller="Comment" asp-action="Delete" asp-route-commentId="@c.Id" asp-route-eventId="@c.FishingEventId" class="btn btn-danger mb-2 w-20 p-1 fw-bold">Delete</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+  
+</div>
+<a asp-controller="Comment" asp-action="Add" asp-route-id="@int.Parse( TempData["eventId"].ToString())" class="btn btn-info btn-custom">Add Comments</a>
+  

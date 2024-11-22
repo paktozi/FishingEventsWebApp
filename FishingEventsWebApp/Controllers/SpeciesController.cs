@@ -78,7 +78,7 @@ namespace FishingEventsWebApp.Controllers
             var model = await service.FindSpeciesAsync(id);
             if (model == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
             SpeciesDeleteModel modelToDelete = new SpeciesDeleteModel()
             {
@@ -102,7 +102,7 @@ namespace FishingEventsWebApp.Controllers
 
             if (modelToDelete == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
             await service.DeleteFishAsync(modelToDelete);
             return RedirectToAction(nameof(All));
