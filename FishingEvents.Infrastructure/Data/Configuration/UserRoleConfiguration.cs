@@ -32,9 +32,19 @@ namespace FishingEvents.Infrastructure.Data.Configuration
                 },
                  new IdentityUserRole<string>
                  {
-                     UserId = "f0c1090f-ba41-4420-8446-26f4efb810f1", // GlobalAdmin user ID
-                     RoleId = "d1d7ca33-a54c-4ea0-b96e-6ca509a57ec1" // GlobalAdmin role ID
-                 }
+                     UserId = "a7dded57-50b8-4c59-8148-619b8d2a1266", // User4 ID
+                     RoleId = "e6c4f4e6-5f17-4a65-bfb7-64f6a33d5128" // User role ID
+                 },
+                  new IdentityUserRole<string>
+                  {
+                      UserId = "e1f8b74c-9b90-4054-ab42-8171c32ed1b2", // User5 ID
+                      RoleId = "e6c4f4e6-5f17-4a65-bfb7-64f6a33d5128" // User role ID
+                  },
+                new IdentityUserRole<string>
+                {
+                    UserId = "f0c1090f-ba41-4420-8446-26f4efb810f1", // GlobalAdmin user ID
+                    RoleId = "d1d7ca33-a54c-4ea0-b96e-6ca509a57ec1" // GlobalAdmin role ID
+                }
             );
         }
     }

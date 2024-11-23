@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FishingEvents.Infrastructure.Migrations
 {
     [DbContext(typeof(FishingEventsDbContext))]
-    [Migration("20241116144115_SeedGlbalAdmin")]
-    partial class SeedGlbalAdmin
+    [Migration("20241123110732_ReplaceWrongFishImg")]
+    partial class ReplaceWrongFishImg
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -106,17 +106,17 @@ namespace FishingEvents.Infrastructure.Migrations
                         {
                             Id = "2eff85cf-8402-45f8-bb3b-88bbafcc50d2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e587fbf5-5510-4cdc-ae85-5f427a0d95f8",
+                            ConcurrencyStamp = "ff623c4c-5aae-4ee1-9a51-5de93a329332",
                             Email = "admin@abv.bg",
                             EmailConfirmed = true,
                             FirstName = "Admin",
-                            LastName = "User",
+                            LastName = "Admin",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ABV.BG",
                             NormalizedUserName = "ADMIN@ABV.BG",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHl5qiOQhGeHFIG95hrhBzAGmCiFbbFQy/CxE4XPQ43SuSNxZp89LXMpcz4I/r2Qcw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAtm8Gqa9XVM/KfzCCEup1cIpXsm88h1uyzu4nPJQT+0uNiCF/bbOPeMLgnGPQDdfg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7aa6728b-3cb4-4e64-915b-6a197a63f073",
+                            SecurityStamp = "abe2b93c-2ff7-4af7-bcf4-c43d03d9fea7",
                             TwoFactorEnabled = false,
                             UserName = "admin@abv.bg"
                         },
@@ -124,7 +124,7 @@ namespace FishingEvents.Infrastructure.Migrations
                         {
                             Id = "8c148075-961f-4ddc-bdb2-416c5bfa1439",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "25d941d0-09c8-4b50-beae-c798f60c0029",
+                            ConcurrencyStamp = "7cd607da-ea9b-4f06-acd3-1b3bd2b26c43",
                             Email = "user1@abv.bg",
                             EmailConfirmed = true,
                             FirstName = "Dave",
@@ -132,9 +132,9 @@ namespace FishingEvents.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER1@ABV.BG",
                             NormalizedUserName = "USER1@ABV.BG",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGgmINrki/fr+OzOpDp+uSyl7oEKc41kOGqQUoDfjTR0cb4nceuoFa7tji7WqgulAQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEE3grZUvHWWfjSGkoQ0q1U6EH0O4xal9YULxyP/VmPP6mOqGRDpx0MxFmhiKTYqrQg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a5a5fe79-f4c5-4bfc-a89b-aa509502eb0f",
+                            SecurityStamp = "74521359-6d6e-405d-8a07-e9814eb098eb",
                             TwoFactorEnabled = false,
                             UserName = "user1@abv.bg"
                         },
@@ -142,7 +142,7 @@ namespace FishingEvents.Infrastructure.Migrations
                         {
                             Id = "ef082de5-9f29-4f11-adb4-a337f90e3373",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d6fcdd1b-28ba-4fda-a93f-bbf7b6e661cc",
+                            ConcurrencyStamp = "06721c84-745f-4a20-968d-74faab7ed380",
                             Email = "user2@abv.bg",
                             EmailConfirmed = true,
                             FirstName = "Tyler",
@@ -150,9 +150,9 @@ namespace FishingEvents.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER2@ABV.BG",
                             NormalizedUserName = "USER2@ABV.BG",
-                            PasswordHash = "AQAAAAIAAYagAAAAEB5nmST6fqONQ+GQT2gNVCbxLCEumcs1uVzG9rnjcCMInI2q22i7EwXie4P7meGiGA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEL54/o3WDDWGgPRzpJlYcli7coVTsLKDxTQfGQqS3wIl/7A1Gmy16ycDjSofF/gBSA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7f857ae7-4181-43b9-9f76-ec76a91bcda5",
+                            SecurityStamp = "9fd776de-3c17-4426-b381-71f76b9e0c03",
                             TwoFactorEnabled = false,
                             UserName = "user2@abv.bg"
                         },
@@ -160,7 +160,7 @@ namespace FishingEvents.Infrastructure.Migrations
                         {
                             Id = "5667e464-5a99-44f1-81cd-6e9022965a07",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3fccd168-931a-473c-bf3c-8ce00bec6c1f",
+                            ConcurrencyStamp = "ea80835c-70b2-4dce-864f-0dc85739dccc",
                             Email = "user3@abv.bg",
                             EmailConfirmed = true,
                             FirstName = "TJ",
@@ -168,29 +168,144 @@ namespace FishingEvents.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER3@ABV.BG",
                             NormalizedUserName = "USER3@ABV.BG",
-                            PasswordHash = "AQAAAAIAAYagAAAAEM7PIFWvjHiwOAUd0oHuWTPI0nKTreo8b0JgCgM9JrAh1oJUe+7rCyacAzgWHaVDTg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMosCPH5qnOx+c9uH+9nEvHZ9nzjuoeiH8pv4SfVbwU0T9Qe8lLGYm5aAqbr0UUEuA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7c2b01b0-df10-4987-8f16-a4c03bdd4ee8",
+                            SecurityStamp = "8cf77433-4979-45ee-bf05-c22cbc410264",
                             TwoFactorEnabled = false,
                             UserName = "user3@abv.bg"
                         },
                         new
                         {
+                            Id = "a7dded57-50b8-4c59-8148-619b8d2a1266",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "8d67da72-eb21-4dcc-a725-6e19c1b56a55",
+                            Email = "user4@abv.bg",
+                            EmailConfirmed = true,
+                            FirstName = "Dave",
+                            LastName = "Carraro",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER4@ABV.BG",
+                            NormalizedUserName = "USER4@ABV.BG",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEeoHc28ZKlIFK85cHO6lMiQa4QX8hfBdKNoErGMRdKP/FqOcJRjLhlw3+opfaVV4Q==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "46d04109-906a-45db-88bb-c7cc930b41c0",
+                            TwoFactorEnabled = false,
+                            UserName = "user4@abv.bg"
+                        },
+                        new
+                        {
+                            Id = "e1f8b74c-9b90-4054-ab42-8171c32ed1b2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "b0042d6d-650d-42f1-a2ea-c4ab8a4cd459",
+                            Email = "user5@abv.bg",
+                            EmailConfirmed = true,
+                            FirstName = "Paul",
+                            LastName = "Hebert",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER5@ABV.BG",
+                            NormalizedUserName = "USER5@ABV.BG",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBb/NuWFQOiSMUl+6PZfv2wiyPz/a06Yli0ewTtHq942U2JjN88IBkWvoa7rZGrsxg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "e156f47a-6162-4efd-aa00-9f0e4e27c7ba",
+                            TwoFactorEnabled = false,
+                            UserName = "user5@abv.bg"
+                        },
+                        new
+                        {
                             Id = "f0c1090f-ba41-4420-8446-26f4efb810f1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5933bae7-b724-4c98-bc23-88ac548df81d",
+                            ConcurrencyStamp = "749c3621-28ac-4293-8247-e93cea7b7fbb",
                             Email = "globaladmin@abv.bg",
                             EmailConfirmed = true,
                             FirstName = "Global",
-                            LastName = "User",
+                            LastName = "Global",
                             LockoutEnabled = false,
                             NormalizedEmail = "GLOBALADMIN@ABV.BG",
                             NormalizedUserName = "GLOBALADMIN@ABV.BG",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOcSrDmhuzXTYbDLk9z3OJuHgX34RHc2BNdmKtdRs2IMDvCObkHRV6C3msBe2goFtw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECI4UtQT7+Vhr/vpB+VP6oOEJeFqbICipiesXMqWEoqOzglXrc5bfB+8cGM5hg0IvA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "702776d7-bff4-49b3-9727-a500155b6707",
+                            SecurityStamp = "5b553c47-c8bd-4f23-a5d8-110d9d4788bd",
                             TwoFactorEnabled = false,
                             UserName = "globaladmin@abv.bg"
+                        });
+                });
+
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasComment("Primary key identifier for the Comment");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AuthorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)")
+                        .HasComment("The unique identifier for the author of the comment.");
+
+                    b.Property<string>("CommentText")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)")
+                        .HasComment("The text content of the comment.");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2")
+                        .HasComment("The date and time when the comment was created.");
+
+                    b.Property<int>("FishingEventId")
+                        .HasColumnType("int")
+                        .HasComment("The unique identifier of the fishing event to which this comment is associated.");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("FishingEventId");
+
+                    b.ToTable("Comments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AuthorId = "a7dded57-50b8-4c59-8148-619b8d2a1266",
+                            CommentText = "Great fish!",
+                            CreatedOn = new DateTime(2024, 11, 23, 13, 7, 31, 883, DateTimeKind.Local).AddTicks(3062),
+                            FishingEventId = 3
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AuthorId = "8c148075-961f-4ddc-bdb2-416c5bfa1439",
+                            CommentText = "Thanks!!!",
+                            CreatedOn = new DateTime(2024, 11, 23, 13, 7, 31, 883, DateTimeKind.Local).AddTicks(3112),
+                            FishingEventId = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AuthorId = "ef082de5-9f29-4f11-adb4-a337f90e3373",
+                            CommentText = "How much does it weigh?",
+                            CreatedOn = new DateTime(2024, 11, 23, 13, 7, 31, 883, DateTimeKind.Local).AddTicks(3114),
+                            FishingEventId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AuthorId = "8c148075-961f-4ddc-bdb2-416c5bfa1439",
+                            CommentText = "1200 pounds(540 kg)",
+                            CreatedOn = new DateTime(2024, 11, 23, 13, 7, 31, 883, DateTimeKind.Local).AddTicks(3116),
+                            FishingEventId = 3
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AuthorId = "ef082de5-9f29-4f11-adb4-a337f90e3373",
+                            CommentText = "Whoooa!",
+                            CreatedOn = new DateTime(2024, 11, 23, 13, 7, 31, 883, DateTimeKind.Local).AddTicks(3118),
+                            FishingEventId = 3
                         });
                 });
 
@@ -209,6 +324,33 @@ namespace FishingEvents.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("EventParticipants");
+
+                    b.HasData(
+                        new
+                        {
+                            FishingEventId = 3,
+                            UserId = "8c148075-961f-4ddc-bdb2-416c5bfa1439"
+                        },
+                        new
+                        {
+                            FishingEventId = 3,
+                            UserId = "ef082de5-9f29-4f11-adb4-a337f90e3373"
+                        },
+                        new
+                        {
+                            FishingEventId = 3,
+                            UserId = "a7dded57-50b8-4c59-8148-619b8d2a1266"
+                        },
+                        new
+                        {
+                            FishingEventId = 4,
+                            UserId = "e1f8b74c-9b90-4054-ab42-8171c32ed1b2"
+                        },
+                        new
+                        {
+                            FishingEventId = 4,
+                            UserId = "5667e464-5a99-44f1-81cd-6e9022965a07"
+                        });
                 });
 
             modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.FishCaught", b =>
@@ -263,35 +405,68 @@ namespace FishingEvents.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CaughtImageUrl = "https://targetwalleye.com/wp-content/uploads/2019/11/Jake-Caughey-winnipeg-manitoba-target-walleye-greenback_edited-1.jpg",
-                            DateCaught = new DateTime(2024, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FishingEventId = 1,
-                            Length = 0.5,
-                            SpeciesId = 1,
-                            UserId = "f22d4414-0146-4947-8aa8-4b5179bc0160",
-                            Weight = 0.25
+                            CaughtImageUrl = "https://www.looper.com/img/gallery/facts-about-wicked-tunas-dave-marciano-you-wont-have-to-fish-for/a-1200-pound-bluefin-tuna-was-his-largest-catch-1666893399.jpg",
+                            DateCaught = new DateTime(2024, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FishingEventId = 3,
+                            Length = 230.0,
+                            SpeciesId = 3,
+                            UserId = "8c148075-961f-4ddc-bdb2-416c5bfa1439",
+                            Weight = 544.0
                         },
                         new
                         {
                             Id = 2,
-                            CaughtImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJp8v1JFGqRH1BLyOwv-48FlCGg4kwxyN-VFvtYnxvUbzVAh_VaTjBjf7xGipUG4K_c4&usqp=CAU",
-                            DateCaught = new DateTime(2024, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FishingEventId = 1,
-                            Length = 0.90000000000000002,
-                            SpeciesId = 2,
-                            UserId = "f22d4414-0146-4947-8aa8-4b5179bc0160",
-                            Weight = 1.45
+                            CaughtImageUrl = "https://www.pressherald.com/wp-content/uploads/sites/4/2013/04/portland-press-herald_3753041.jpg?w=800",
+                            DateCaught = new DateTime(2024, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FishingEventId = 3,
+                            Length = 195.0,
+                            SpeciesId = 3,
+                            UserId = "a7dded57-50b8-4c59-8148-619b8d2a1266",
+                            Weight = 207.0
                         },
                         new
                         {
-                            Id = 19,
-                            CaughtImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_TKag7a673r_RBIcKFqIe-_6BjB6Oob4nqw&s",
-                            DateCaught = new DateTime(2024, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FishingEventId = 11,
-                            Length = 2.25,
-                            SpeciesId = 9,
+                            Id = 3,
+                            CaughtImageUrl = "https://media.distractify.com/brand-img/6Eeo0qnci/0x0/tyler-marissa-wicked-tuna-1559414259195.jpg",
+                            DateCaught = new DateTime(2024, 11, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FishingEventId = 3,
+                            Length = 212.0,
+                            SpeciesId = 3,
                             UserId = "ef082de5-9f29-4f11-adb4-a337f90e3373",
-                            Weight = 350.0
+                            Weight = 207.0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CaughtImageUrl = "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2020/03/1200/675/TheFleetStrikesBack_WickedTuna_Ep707_LR_18.jpg?ve=1&tl=1",
+                            DateCaught = new DateTime(2024, 11, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FishingEventId = 3,
+                            Length = 208.0,
+                            SpeciesId = 3,
+                            UserId = "8c148075-961f-4ddc-bdb2-416c5bfa1439",
+                            Weight = 230.0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CaughtImageUrl = "https://www.howtocatchanyfish.com/uploads/8/8/0/2/8802125/cuda2_orig.jpg",
+                            DateCaught = new DateTime(2024, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FishingEventId = 4,
+                            Length = 172.0,
+                            SpeciesId = 5,
+                            UserId = "5667e464-5a99-44f1-81cd-6e9022965a07",
+                            Weight = 41.0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CaughtImageUrl = "https://alphonsefishingco.com/wp-content/uploads/2023/06/seychelles-alphonse-island-species-barracuda-06.jpg",
+                            DateCaught = new DateTime(2024, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FishingEventId = 4,
+                            Length = 191.0,
+                            SpeciesId = 5,
+                            UserId = "e1f8b74c-9b90-4054-ab42-8171c32ed1b2",
+                            Weight = 52.0
                         });
                 });
 
@@ -333,7 +508,6 @@ namespace FishingEvents.Infrastructure.Migrations
                         .HasComment("Foreign key referencing the event location");
 
                     b.Property<string>("OrganizerId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)")
                         .HasComment("Foreign key referencing the Organizer of the event");
 
@@ -359,7 +533,7 @@ namespace FishingEvents.Infrastructure.Migrations
                             EventName = "Spring Fishing Festival",
                             IsCompleted = false,
                             LocationId = 1,
-                            OrganizerId = "f22d4414-0146-4947-8aa8-4b5179bc0160",
+                            OrganizerId = "e1f8b74c-9b90-4054-ab42-8171c32ed1b2",
                             StartDate = new DateTime(2024, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -371,46 +545,45 @@ namespace FishingEvents.Infrastructure.Migrations
                             EventName = "Winter Fishing Festival",
                             IsCompleted = false,
                             LocationId = 2,
-                            OrganizerId = "f22d4414-0146-4947-8aa8-4b5179bc0160",
+                            OrganizerId = "2eff85cf-8402-45f8-bb3b-88bbafcc50d2",
                             StartDate = new DateTime(2024, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = 11,
+                            Id = 3,
                             Description = "Join us for Atlantic bluefin tuna!",
                             EndDate = new DateTime(2024, 11, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventImageUrl = "https://play-lh.googleusercontent.com/TphogImhoiplJ6NBslILTd1eko8KCWb-NDirph-RcoMSiga-v-8YfVZWddAvhLwbVSjBJg",
                             EventName = "Wicked Tuna",
                             IsCompleted = false,
-                            LocationId = 8,
+                            LocationId = 3,
                             OrganizerId = "8c148075-961f-4ddc-bdb2-416c5bfa1439",
                             StartDate = new DateTime(2024, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Go to Ionian sea",
+                            EndDate = new DateTime(2024, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EventImageUrl = "https://static.vecteezy.com/system/resources/thumbnails/023/059/722/small_2x/design-of-barracuda-fishing-vector.jpg",
+                            EventName = "Catching Big Barracudas",
+                            IsCompleted = false,
+                            LocationId = 6,
+                            OrganizerId = "ef082de5-9f29-4f11-adb4-a337f90e3373",
+                            StartDate = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Big Catfish in Ebro river",
+                            EndDate = new DateTime(2024, 9, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EventImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLtFBYwC0pUKQmDLimBxIa2V3e8pZ50diWlON8SJtbqMTqvdWu0juQI9vuo-PxMZVySdE&usqp=CAU",
+                            EventName = "Catching Catfish",
+                            IsCompleted = false,
+                            LocationId = 4,
+                            OrganizerId = "f0c1090f-ba41-4420-8446-26f4efb810f1",
+                            StartDate = new DateTime(2024, 9, 7, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
-                });
-
-            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.LeaderBoard", b =>
-                {
-                    b.Property<int>("FishingEventId")
-                        .HasColumnType("int")
-                        .HasComment("Foreign key linking to the associated FishingEvent");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasComment("Foreign key linking to the participating user");
-
-                    b.Property<int>("TotalFishCaught")
-                        .HasColumnType("int")
-                        .HasComment("Total number of fish caught by the user during the event");
-
-                    b.Property<double>("TotalWeight")
-                        .HasColumnType("float")
-                        .HasComment("Total weight of all fish caught by the user during the event");
-
-                    b.HasKey("FishingEventId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("LeaderBoards");
                 });
 
             modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.Location", b =>
@@ -467,11 +640,35 @@ namespace FishingEvents.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = 8,
+                            Id = 3,
                             Elevation = "2",
                             FishingType = "Live bait",
                             LocationImageUrl = "https://photos.smugmug.com/Aerials/Massachusetts/Gloucester-MA-aerial-photos/i-z7TrSmq/2/LDpDV5CVDMk29PnCDcbvDK6PsqDJVQwXPwCxvTfGF/L/_MG_9999%20-%20Version%202-L.jpg",
                             Name = "Gloucester,Massachusetts"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Elevation = "124",
+                            FishingType = "Live bait,Frog lure",
+                            LocationImageUrl = "https://www.iberdrolaespana.com/documents/2692041/3701769/cuenca-ebro-cantabrico-746x419.png/c49350ea-0723-6b45-e37a-49a404380b06?t=1701255674149",
+                            Name = "Velilla de Ebro,Spain"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Elevation = "1",
+                            FishingType = "Lure",
+                            LocationImageUrl = "https://mediaim.expedia.com/destination/1/66f2da633e3df0ef6cefdc10aefc3c1f.jpg",
+                            Name = "Kefalonia,Poros"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Elevation = "1",
+                            FishingType = "Lure,Live bait",
+                            LocationImageUrl = "https://theinsidetraveller.com/wp-content/uploads/2024/03/dji_fly_20230723_135658_518_1690174403398_photo-1.jpg?w=1024",
+                            Name = "Lefkada"
                         });
                 });
 
@@ -531,18 +728,54 @@ namespace FishingEvents.Infrastructure.Migrations
                             Id = 2,
                             Description = "Trout have fins entirely without spines, and all of them have a small adipose fin along the back, near the tail.",
                             FishBait = "lures, live bait, spinner baits, jig bait,camola",
-                            FishImageUrl = "https://images.squarespace-cdn.com/content/v1/5be9e00d5b409b36bd17e36f/a9b6dce2-17eb-4c9c-9755-78cff2f43c87/Dorado+%28Mahi+Mahi%29+Coryphaena+Hippurus.jpeg",
+                            FishImageUrl = "https://media.istockphoto.com/id/1491004547/vector/watercolor-rainbow-trout-hand-drawn-fish-illustration-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=HgyqU9_bg_ytNEIiFclu1oNnnoc44PmUc_vvMF4FEbo=",
                             HabitatName = "Trout need cold water to survive.",
                             Name = "Trout"
                         },
                         new
                         {
-                            Id = 9,
+                            Id = 3,
                             Description = "Atlantic bluefin tuna have large, torpedo-shaped bodies that are nearly circular in cross-section.",
                             FishBait = "Live bait",
                             FishImageUrl = "https://images.squarespace-cdn.com/content/v1/5890c07bcd0f685b13dc60bf/1490802646283-GBTVAD6YM4G07UWVZJ12/image-asset.png",
                             HabitatName = "Near offshore islands",
                             Name = "Atlantic bluefin tuna"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "large spindle-shaped body",
+                            FishBait = "Worms,Minnows and Small Fish",
+                            FishImageUrl = "https://cdn.shopify.com/s/files/1/2527/6546/files/brown_bullhead_480x480.jpg?v=1618523580",
+                            HabitatName = "Slow-flowing and swampy bodies of water",
+                            Name = "Catfish"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "The fish has a long, slender body that is tapered at the ends and thicker in the middle.",
+                            FishBait = "Live bait,Lure",
+                            FishImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf4kpsp3YY-spyzPn86Mhq0MXFyMzHhdtYQmrDdXVcL5nNdQbVi2yt-ZBpdmqZtPXHmA&usqp=CAU",
+                            HabitatName = "Seagrass beds, mangroves, and coral reefs.",
+                            Name = "Barracuda"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Perch have a long and round body shape which allows for fast swimming in the water.",
+                            FishBait = "Jig,Lure,Worms",
+                            FishImageUrl = "https://portal.ct.gov/-/media/deep/fishing/freshwater/freshwater_fishes/perches-and-darters/74ayellowperchacompressed.jpg?rev=9152b888941e4650bc94dd51c0b713e3&sc_lang=en&hash=F3D205D82079E5FAA26D6BB0FE116D86q=tbn:ANd9GcSsxP5wYue8ZxzOp8mTJTMUe5pN6O0AC_NPhw&s",
+                            HabitatName = "Freshwater ponds, lakes, streams, or rivers.",
+                            Name = "Perch"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "The common carp is a heavy-bodied minnow with barbels on either side of the upper jaw.",
+                            FishBait = "Sweetcorn,Boilies,Pellets",
+                            FishImageUrl = "https://badangling.com/wp-content/uploads/2018/06/common-carp-species.jpg",
+                            HabitatName = "Still or slowly flowing waters at low altitudes.",
+                            Name = "Carp"
                         });
                 });
 
@@ -704,6 +937,16 @@ namespace FishingEvents.Infrastructure.Migrations
                         },
                         new
                         {
+                            UserId = "a7dded57-50b8-4c59-8148-619b8d2a1266",
+                            RoleId = "e6c4f4e6-5f17-4a65-bfb7-64f6a33d5128"
+                        },
+                        new
+                        {
+                            UserId = "e1f8b74c-9b90-4054-ab42-8171c32ed1b2",
+                            RoleId = "e6c4f4e6-5f17-4a65-bfb7-64f6a33d5128"
+                        },
+                        new
+                        {
                             UserId = "f0c1090f-ba41-4420-8446-26f4efb810f1",
                             RoleId = "d1d7ca33-a54c-4ea0-b96e-6ca509a57ec1"
                         });
@@ -728,6 +971,25 @@ namespace FishingEvents.Infrastructure.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.Comment", b =>
+                {
+                    b.HasOne("FishingEvents.Infrastructure.Data.Models.ApplicationUser", "Author")
+                        .WithMany("Comments")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("FishingEvents.Infrastructure.Data.Models.FishingEvent", "FishingEvent")
+                        .WithMany("Comments")
+                        .HasForeignKey("FishingEventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("FishingEvent");
                 });
 
             modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.EventParticipant", b =>
@@ -787,31 +1049,11 @@ namespace FishingEvents.Infrastructure.Migrations
                     b.HasOne("FishingEvents.Infrastructure.Data.Models.ApplicationUser", "Organizer")
                         .WithMany("FishingEvents")
                         .HasForeignKey("OrganizerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Location");
 
                     b.Navigation("Organizer");
-                });
-
-            modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.LeaderBoard", b =>
-                {
-                    b.HasOne("FishingEvents.Infrastructure.Data.Models.FishingEvent", "FishingEvent")
-                        .WithMany("LeaderBoards")
-                        .HasForeignKey("FishingEventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FishingEvents.Infrastructure.Data.Models.ApplicationUser", "User")
-                        .WithMany("LeaderBoards")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("FishingEvent");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -867,22 +1109,22 @@ namespace FishingEvents.Infrastructure.Migrations
 
             modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.ApplicationUser", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("EventParticipants");
 
                     b.Navigation("FishCaughts");
 
                     b.Navigation("FishingEvents");
-
-                    b.Navigation("LeaderBoards");
                 });
 
             modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.FishingEvent", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("EventParticipants");
 
                     b.Navigation("FishCaughts");
-
-                    b.Navigation("LeaderBoards");
                 });
 
             modelBuilder.Entity("FishingEvents.Infrastructure.Data.Models.Location", b =>

@@ -22,7 +22,7 @@ namespace FishingEvents.Infrastructure.Data.Configuration
                 SecurityStamp = Guid.NewGuid().ToString("D"),
                 ConcurrencyStamp = Guid.NewGuid().ToString("D"),
                 FirstName = "Admin",
-                LastName = "User",
+                LastName = "Admin",
                 PasswordHash = hasher.HashPassword(null, "qazwsx")
             };
 
@@ -73,6 +73,37 @@ namespace FishingEvents.Infrastructure.Data.Configuration
                 PasswordHash = hasher.HashPassword(null, "qazwsx")
             };
 
+            var user4 = new ApplicationUser
+            {
+                Id = "a7dded57-50b8-4c59-8148-619b8d2a1266",
+                UserName = "user4@abv.bg",
+                NormalizedUserName = "USER4@ABV.BG",
+                Email = "user4@abv.bg",
+                NormalizedEmail = "USER4@ABV.BG",
+                EmailConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString("D"),
+                ConcurrencyStamp = Guid.NewGuid().ToString("D"),
+                FirstName = "Dave",
+                LastName = "Carraro",
+                PasswordHash = hasher.HashPassword(null, "qazwsx")
+            };
+
+            var user5 = new ApplicationUser
+            {
+                Id = "e1f8b74c-9b90-4054-ab42-8171c32ed1b2",
+                UserName = "user5@abv.bg",
+                NormalizedUserName = "USER5@ABV.BG",
+                Email = "user5@abv.bg",
+                NormalizedEmail = "USER5@ABV.BG",
+                EmailConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString("D"),
+                ConcurrencyStamp = Guid.NewGuid().ToString("D"),
+                FirstName = "Paul",
+                LastName = "Hebert",
+                PasswordHash = hasher.HashPassword(null, "qazwsx")
+            };
+
+
             var globalAdmin = new ApplicationUser
             {
                 Id = "f0c1090f-ba41-4420-8446-26f4efb810f1",
@@ -84,11 +115,11 @@ namespace FishingEvents.Infrastructure.Data.Configuration
                 SecurityStamp = Guid.NewGuid().ToString("D"),
                 ConcurrencyStamp = Guid.NewGuid().ToString("D"),
                 FirstName = "Global",
-                LastName = "User",
+                LastName = "Global",
                 PasswordHash = hasher.HashPassword(null, "qazwsx")
             };
 
-            builder.HasData(adminUser, user1, user2, user3, globalAdmin);
+            builder.HasData(adminUser, user1, user2, user3, user4, user5, globalAdmin);
         }
     }
 }

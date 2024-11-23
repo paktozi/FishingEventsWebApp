@@ -103,8 +103,10 @@ namespace FishingEventsApp.Infrastructure
             modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
             modelBuilder.ApplyConfiguration(new LocationConfiguration());
             modelBuilder.ApplyConfiguration(new EventConfiguration());
+            modelBuilder.ApplyConfiguration(new EventParticipantConfiguration());
             modelBuilder.ApplyConfiguration(new SpeciesConfiguration());
             modelBuilder.ApplyConfiguration(new FishCaughtConfiguration());
+            modelBuilder.ApplyConfiguration(new CommentConfiguration());
         }
     }
 }
