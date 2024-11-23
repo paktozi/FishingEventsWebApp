@@ -38,7 +38,7 @@ namespace FishingEventsApp.Core.Services
             return users;
         }
 
-        public async Task<bool> AddRoleToUserAsync(string userId, string roleName)
+        public async Task<bool> AddRoleToUserAsync(string? userId, string roleName)
         {
             var user = await userManager.FindByIdAsync(userId);
             if (user == null)
@@ -56,7 +56,7 @@ namespace FishingEventsApp.Core.Services
             return result.Succeeded;
         }
 
-        public async Task<bool> RemoveRoleFromUserAsync(string userId, string roleName)
+        public async Task<bool> RemoveRoleFromUserAsync(string? userId, string roleName)
         {
             var user = await userManager.FindByIdAsync(userId);
             if (user == null)
@@ -68,22 +68,22 @@ namespace FishingEventsApp.Core.Services
             return result.Succeeded;
         }
 
-        public async Task<ApplicationUser> FindUserAsync(string id)
+        public async Task<ApplicationUser> FindUserAsync(string? id)
         {
             return await context.Users.FirstAsync(u => u.Id == id);
         }
 
-        public async Task DeleteUserAsync(ApplicationUser entity, string userId)
+        public async Task DeleteUserAsync(ApplicationUser entity, string? userId, string? globalAdminId)
         {
             await context.EventParticipants.Where(ep => ep.UserId == userId).ExecuteDeleteAsync();
             await context.FishCaughts.Where(fc => fc.UserId == userId).ExecuteDeleteAsync();
             await context.UserRoles.Where(ur => ur.UserId == userId).ExecuteDeleteAsync();
+            await context.Comments.Where(c => c.AuthorId == userId).ExecuteDeleteAsync();
 
             await context.FishingEvents
               .Where(f => f.OrganizerId == userId)
               .ExecuteUpdateAsync(setters => setters
-              .SetProperty(e => e.IsCompleted, true)
-             .SetProperty(e => e.OrganizerId, (string?)null));
+             .SetProperty(e => e.OrganizerId, globalAdminId));  //The global admin takes over the organization of the event
 
             context.Users.Remove(entity);
             await context.SaveChangesAsync();

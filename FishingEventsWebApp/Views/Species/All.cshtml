@@ -43,8 +43,8 @@
 
                     @if (User.IsInRole("Admin") || User.IsInRole("GlobalAdmin"))
                     {
-                        <a asp-controller="Species" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-1 fw-bold">Edit</a>
-                        <a asp-controller="Species" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger mb-2 w-100 p-1 fw-bold">Delete</a>
+                        <a asp-controller="Species" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-1 ">Edit</a>
+                        <a asp-controller="Species" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger mb-2 w-100 p-1 ">Delete</a>
                     }
                 </div>
             </div>

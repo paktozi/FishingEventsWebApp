@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis;
 namespace FishingEventsWebApp.Controllers
 {
     [GlobalAdminAuthorize]
-    public class UserRoleController(IUserRoleService userRoleService) : Controller
+    public class UserRoleController(IUserRoleService userRoleService) : BaseController
     {
         public async Task<IActionResult> Index()
         {
@@ -86,7 +86,8 @@ namespace FishingEventsWebApp.Controllers
             {
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
-            await userRoleService.DeleteUserAsync(entity, userId);
+            string? globalAdminId = GetUserId();
+            await userRoleService.DeleteUserAsync(entity, userId, globalAdminId);
             return RedirectToAction(nameof(Index));
         }
     }

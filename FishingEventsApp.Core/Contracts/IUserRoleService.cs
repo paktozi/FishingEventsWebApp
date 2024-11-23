@@ -6,9 +6,9 @@ namespace FishingEventsApp.Core.Contracts
     public interface IUserRoleService
     {
         Task<List<UserWithRolesViewModel>> GetUsersWithRolesAsync();
-        Task<bool> AddRoleToUserAsync(string userId, string roleName);
-        Task<bool> RemoveRoleFromUserAsync(string userId, string roleName);
-        Task<ApplicationUser> FindUserAsync(string id);
-        Task DeleteUserAsync(ApplicationUser entity, string userId);
+        Task<bool> AddRoleToUserAsync(string? userId, string roleName);
+        Task<bool> RemoveRoleFromUserAsync(string? userId, string roleName);
+        Task<ApplicationUser> FindUserAsync(string? id);
+        Task DeleteUserAsync(ApplicationUser entity, string? userId, string? globalAdminId);
     }
 }
