@@ -79,7 +79,7 @@ namespace FishingEventsWebApp.Controllers
             var model = await service.FindLocationAsync(id);
             if (model == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
             LocationDeleteModel modelToDelete = new LocationDeleteModel()
             {
@@ -102,7 +102,7 @@ namespace FishingEventsWebApp.Controllers
             var entity = await service.FindLocationAsync(id);
             if (entity == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
             await service.DeleteLocationAsync(entity);
             return RedirectToAction(nameof(All));
