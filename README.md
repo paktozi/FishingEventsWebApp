@@ -15,5 +15,7 @@ To use the weather forecast, you need to register at: https://www.visualcrossing
 
 
 Login: user1@abv.bg user2@abv.bg, user3@abv.bg, user4@abv.bg, user5@abv.bg with Pass:qazwsx
+
 Login: admin@abv.bg Pass:qazwsx
+
 Login: globaladmin@abv.bg Pass:qazwsx
