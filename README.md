@@ -19,3 +19,6 @@ Login: user1@abv.bg user2@abv.bg, user3@abv.bg, user4@abv.bg, user5@abv.bg with 
 Login: admin@abv.bg Pass:qazwsx
 
 Login: globaladmin@abv.bg Pass:qazwsx
+
+
+<img width="1280" alt="123" src="https://github.com/user-attachments/assets/0a57bcf0-ea7f-44c5-a872-686c92606c60">
