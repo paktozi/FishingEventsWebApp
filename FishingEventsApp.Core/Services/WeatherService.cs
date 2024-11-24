@@ -8,7 +8,7 @@ namespace FishingEventsApp.Core.Services
     {
         public async Task<Weather> GetWeatherAsync(string location)
         {
-            string? key = configuration["WeatherApiKey"];
+            string? key = configuration["WeatherApiKey"];   //enter your API key here or paste in User Secrets.
             string url = $"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{location}?unitGroup=metric&include=alerts%2Ccurrent%2Cevents&key={key}&contentType=json";
 
             HttpResponseMessage response = await client.GetAsync(url);

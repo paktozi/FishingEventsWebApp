@@ -34,7 +34,7 @@
             <a asp-controller="Comment" asp-action="All" asp-route-id="@Model.Id" class="btn btn-secondary btn-custom"> All Comments </a>
             <a asp-controller="FishingEvent" asp-action="All" class="btn btn-light btn-custom">Back toFishing Event</a>
 
-            @if (!User.IsInRole("Admin") && !User.IsInRole("GlobalAdmin"))
+            @if (!User.IsInRole(AdminRole) && !User.IsInRole(GlobalAdminRole))
             {
                 <a asp-controller="FishCaught" asp-action="All" asp-route-userId="@Model.UserId" asp-route-id="@Model.Id" class=" btn btn-success btn-custom"> My fish caught for this event </a>
             }

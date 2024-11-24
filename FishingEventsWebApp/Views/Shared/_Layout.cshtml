@@ -35,7 +35,7 @@
                             <li><a class="nav-link text-white" asp-area="" asp-controller="Species" asp-action="All">All Species   <img src="~/img/Icons/fish42.png" /></a></li>
                             <li><a class="nav-link text-white" asp-area="" asp-controller="ApplicationUser" asp-action="All">All Users   <img src="~/img/Icons/user42.png" /></a></li>
                             <li><a class="nav-link text-white" asp-area="" asp-controller="LeaderBoard" asp-action="GeneralLeaderBoard"> General LeaderBoard  <img src="~/img/Icons/leaderboard42.png" /> </a></li>
-                            @if (User.IsInRole("GlobalAdmin"))
+                            @if (User.IsInRole(GlobalAdminRole))
                             {
                                 <li><a class="nav-link text-white" asp-area="" asp-controller="UserRole" asp-action="Index"> Add/Remove Role to Users  <img src="~/img/Icons/admin42.png" /> </a></li>                           
                             }

@@ -22,7 +22,7 @@
                 <td style="color:antiquewhite">@user.UserName</td>
                 <td style="color:bisque">@string.Join(", ", user.Roles)</td>
                 <td>
-                    @if (user.Roles.Contains("Admin"))
+                    @if (user.Roles.Contains(AdminRole))
                     {
                         <form method="post" asp-action="RemoveAdminRole" asp-route-userId="@user.UserId" style="display:inline">
                             @Html.AntiForgeryToken()
@@ -35,9 +35,11 @@
                             @Html.AntiForgeryToken()
                             <button class="btn btn-success" type="submit">Add Admin</button>
                         </form>
-                    }                 
+                    }
                 </td>
-                <td> <a asp-controller="UserRole" asp-action="Delete" asp-route-userId="@user.UserId" class="btn btn-warning mb-2 w-20 p-1 fw-bold">Delete User</a></td>
+                <td>
+                    <a asp-controller="UserRole" asp-action="Delete" asp-route-userId="@user.UserId" class="btn btn-warning mb-2 w-20 p-1 fw-bold">Delete User</a>
+                </td>
             </tr>
         }
     </tbody>

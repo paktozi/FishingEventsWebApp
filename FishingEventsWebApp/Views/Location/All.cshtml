@@ -1,9 +1,5 @@
 ﻿@model ICollection< FishingLocationModel>
 
-@{
-    ViewData["Title"] = "Event Locations";
-}
-
 
 @if (User.Identity.IsAuthenticated)
 {
@@ -15,8 +11,10 @@
 
 
 <div class="d-flex justify-content-between align-items-center mb-3" style="margin-top: 20px;">
-    <h2 class="text-center">@ViewData["Title"]</h2>
-    @if (User.IsInRole("Admin")||User.IsInRole("GlobalAdmin"))
+
+    <h2 class="text-center">Event Locations</h2>
+
+    @if (User.IsInRole(AdminRole) || User.IsInRole(GlobalAdminRole))
     {
         <a asp-controller="Location" asp-action="Add" class="btn btn-success"><i class="fas fa-plus"></i>Add New Location</a>
     }
@@ -27,30 +25,38 @@
     {
         <div class="col-md-3 mb-4">
             <div class="card h-100 transparent-card">
+
+                <div >
+                    @e.CurrentTemperature°C  <img src="~/img/weathericons/@($"{e.WeatherIcon}.svg")" alt="Weather Icon" class="weather-icon-small" />
+                </div>
+           
                 @if (!string.IsNullOrEmpty(e.LocationImageUrl))
                 {
-                    <img src="@e.LocationImageUrl" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="@e.Name">                  
+                    <img src="@e.LocationImageUrl" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="@e.Name">
                 }
                 else
                 {
                     <img src="~/img/no-image.jpg" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="No Image Available">
                 }
+               
                 <a asp-controller="Weather" asp-action="Index" asp-route-locationName="@e.Name" class="btn btn-info mb-2 w-50 p-1 " style="margin:5px;margin-left:25%;">Check Weather</a>
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">@e.Name</h5>
                     <p class="card-text">Elevation: @e.Elevation m</p>
                     <p class="card-text">Fishing Type: @e.FishingType</p>
-                   
-                    @if (User.IsInRole("Admin") || User.IsInRole("GlobalAdmin"))
+
+                    @if (User.IsInRole(AdminRole) || User.IsInRole(GlobalAdminRole))
                     {
-                        <a asp-controller="Location" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-20 p-1 ">Edit</a>
-                        <a asp-controller="Location" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger mb-2 w-20 p-1 ">Delete</a>
+                     
+                        <a asp-controller="Location" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-20 p-1">Edit</a>
+                        <a asp-controller="Location" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger mb-2 w-20 p-1">Delete</a>
+                      
                     }
                 </div>
             </div>
         </div>
     }
 </div>
-<div class="text-lg-end">
-    <a asp-controller="FishingEvent" asp-action="All" class="btn btn-light btn-custom">Back to all Events</a>
+<div>
+    <a asp-controller="FishingEvent" asp-action="All" class="btn btn-warning mb-2 w-20 p-1">Back to all Events</a>
 </div>

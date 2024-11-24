@@ -15,7 +15,7 @@ namespace FishingEvents.Infrastructure.Data.Configuration
                 Description="They are generally silvery white in color and most have dark horizontal lines along their sides.",
                 HabitatName="Lakes or shallow bays of larger lakes.",
                 FishBait="lures, live bait, spinner baits, jig bait",
-                FishImageUrl="https://www.graytaxidermy.com/images/large-fishmount-photos/large-mouth-bass-silo.jpg"
+                FishImageUrl="https://www.maine.gov/ifw/images/largemouthbass.jpg"
             },
             new Species()
             {

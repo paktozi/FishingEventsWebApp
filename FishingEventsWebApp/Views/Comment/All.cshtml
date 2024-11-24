@@ -1,4 +1,5 @@
-﻿ @model ICollection<CommentAllModel>
+﻿
+ @model ICollection<CommentAllModel>
 
 <h2 class="text-center">All Comments</h2>
 
@@ -21,7 +22,7 @@ else
                         <h5 class="card-title ">Author: @c.AuthorName</h5>
                         <p class="text-custom-color">@c.CommentText</p>
                         <p class="card-text">Created: @c.CreatedOn</p>
-                        @if (c.IsAuthor || User.IsInRole("Admin") || User.IsInRole("GlobalAdmin"))
+                        @if (c.IsAuthor || User.IsInRole(AdminRole) || User.IsInRole(GlobalAdminRole))
                         {
                             <div class="d-flex justify-content-start align-items-start gap-2">
                                 <a asp-controller="Comment" asp-action="Edit" asp-route-commentId="@c.Id" asp-route-eventId="@c.FishingEventId" asp-route-authorId="@c.AuthorId" class="btn btn-warning w-20 p-1">Edit</a>

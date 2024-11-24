@@ -21,7 +21,7 @@
 
                         <p class="card-text">First Name: @e.FirstName</p>
                         <p class="card-text">Last Name: @e.LastName</p>
-                        <a asp-controller="ApplicationUser" asp-action="Details" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-1 ">All fish</a>
+                        <a asp-controller="ApplicationUser" asp-action="Details" asp-route-id="@e.Id" class="btn btn-warning mb-1 w-20 p-1 ">All fish</a>
                     </div>
                 </div>
             </div>
@@ -30,11 +30,11 @@
 }
 else
 {
-    <h2 class="text-custom-color">No Users added yet.</h2>
+    <h2 class="text-custom-color">No Users.</h2>
 }
 
 <div>
-    <button type="button" class="btn btn-warning btn-dark-text mb-2 w-20 py-1 fw-bold rounded" onclick="history.back()">Back</button>
+    <button type="button" class="btn btn-warning btn-dark-text mb-1 w-20 py-1 " onclick="history.back()">Back</button>
 </div>
 
 

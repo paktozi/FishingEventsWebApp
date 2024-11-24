@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using static FishingEventsApp.Common.ValidationConstants;
 
 namespace FishingEventsWebApp.CustomAttributes
 {
@@ -15,11 +16,10 @@ namespace FishingEventsWebApp.CustomAttributes
             }
 
             // Check if the user is in the GrandAdmin role
-            if (!context.HttpContext.User.IsInRole("GlobalAdmin"))
+            if (!context.HttpContext.User.IsInRole(GlobalAdminRole))
             {
                 context.Result = new RedirectToActionResult("Unauthorized", "Errors", null); // Redirect unauthorized users
             }
         }
-
     }
 }

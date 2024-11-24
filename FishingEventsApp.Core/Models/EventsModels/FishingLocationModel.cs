@@ -11,5 +11,8 @@
         public string FishingType { get; set; } = string.Empty;
 
         public string? LocationImageUrl { get; set; }
+
+        public string CurrentTemperature { get; set; } = string.Empty;
+        public string WeatherIcon { get; set; } = string.Empty;
     }
 }

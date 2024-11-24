@@ -3,8 +3,7 @@ using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.CommentModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Reflection.Metadata.Ecma335;
+using static FishingEventsApp.Common.ValidationConstants;
 
 namespace FishingEventsWebApp.Controllers
 {
@@ -14,7 +13,7 @@ namespace FishingEventsWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> All(int id)
         {
-            string currentUserId = GetUserId();
+            string? currentUserId = GetUserId();
             ICollection<CommentAllModel> model = await service.GetAllCommentsAsync(id, currentUserId);
             TempData["eventId"] = id;
             return View(model);
@@ -46,7 +45,7 @@ namespace FishingEventsWebApp.Controllers
         {
             string? currentUserId = GetUserId();
 
-            if (authorId != currentUserId && !User.IsInRole("Admin") && !User.IsInRole("GlobalAdmin"))
+            if (authorId != currentUserId && !User.IsInRole(AdminRole) && !User.IsInRole(GlobalAdminRole))
             {
                 return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
             }
@@ -76,7 +75,7 @@ namespace FishingEventsWebApp.Controllers
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
             await service.EditCommentAsync(model, comment);
-            return RedirectToAction("All", "Comment", new { id = comment.FishingEventId });
+            return RedirectToAction(nameof(All), new { id = comment.FishingEventId });
         }
 
         [HttpGet]
@@ -90,7 +89,7 @@ namespace FishingEventsWebApp.Controllers
             {
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
-            if (model.AuthorId != userId && !User.IsInRole("Admin") && !User.IsInRole("GlobalAdmin"))
+            if (model.AuthorId != userId && !User.IsInRole(AdminRole) && !User.IsInRole(GlobalAdminRole))
             {
                 return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
             }
@@ -114,13 +113,14 @@ namespace FishingEventsWebApp.Controllers
 
             var entity = await service.FindCommentAsync(Id);
             int fishingEventId = entity.FishingEventId;
+
             if (entity == null)
             {
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
 
             await service.DeleteCommentAsync(entity);
-            return RedirectToAction("All", "Comment", new { id = fishingEventId });
+            return RedirectToAction(nameof(All), new { id = fishingEventId });
         }
     }
 }

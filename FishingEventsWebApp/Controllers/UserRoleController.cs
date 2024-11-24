@@ -3,13 +3,15 @@ using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.ApplicationUserModels;
 using FishingEventsWebApp.CustomAttributes;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis;
+using static FishingEventsApp.Common.ValidationConstants;
 
 namespace FishingEventsWebApp.Controllers
 {
     [GlobalAdminAuthorize]
+
     public class UserRoleController(IUserRoleService userRoleService) : BaseController
     {
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var usersWithRoles = await userRoleService.GetUsersWithRolesAsync();
@@ -20,14 +22,14 @@ namespace FishingEventsWebApp.Controllers
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> AddAdminRole(string userId)
         {
-            var result = await userRoleService.AddRoleToUserAsync(userId, "Admin");
+            var result = await userRoleService.AddRoleToUserAsync(userId, AdminRole);
             if (result)
             {
-                TempData["Success"] = "Role added successfully.";
+                TempData["Success"] = RoleAddedSuccessMessage;
             }
             else
             {
-                TempData["Error"] = "Failed to add role.";
+                TempData["Error"] = RoleAddedFailMessage;
             }
             return RedirectToAction(nameof(Index));
         }
@@ -36,14 +38,14 @@ namespace FishingEventsWebApp.Controllers
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> RemoveAdminRole(string userId)
         {
-            var result = await userRoleService.RemoveRoleFromUserAsync(userId, "Admin");
+            var result = await userRoleService.RemoveRoleFromUserAsync(userId, AdminRole);
             if (result)
             {
-                TempData["Success"] = "Role removed successfully.";
+                TempData["Success"] = RoleRemovedSuccessMessage;
             }
             else
             {
-                TempData["Error"] = "Failed to remove role.";
+                TempData["Error"] = RoleRemovedFailMessage;
             }
             return RedirectToAction(nameof(Index));
         }
@@ -57,7 +59,7 @@ namespace FishingEventsWebApp.Controllers
             {
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
-            if (!User.IsInRole("GlobalAdmin"))
+            if (!User.IsInRole(GlobalAdminRole))
             {
                 return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
             }

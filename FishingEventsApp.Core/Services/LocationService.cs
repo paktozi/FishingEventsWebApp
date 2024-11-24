@@ -1,13 +1,15 @@
 ﻿using FishingEvents.Infrastructure.Data.Models;
+using FishingEvents.Infrastructure.Data.Models.WeatherModels;
 using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.EventsModels;
 using FishingEventsApp.Core.Models.LocationModels;
 using FishingEventsApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace FishingEventsApp.Core.Services
 {
-    public class LocationService(FishingEventsDbContext context) : ILocationService
+    public class LocationService(FishingEventsDbContext context, WeatherService weatherService) : ILocationService
     {
         public async Task AddLocationAsync(LocationAddModel model)
         {
@@ -62,6 +64,22 @@ namespace FishingEventsApp.Core.Services
                   })
                   .AsNoTracking()
                   .ToListAsync();
+
+            foreach (var location in model)
+            {
+                try
+                {
+                    Weather weatherData = await weatherService.GetWeatherAsync(location.Name);
+                    location.CurrentTemperature = weatherData.Conditions.Temp.ToString();
+                    location.WeatherIcon = weatherData.Conditions.Icon;
+                }
+                catch (Exception ex)
+                {
+                    location.CurrentTemperature = "N/A";
+                    location.WeatherIcon = "na";
+                }
+            }
+
             return model;
         }
 

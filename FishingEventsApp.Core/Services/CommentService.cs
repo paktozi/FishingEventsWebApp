@@ -3,12 +3,10 @@ using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.CommentModels;
 using FishingEventsApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using static FishingEventsApp.Common.ValidationConstants;
+
+
 
 namespace FishingEventsApp.Core.Services
 {

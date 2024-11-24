@@ -86,12 +86,11 @@ body {
 
 
 .weather-list {
-    background-color: rgba(10, 20, 0, 0.6);
+    background-color: rgba(10, 20, 0, 0.3);
     border-radius: 3px;
     padding: 7px;
-    margin: 1px;
+    margin: 2px;
     border-color: rgba(100, 110, 100, 0.4);
-    box-shadow: 1px 1px 25px grey;
 }
 .weather-forecast {
     text-align:center;
@@ -110,6 +109,11 @@ body {
     width: 70px;
     height: 70px;
 }
+.weather-icon-small {
+    display: inline;
+    width: 50px;
+    height: 50px;
+}
 
 .weather-condition-custom {
     color: antiquewhite;
@@ -127,8 +131,8 @@ body {
 
 .transparent-card {
     width: 100%;
-    background-color: rgba(10, 20, 0, 0.6);
-    border-radius: 10px;
+    background-color: rgba(10, 20, 0, 0.4);
+    border-radius: 5px;
     padding: 8px;
     border-color: dimgrey;
     box-shadow: 5px 5px 10px black;
@@ -142,8 +146,8 @@ body {
 
 .transparent-card-weather {
     width: 30%;
-    background-color: rgba(10, 20, 0, 0.6);
-    border-radius: 10px;
+    background-color: rgba(10, 20, 0, 0.4);
+    border-radius: 5px;
     padding: 8px;
     border-color: dimgrey;
     box-shadow: 5px 5px 10px black;

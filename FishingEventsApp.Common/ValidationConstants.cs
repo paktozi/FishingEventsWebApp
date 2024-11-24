@@ -43,9 +43,15 @@ namespace FishingEventsApp.Common
         public const int UserLastNameMinLength = 2;
         public const int UserLastNameMaxLength = 50;
 
-        public const string UnauthorizedMessage = "You are not authorized to edit this event.";
-
         public const int CommentTextMinLength = 2;
         public const int CommentTextMaxLength = 500;
+
+        public const string AdminRole = "Admin";
+        public const string GlobalAdminRole = "GlobalAdmin";
+        public const string RoleRemovedSuccessMessage = "Role removed successfully.";
+        public const string RoleRemovedFailMessage = "Failed to remove role.";
+
+        public const string RoleAddedSuccessMessage = "Role added successfully.";
+        public const string RoleAddedFailMessage = "Failed to add role.";
     }
 }

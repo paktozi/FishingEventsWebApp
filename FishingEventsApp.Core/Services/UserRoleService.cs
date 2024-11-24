@@ -4,6 +4,7 @@ using FishingEventsApp.Core.Models.UserRoleModel;
 using FishingEventsApp.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using static FishingEventsApp.Common.ValidationConstants;
 
 namespace FishingEventsApp.Core.Services
 {
@@ -18,7 +19,7 @@ namespace FishingEventsApp.Core.Services
                   ur => ur.RoleId,
                   role => role.Id,
                   (ur, role) => role.Name)
-            .Contains("GlobalAdmin"))
+            .Contains(GlobalAdminRole))
 
         .Select(user => new UserWithRolesViewModel
         {
@@ -83,7 +84,7 @@ namespace FishingEventsApp.Core.Services
             await context.FishingEvents
               .Where(f => f.OrganizerId == userId)
               .ExecuteUpdateAsync(setters => setters
-             .SetProperty(e => e.OrganizerId, globalAdminId));  //The global admin takes over the organization of the event
+             .SetProperty(e => e.OrganizerId, globalAdminId));  //The global admin takes over the organization of the event.
 
             context.Users.Remove(entity);
             await context.SaveChangesAsync();
