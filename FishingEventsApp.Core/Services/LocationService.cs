@@ -5,7 +5,6 @@ using FishingEventsApp.Core.Models.EventsModels;
 using FishingEventsApp.Core.Models.LocationModels;
 using FishingEventsApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace FishingEventsApp.Core.Services
 {
@@ -79,7 +78,6 @@ namespace FishingEventsApp.Core.Services
                     location.WeatherIcon = "na";
                 }
             }
-
             return model;
         }
 

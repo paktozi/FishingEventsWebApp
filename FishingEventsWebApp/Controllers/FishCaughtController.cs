@@ -21,7 +21,7 @@ namespace FishingEventsWebApp.Controllers
         [AdminAuthorize]
         public async Task<IActionResult> Add(string userId, int id)
         {
-            string currentUserId = GetUserId();
+            string? currentUserId = GetUserId();
 
             if (userId != currentUserId)      //  if the user is an admin, he cannot add fish to himself
             {
@@ -45,7 +45,7 @@ namespace FishingEventsWebApp.Controllers
                 return View(model);
             }
             await service.AddFishAsync(model);
-            return RedirectToAction("AllEventParticipants", "FishingEvent", new { id = model.FishingEventId });
+            return RedirectToAction(nameof(FishingEventController.AllEventParticipants), "FishingEvent", new { id = model.FishingEventId });
         }
 
         [HttpGet]
@@ -85,7 +85,7 @@ namespace FishingEventsWebApp.Controllers
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
             await service.EditCaughtAsync(model, fishCaught);
-            return RedirectToAction("AllEventParticipants", "FishingEvent", new { id = fishCaught.FishingEventId });
+            return RedirectToAction(nameof(FishingEventController.AllEventParticipants), "FishingEvent", new { id = fishCaught.FishingEventId });
         }
 
         [HttpGet]
@@ -126,7 +126,7 @@ namespace FishingEventsWebApp.Controllers
                 return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
             }
             await service.DeleteCaughtAsync(entity);
-            return RedirectToAction("AllEventParticipants", "FishingEvent", new { id = fishingEventId });
+            return RedirectToAction(nameof(FishingEventController.AllEventParticipants), "FishingEvent", new { id = fishingEventId });
         }
     }
 }

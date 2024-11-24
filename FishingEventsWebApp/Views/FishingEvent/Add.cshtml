@@ -1,6 +1,6 @@
 ﻿ @model FishingEventAddModel
 @{
-    var today = DateTime.Now.ToString("dd-MM-yyyy");
+    var today = DateTime.Now.ToString(DateFormat);
 }
 
 <h2 class="text-center">Fishing Event</h2>
@@ -25,13 +25,13 @@
 
             <div class="mb-3">
                 <label asp-for="@Model.StartDate" class="form-label-add-edit">Start Date</label>
-                <input asp-for="@Model.StartDate" class="form-control input-field" type="text" aria-required="true" placeholder="dd-MM-yyyy" />
+                <input asp-for="@Model.StartDate" class="form-control input-field" type="text" aria-required="true" placeholder=@DateFormat />
                 <span asp-validation-for="@Model.StartDate" class="text-custom-danger"></span>
             </div>
 
             <div class="mb-3">
                 <label asp-for="@Model.EndDate" class="form-label-add-edit">End Date</label>
-                <input asp-for="@Model.EndDate" class="form-control input-field" type="text" aria-required="true" placeholder="dd-MM-yyyy" />
+                <input asp-for="@Model.EndDate" class="form-control input-field" type="text" aria-required="true" placeholder=@DateFormat />
                 <span asp-validation-for="@Model.EndDate" class="text-custom-danger"></span>
             </div>
 
