@@ -7,7 +7,7 @@
 @if (User.Identity.IsAuthenticated)
 {
     <form asp-controller="Species" asp-action="All" method="get" class="form-inline">
-        <input type="text" name="specieName" class="form-control mr-2 input-field" style="width:40%" placeholder="Enter Specie name" required />
+        <input type="text" name="specieName" class="form-control mr-2 input-field-30" placeholder="Enter Specie name" required />
         <button type="submit" class="btn custom-btn-green" style="margin:6px">Search Specie by Name</button>
     </form>
 }
@@ -16,7 +16,7 @@
     <h2>@ViewData["Title"]</h2>
     @if (User.IsInRole(AdminRole)||User.IsInRole(GlobalAdminRole))
     {
-        <a asp-controller="Species" asp-action="Add" class="btn btn-success"><i class="fas fa-plus"></i>Add New Species</a>
+        <a asp-controller="Species" asp-action="Add" class="btn btn-success"><i class="fas fa-plus"></i> Add New Species</a>
     }
 </div>
 
@@ -55,8 +55,8 @@
                     <br />
                     @if (User.IsInRole(AdminRole) || User.IsInRole(GlobalAdminRole))
                     {
-                        <a asp-controller="Species" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-1 ">Edit</a>
-                        <a asp-controller="Species" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger mb-2 w-100 p-1 ">Delete</a>
+                        <a asp-controller="Species" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-1 fas fa-pencil ">Edit</a>
+                        <a asp-controller="Species" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger mb-2 w-100 p-1 fas fa-trash ">Delete</a>
                     }
                 </div>
             </div>
