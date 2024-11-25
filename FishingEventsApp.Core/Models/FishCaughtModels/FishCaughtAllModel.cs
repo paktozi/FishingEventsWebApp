@@ -8,6 +8,8 @@
 
         public string FishingEventName { get; set; } = string.Empty;
 
+        public string FishingEventStatus { get; set; } = string.Empty;
+
         public string? UserId { get; set; }
 
         public string Species { get; set; } = string.Empty;

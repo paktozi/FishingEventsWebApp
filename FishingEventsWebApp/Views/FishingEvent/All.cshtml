@@ -1,8 +1,6 @@
 ﻿@model ICollection< FishingEventALLModel>
 
-@{
-    ViewData["Title"] = "Events List";
-}
+<h3 class="text-center">Events List</h3>
 
 @{
     if (User.Identity.IsAuthenticated)
@@ -33,22 +31,35 @@
                     <p class="text-custom-danger">@(e.IsOrganizer ? "My Event" : "")</p>
                 }
                 <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">@e.EventName</h5>
-                    <p class="card-text">StartDate: @e.StartDate</p>
-                    <p class="card-text">EndDate: @e.EndDate</p>
-                    <p class="card-text">Location Name: @e.LocationName</p>
-                    <p class="card-text">Creator: @e.Organizer</p>
+             
+                     <h4 class="card-title">                           
+                                <span class="text-yellow-color font-LoveYa">@e.EventName</span>
+                        </h4>
 
+                     <div class="card-text">
+                         Start Date: <span class="text-custom-color">@e.StartDate</span>
+                    </div>
+                     <div class="card-text">
+                        End Date: <span class="text-custom-color">@e.EndDate</span>
+                    </div>
+                     <div class="card-text">
+                        Location Name: <span class="text-custom-color">@e.LocationName</span>
+                    </div>
+                     <div class="card-text">
+                       Creator:  <span class="text-custom-color">@e.Organizer</span>
+                    </div>
+                    
+                   <br />
 
                     @if (User.Identity.IsAuthenticated)
                     {
                         <a asp-controller="FishingEvent" asp-action="Details" asp-route-id="@e.Id" class="btn btn-info mb-2 w-100 p-1">Details</a>
 
                         @if (e.IsOrganizer || User.IsInRole(AdminRole) || User.IsInRole(GlobalAdminRole))
-                        {                     
+                        {
                             <a asp-controller="FishingEvent" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-1 ">Edit</a>
-                            <a asp-controller="FishingEvent" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger w-100">Delete</a>
-                                                   
+                            <a asp-controller="FishingEvent" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger w-100">Delete</a>                        
+
                             // Don't show "Join" or "Leave" buttons if the user is an admin
                             if (!User.IsInRole(AdminRole) && !User.IsInRole(GlobalAdminRole))
                             {
@@ -64,7 +75,7 @@
                                         <input type="submit" value="Leave the Event" class="fs-6 btn btn-warning mb-3 w-50 p-1 fw-bold" />
                                     </form>
                                 }
-                            }                                  
+                            }
                         }
                         else if (!e.IsOrganizer) // If the user is not the organizer
                         {
@@ -91,8 +102,11 @@
         </div>
     }
 
-</div>
+</div> 
+
 
 <div>
     <a asp-controller="FishingEvent" asp-action="All" class="btn btn-warning mb-2 w-20 p-1 ">Back</a>
 </div>
+
+

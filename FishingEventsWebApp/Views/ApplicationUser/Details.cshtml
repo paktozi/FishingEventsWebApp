@@ -23,12 +23,30 @@
                         <img src="~/img/no-image.jpg" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="No Image Available">
                     }
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Name: @Model.FirstName @Model.LastName</h5>
-                        <p class="card-text">Event Name: @e.FishingEventName</p>
-                        <p class="card-text">Fish Name: @e.Species</p>
-                        <p class="card-text">Weight: @e.Weight kg</p>
-                        <p class="card-text">Length: @e.Length cm</p>
-                        <p class="card-text">Date: @e.DateCaught</p>
+                      
+                        <h5 class="card-title">
+                            <span class="label">Name:</span>
+                            <span class="text-custom-color">@Model.FirstName @Model.LastName</span>
+                        </h5>
+
+                        <div class="card-text">
+                            Event Name: <span class="text-custom-color">@e.FishingEventName</span>
+                        </div>
+                        <div class="card-text">
+                            Event Status: <span class="text-custom-color">@e.FishingEventStatus</span>
+                        </div>
+                        <div class="card-text">
+                            Fish Name: <span class="text-custom-color">@e.Species</span>
+                        </div>
+                        <div class="card-text">
+                            Weight: <span class="text-custom-color">@e.Weight kg</span>
+                        </div>
+                        <div class="card-text">
+                            Length: <span class="text-custom-color">@e.Length cm</span>
+                        </div>
+                        <div class="card-text">
+                            Date: <span class="text-custom-color">@e.DateCaught</span>
+                        </div>
                     </div>
                 </div>
             </div>

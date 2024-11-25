@@ -60,6 +60,7 @@ namespace FishingEventsApp.Core.Services
                      {
                          CaughtImageUrl = fc.CaughtImageUrl,
                          FishingEventName = fc.FishingEvent.EventName,
+                         FishingEventStatus = fc.FishingEvent.IsCompleted ? EventStatusCompleted : EventStatusActive,
                          Species = fc.Species.Name,
                          Weight = fc.Weight,
                          Length = fc.Length,

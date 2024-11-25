@@ -11,6 +11,8 @@
         public const int FishingEventNameMaxLength = 50;
         public const int FishingEventDescriptionMinLength = 5;
         public const int FishingEventDescriptionMaxLength = 250;
+        public const string EventStatusCompleted = "Completed";
+        public const string EventStatusActive = "Active";
 
         public const int LocationNameMinLength = 3;
         public const int LocationNameMaxLength = 50;

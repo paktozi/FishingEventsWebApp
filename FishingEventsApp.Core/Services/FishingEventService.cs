@@ -32,7 +32,7 @@ namespace FishingEventsApp.Core.Services
                     StartDate = e.StartDate.ToString(DateFormat),
                     EndDate = e.EndDate.ToString(DateFormat),
                     LocationName = e.Location.Name,
-                    Organizer = e.Organizer.FirstName,
+                    Organizer = $"{e.Organizer.FirstName} {e.Organizer.LastName}",
                     IsOrganizer = e.OrganizerId == userId,
                     IsJoined = e.EventParticipants.Any(ep => ep.FishingEventId == e.Id && ep.UserId == userId),
                 })

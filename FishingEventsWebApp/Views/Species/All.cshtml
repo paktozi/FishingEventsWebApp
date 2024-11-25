@@ -34,13 +34,25 @@
                     <img src="~/img/no-image.jpg" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="No Image Available">
                 }
                 <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">@e.Name</h5>
-                    <br />
-                    <p class="card-text">Description: @e.Description</p>
-                    <p class="card-text">Habitat Name: @e.HabitatName</p>
-                    <br />
-                    <p class="card-text">Fish Bait: @e.FishBait</p>
 
+                    <h4 class="card-title">
+                        <span class="text-yellow-color">@e.Name</span>
+                    </h4>
+                    
+                    
+
+                    <div class="card-text">
+                        Description: <span class="text-custom-color">@e.Description</span>
+                    </div>
+                    <br />
+                    <div class="card-text">
+                        Habitat Name: <span class="text-custom-color">@e.HabitatName</span>
+                    </div>
+                    <br />
+                    <div class="card-text">
+                        Fish Bait: <span class="text-custom-color">@e.FishBait</span>
+                    </div>
+                    <br />
                     @if (User.IsInRole(AdminRole) || User.IsInRole(GlobalAdminRole))
                     {
                         <a asp-controller="Species" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-1 ">Edit</a>
