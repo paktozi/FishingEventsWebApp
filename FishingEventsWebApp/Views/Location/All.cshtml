@@ -41,9 +41,18 @@
                
                 <a asp-controller="Weather" asp-action="Index" asp-route-locationName="@e.Name" class="btn btn-info mb-2 w-50 p-1 " style="margin:5px;margin-left:25%;">Check Weather</a>
                 <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">@e.Name</h5>
-                    <p class="card-text">Elevation: @e.Elevation m</p>
-                    <p class="card-text">Fishing Type: @e.FishingType</p>
+                 
+                    <h4 class="card-title">
+                        <span class="text-yellow-color">@e.Name</span>
+                    </h4>
+                    
+                    <div class="card-text">
+                        Elevation: <span class="text-custom-color">@e.Elevation m</span>
+                    </div>
+                    <div class="card-text">
+                        Fishing Type: <span class="text-custom-color">@e.FishingType</span>
+                    </div>
+                    <br />
 
                     @if (User.IsInRole(AdminRole) || User.IsInRole(GlobalAdminRole))
                     {
