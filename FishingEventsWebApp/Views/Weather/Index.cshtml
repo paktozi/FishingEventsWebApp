@@ -43,7 +43,7 @@
 
 @foreach (var d in Model.Days.Take(7))
 {
-    <div style="display:inline-block;margin:1rem;">
+    <div class="weather-days-forecast">
 
         <p >@d.DateTime.ToString("ddd dd.MM") <img src="~/img/weathericons/@($"{d.Icon}.svg")" alt="Weather Icon" class="weather-icon-normal" /></p>
         <p class="weather-condition-custom ">@d.Conditions</p>

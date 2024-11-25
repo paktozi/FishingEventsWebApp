@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FishingEventsApp.Infrastructure
 {
-    public class FishingEventsDbContext : IdentityDbContext<ApplicationUser/*, IdentityRole, string*/>
+    public class FishingEventsDbContext : IdentityDbContext<ApplicationUser>
     {
         public FishingEventsDbContext(DbContextOptions<FishingEventsDbContext> options)
             : base(options)

@@ -9,13 +9,9 @@ namespace FishingEvents.Infrastructure.Data.Models.WeatherModels
     public class Days
     {
         public DateTime DateTime { get; set; }
-
         public string Conditions { get; set; } = string.Empty;
-
         public string Icon { get; set; } = string.Empty;
-
         public double TempMin { get; set; }
-
         public double TempMax { get; set; }
     }
 }

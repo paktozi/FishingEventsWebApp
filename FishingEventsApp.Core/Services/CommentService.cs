@@ -3,9 +3,7 @@ using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.CommentModels;
 using FishingEventsApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using System.Text.RegularExpressions;
 using static FishingEventsApp.Common.ValidationConstants;
-
 
 
 namespace FishingEventsApp.Core.Services

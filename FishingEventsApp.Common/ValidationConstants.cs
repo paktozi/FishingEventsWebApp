@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace FishingEventsApp.Common
+﻿namespace FishingEventsApp.Common
 {
     public static class ValidationConstants
     {
