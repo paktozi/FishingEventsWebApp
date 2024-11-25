@@ -14,7 +14,7 @@ When a user is deleted, his comments, fishing catches, role (if an administrator
 To use the weather forecast, you need to register at: https://www.visualcrossing.com/ to get an API key, which you need to enter in the "GetWeatherAsync" action in the "WeatherService" class.
 
 
-Login: user1@abv.bg user2@abv.bg, user3@abv.bg, user4@abv.bg, user5@abv.bg with Pass:qazwsx
+Login: user1@abv.bg , user2@abv.bg , user3@abv.bg , user4@abv.bg , user5@abv.bg with Pass:qazwsx
 
 Login: admin@abv.bg Pass:qazwsx
 
