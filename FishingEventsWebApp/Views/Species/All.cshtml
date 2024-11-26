@@ -8,7 +8,7 @@
 {
     <form asp-controller="Species" asp-action="All" method="get" class="form-inline">
         <input type="text" name="specieName" class="form-control mr-2 input-field-30" placeholder="Enter Specie name" required />
-        <button type="submit" class="btn custom-btn-green" style="margin:6px">Search Specie by Name</button>
+        <button type="submit" class="btn custom-btn-green" style="margin:6px"><i class="fa-solid fa-magnifying-glass"></i> Search Specie by Name</button>
     </form>
 }
 
@@ -55,8 +55,8 @@
                     <br />
                     @if (User.IsInRole(AdminRole) || User.IsInRole(GlobalAdminRole))
                     {
-                        <a asp-controller="Species" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-1 fas fa-pencil ">Edit</a>
-                        <a asp-controller="Species" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger mb-2 w-100 p-1 fas fa-trash ">Delete</a>
+                        <a asp-controller="Species" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-1  "><i class="fa fa-pen"></i> Edit</a>
+                        <a asp-controller="Species" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger mb-2 w-100 p-1  "><i class="fa fa-trash"></i> Delete</a>
                     }
                 </div>
             </div>
@@ -64,5 +64,7 @@
     }
 </div>
 <div>
-    <a asp-controller="FishingEvent" asp-action="All" class="btn btn-warning mb-2 w-20 p-1 ">Back to all Events</a>
+    <a asp-controller="FishingEvent" asp-action="All" class="btn btn-warning mb-2 w-20 p-1 "><i class="fa-solid fa-rotate-left"></i> Back to all Events</a>
 </div>
+
+

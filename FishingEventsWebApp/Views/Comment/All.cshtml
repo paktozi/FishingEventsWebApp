@@ -25,8 +25,8 @@ else
                         @if (c.IsAuthor || User.IsInRole(AdminRole) || User.IsInRole(GlobalAdminRole))
                         {
                             <div class="d-flex justify-content-start align-items-start gap-2">
-                                <a asp-controller="Comment" asp-action="Edit" asp-route-commentId="@c.Id" asp-route-eventId="@c.FishingEventId" asp-route-authorId="@c.AuthorId" class="btn btn-warning w-20 p-1">Edit</a>
-                                <a asp-controller="Comment" asp-action="Delete" asp-route-commentId="@c.Id" asp-route-eventId="@c.FishingEventId" class="btn btn-danger w-20 p-1">Delete</a>
+                                <a asp-controller="Comment" asp-action="Edit" asp-route-commentId="@c.Id" asp-route-eventId="@c.FishingEventId" asp-route-authorId="@c.AuthorId" class="btn btn-warning w-20 p-1"><i class="fa fa-pen"></i> Edit</a>
+                                <a asp-controller="Comment" asp-action="Delete" asp-route-commentId="@c.Id" asp-route-eventId="@c.FishingEventId" class="btn btn-danger w-20 p-1"><i class="fa fa-trash"></i> Delete</a>
                             </div>
                         }
                     </div>
@@ -39,11 +39,11 @@ else
 <br />
 
 <div class="text-start">
-    <a asp-controller="Comment" asp-action="Add" asp-route-id="@int.Parse( TempData["eventId"].ToString())" class="btn btn-info  w-20 p-1">Add New Comment</a>
+    <a asp-controller="Comment" asp-action="Add" asp-route-id="@int.Parse( TempData["eventId"].ToString())" class="btn btn-info  w-20 p-1"><i class="fa-solid fa-comment-medical"></i> Add New Comment</a>
 </div>
 
 <br />
 
 <div>
-    <a asp-controller="FishingEvent" asp-action="All" class="btn btn-warning w-20 p-1">Back to all events</a>
+    <a asp-controller="FishingEvent" asp-action="All" class="btn btn-warning w-20 p-1"><i class="fa-solid fa-rotate-left"></i> Back to all events</a>
 </div>

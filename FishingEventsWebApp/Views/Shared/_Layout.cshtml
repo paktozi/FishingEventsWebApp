@@ -25,19 +25,19 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Menu...
+                            <img src="~/img/Icons/menu.png" class="icon-black">   Menu...
                         </button>
                         <ul class="dropdown-menu">
-                            <li> <a class="nav-link text-white " asp-area="" asp-controller="Home" asp-action="Index">Home  <img src="~/img/Icons/home42.png" /></a></li>
-                            <li><a class="nav-link text-white " asp-area="" asp-controller="FishingEvent" asp-action="All">All Events  <img src="~/img/Icons/fisherman42.png" /></a></li>
-                            <li><a class="nav-link text-white" asp-area="" asp-controller="FishingEvent" asp-action="Add">Add Event   <img src="~/img/Icons/lake552.png" /></a></a></li>
-                            <li> <a class="nav-link text-white" asp-area="" asp-controller="Location" asp-action="All">All Locations   <img src="~/img/Icons/location44.png" /></a></li>
-                            <li><a class="nav-link text-white" asp-area="" asp-controller="Species" asp-action="All">All Species   <img src="~/img/Icons/fish42.png" /></a></li>
-                            <li><a class="nav-link text-white" asp-area="" asp-controller="ApplicationUser" asp-action="All">All Users   <img src="~/img/Icons/user42.png" /></a></li>
-                            <li><a class="nav-link text-white" asp-area="" asp-controller="LeaderBoard" asp-action="GeneralLeaderBoard"> General LeaderBoard  <img src="~/img/Icons/leaderboard42.png" /> </a></li>
+                            <li> <a class="nav-link text-white " asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/Icons/home.png" class="icon-black"> Home </a></li>
+                            <li><a class="nav-link text-white " asp-area="" asp-controller="FishingEvent" asp-action="All"><img src="~/img/Icons/h.png" class="icon-black"> All Events  </a></li>
+                            <li><a class="nav-link text-white" asp-area="" asp-controller="FishingEvent" asp-action="Add"><img src="~/img/Icons/addevent.png" class="icon-black"> Add Event  </a></li>
+                            <li> <a class="nav-link text-white" asp-area="" asp-controller="Location" asp-action="All"><img src="~/img/Icons/location1.png" class="icon-black"> All Locations  </a></li>
+                            <li><a class="nav-link text-white" asp-area="" asp-controller="Species" asp-action="All"><img src="~/img/Icons/fish.png" class="icon-black"> All Species </a></li>
+                            <li><a class="nav-link text-white" asp-area="" asp-controller="ApplicationUser" asp-action="All"><img src="~/img/Icons/user.png" class="icon-black"> All Users  </a></li>
+                            <li><a class="nav-link text-white" asp-area="" asp-controller="LeaderBoard" asp-action="GeneralLeaderBoard"><img src="~/img/Icons/leader.png" class="icon-black"> General LeaderBoard     </a></li>
                             @if (User.IsInRole(GlobalAdminRole))
                             {
-                                <li><a class="nav-link text-white" asp-area="" asp-controller="UserRole" asp-action="Index"> Add/Remove Role to Users  <img src="~/img/Icons/admin42.png" /> </a></li>                           
+                                <li><a class="nav-link text-white" asp-area="" asp-controller="UserRole" asp-action="Index"><img src="~/img/Icons/admin.png" class="icon-black"> Add/Remove Role to Users    </a></li>
                             }
                         </ul>
                     </div>

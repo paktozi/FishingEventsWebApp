@@ -4,8 +4,16 @@ document.addEventListener('DOMContentLoaded', function () {
     bubbleContainer.className = 'bubble-container';
     document.body.appendChild(bubbleContainer);
 
+    // Max bubbles limit
+    const maxBubbles = 50; // Adjust to your preference
+
     // Function to create a bubble
     function createBubble() {
+        if (bubbleContainer.childElementCount >= maxBubbles) {
+            // If bubbles exceed maxBubbles, remove the oldest one
+            bubbleContainer.removeChild(bubbleContainer.firstChild);
+        }
+
         const bubble = document.createElement('div');
         bubble.className = 'bubble';
 

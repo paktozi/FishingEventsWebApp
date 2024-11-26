@@ -6,7 +6,7 @@
 
 <form asp-controller="ApplicationUser" asp-action="All" method="get" class="form-inline">
     <input type="text" name="userName" class="form-control mr-2 input-field-30" placeholder="Enter User name" required />
-    <button type="submit" class="btn custom-btn-green" style="margin:6px">Search User by Name</button>
+    <button type="submit" class="btn custom-btn-green" style="margin:6px"><i class="fa-solid fa-magnifying-glass"></i>  Search User by Name</button>
 </form>
 <br />
 
@@ -21,7 +21,7 @@
 
                         <p class="card-text">First Name: @e.FirstName</p>
                         <p class="card-text">Last Name: @e.LastName</p>
-                        <a asp-controller="ApplicationUser" asp-action="Details" asp-route-id="@e.Id" class="btn btn-warning mb-1 w-20 p-1 ">All fish</a>
+                        <a asp-controller="ApplicationUser" asp-action="Details" asp-route-id="@e.Id" class="btn btn-warning mb-1 w-20 p-1 "><i class="fa-solid fa-fish"></i> All fish</a>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@ else
 }
 
 <div>
-    <button type="button" class="btn btn-warning btn-dark-text mb-1 w-20 py-1 " onclick="history.back()">Back</button>
+    <button type="button" class="btn btn-warning btn-dark-text mb-1 w-20 py-1 " onclick="history.back()"><i class="fa-solid fa-rotate-left"></i> Back</button>
 </div>
 
 

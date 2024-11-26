@@ -26,25 +26,25 @@
                     {
                         <form method="post" asp-action="RemoveAdminRole" asp-route-userId="@user.UserId" style="display:inline">
                             @Html.AntiForgeryToken()
-                            <button class="btn btn-danger mb-1 w-20 p-1" type="submit">Remove Admin</button>
+                            <button class="btn btn-danger mb-1 w-20 p-1" type="submit"><i class="fa-solid fa-user-minus"></i>  Remove Admin</button>
                         </form>
                     }
                     else
                     {
                         <form method="post" asp-action="AddAdminRole" asp-route-userId="@user.UserId" style="display:inline">
                             @Html.AntiForgeryToken()
-                            <button class="btn btn-success mb-1 w-20 p-1" type="submit">Add Admin</button>
+                            <button class="btn btn-success mb-1 w-20 p-1" type="submit"><i class="fa-solid fa-user-plus"></i>  Add Admin</button>
                         </form>
                     }
                 </td>
                 <td>
-                    <a asp-controller="UserRole" asp-action="Delete" asp-route-userId="@user.UserId" class="btn btn-warning mb-1 w-20 p-1 fw-bold">Delete User</a>
+                    <a asp-controller="UserRole" asp-action="Delete" asp-route-userId="@user.UserId" class="btn btn-warning mb-1 w-20 p-1 fw-bold"><i class="fa-solid fa-user-xmark"></i> Delete User</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<a asp-controller="Home" asp-action="Index" class="btn btn-warning mb-2 w-20 p-1 ">Home</a>
+<a asp-controller="Home" asp-action="Index" class="btn btn-warning mb-2 w-20 p-1 "><i class="fa-solid fa-house"></i> Home</a>
 
 @if (TempData["Success"] != null)
 {

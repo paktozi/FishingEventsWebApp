@@ -5,7 +5,7 @@
 {
     <form asp-controller="Location" asp-action="All" method="get" class="form-inline">
         <input type="text" name="locationName" class="form-control mr-2 input-field-30" placeholder="Enter Location name" required />
-        <button type="submit" class="btn custom-btn-green" style="margin:6px">Search Location by Name</button>
+        <button type="submit" class="btn custom-btn-green" style="margin:6px"><i class="fa-solid fa-magnifying-glass"></i> Search Location by Name</button>
     </form>
 }
 
@@ -38,8 +38,8 @@
                 {
                     <img src="~/img/no-image.jpg" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="No Image Available">
                 }
-               
-                <a asp-controller="Weather" asp-action="Index" asp-route-locationName="@e.Name" class="btn btn-info mb-2 w-50 p-1 " style="margin:5px;margin-left:25%;">Check Weather</a>
+
+                <a asp-controller="Weather" asp-action="Index" asp-route-locationName="@e.Name" class="btn btn-info mb-2 w-50 p-1 " style="margin:5px;margin-left:25%;"><i class="fa-solid fa-cloud-sun"></i> Check Weather</a>
                 <div class="card-body d-flex flex-column">
                  
                     <h4 class="card-title">
@@ -56,9 +56,9 @@
 
                     @if (User.IsInRole(AdminRole) || User.IsInRole(GlobalAdminRole))
                     {
-                     
-                        <a asp-controller="Location" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-20 p-1">Edit</a>
-                        <a asp-controller="Location" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger mb-2 w-20 p-1">Delete</a>
+
+                        <a asp-controller="Location" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-20 p-1"><i class="fa fa-pen"></i> Edit</a>
+                        <a asp-controller="Location" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger mb-2 w-20 p-1"><i class="fa fa-trash"></i>  Delete</a>
                       
                     }
                 </div>
@@ -67,5 +67,5 @@
     }
 </div>
 <div>
-    <a asp-controller="FishingEvent" asp-action="All" class="btn btn-warning mb-2 w-20 p-1">Back to all Events</a>
+    <a asp-controller="FishingEvent" asp-action="All" class="btn btn-warning mb-2 w-20 p-1"><i class="fa-solid fa-rotate-left"></i> Back to all Events</a>
 </div>

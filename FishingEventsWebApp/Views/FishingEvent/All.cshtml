@@ -8,7 +8,7 @@
     {
         <form asp-controller="FishingEvent" asp-action="All" method="get" class="form-inline">
             <input type="text" name="eventName" class="form-control mr-2 input-field" style="width:40%" placeholder="Enter event name" required />
-            <button type="submit" class="btn custom-btn-green" style="margin:6px">Search Event by Name</button>
+            <button type="submit" class="btn custom-btn-green" style="margin:6px"><i class="fa-solid fa-magnifying-glass"></i> Search Event by Name</button>
         </form>
     }
 }
@@ -54,12 +54,12 @@
 
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <a asp-controller="FishingEvent" asp-action="Details" asp-route-id="@e.Id" class="btn btn-info mb-2 w-100 p-1 ">Details</a>
+                        <a asp-controller="FishingEvent" asp-action="Details" asp-route-id="@e.Id" class="btn btn-info mb-2 w-100 p-1 "><i class="fa fa-circle-info"></i> Details</a>
 
                         @if (e.IsOrganizer || User.IsInRole(AdminRole) || User.IsInRole(GlobalAdminRole))
                         {
-                            <a asp-controller="FishingEvent" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-1 ">Edit</a>
-                            <a asp-controller="FishingEvent" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger w-100 ">Delete</a>                        
+                            <a asp-controller="FishingEvent" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-1 "><i class="fa fa-pen"></i> Edit</a>
+                            <a asp-controller="FishingEvent" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger w-100 "><i class="fa fa-trash"></i> Delete</a>
 
                             // Don't show "Join" or "Leave" buttons if the user is an admin
                             if (!User.IsInRole(AdminRole) && !User.IsInRole(GlobalAdminRole))
@@ -107,5 +107,8 @@
 
 
 <div>
-    <a asp-controller="FishingEvent" asp-action="All" class="btn btn-warning mb-2 w-20 p-1 ">Back</a>
+    <a asp-controller="FishingEvent" asp-action="All" class="btn btn-warning mb-2 w-20 p-1 "><i class="fa-solid fa-rotate-left"></i> Back</a>
 </div>
+
+
+
