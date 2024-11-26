@@ -25,8 +25,8 @@ else
                         @if (c.IsAuthor || User.IsInRole(AdminRole) || User.IsInRole(GlobalAdminRole))
                         {
                             <div class="d-flex justify-content-start align-items-start gap-2">
-                                <a asp-controller="Comment" asp-action="Edit" asp-route-commentId="@c.Id" asp-route-eventId="@c.FishingEventId" asp-route-authorId="@c.AuthorId" class="btn btn-warning w-20 p-1"><i class="fa fa-pen"></i> Edit</a>
-                                <a asp-controller="Comment" asp-action="Delete" asp-route-commentId="@c.Id" asp-route-eventId="@c.FishingEventId" class="btn btn-danger w-20 p-1"><i class="fa fa-trash"></i> Delete</a>
+                                <a asp-controller="Comment" asp-action="Edit" asp-route-commentId="@c.Id" asp-route-eventId="@c.FishingEventId" asp-route-authorId="@c.AuthorId" class="btn btn-outline-warning w-20 p-1"><i class="fa fa-pen"></i> Edit</a>
+                                <a asp-controller="Comment" asp-action="Delete" asp-route-commentId="@c.Id" asp-route-eventId="@c.FishingEventId" class="btn btn-outline-danger w-20 p-1"><i class="fa fa-trash"></i> Delete</a>
                             </div>
                         }
                     </div>

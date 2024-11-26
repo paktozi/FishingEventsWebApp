@@ -52,7 +52,7 @@ namespace FishingEventsWebApp.Controllers
         [AdminAuthorize]
         public async Task<IActionResult> Edit(string userId, int eventId, int id)
         {
-            string currentUserId = GetUserId();
+            string? currentUserId = GetUserId();
 
             if (userId != currentUserId)      //  if the user is an admin, he cannot edit fish to himself
             {
@@ -60,7 +60,7 @@ namespace FishingEventsWebApp.Controllers
                 model.ListSpecies = await service.GetListSpeciesAsync();
                 if (model == null)
                 {
-                    return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                    return PageNotFoundError();
                 }
                 return View(model);
             }
@@ -82,7 +82,7 @@ namespace FishingEventsWebApp.Controllers
 
             if (fishCaught == null)
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
             await service.EditCaughtAsync(model, fishCaught);
             return RedirectToAction(nameof(FishingEventController.AllEventParticipants), "FishingEvent", new { id = fishCaught.FishingEventId });
@@ -96,7 +96,7 @@ namespace FishingEventsWebApp.Controllers
 
             if (model == null)
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
 
             FishCaughtDeleteModel modelToDelete = new FishCaughtDeleteModel()
@@ -119,11 +119,13 @@ namespace FishingEventsWebApp.Controllers
             {
                 return View(modelToDelete);
             }
+
             var entity = await service.FindCaughtAsync(id);
             var fishingEventId = entity.FishingEventId;
+
             if (entity == null)
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
             await service.DeleteCaughtAsync(entity);
             return RedirectToAction(nameof(FishingEventController.AllEventParticipants), "FishingEvent", new { id = fishingEventId });

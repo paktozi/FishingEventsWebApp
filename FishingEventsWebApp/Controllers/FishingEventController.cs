@@ -47,9 +47,9 @@ namespace FishingEventsWebApp.Controllers
         public async Task<IActionResult> Join(int id)
         {
             FishingEvent fishEvent = await service.FindEventAsync(id);
-            if (fishEvent == null || User.IsInRole(AdminRole) || User.IsInRole(GlobalAdminRole))
+            if (fishEvent == null || IsAdminOrGlobalAdmin())
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
             string? userId = GetUserId();
             await service.JoinEventAsync(id, userId);
@@ -60,11 +60,13 @@ namespace FishingEventsWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Leave(int id)
         {
-            var model = await service.FindEventAsync(id);
-            if (model == null || User.IsInRole(AdminRole) || User.IsInRole(GlobalAdminRole))
+            FishingEvent model = await service.FindEventAsync(id);
+
+            if (model == null || IsAdminOrGlobalAdmin())
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
+
             var userId = GetUserId();
             await service.LeaveAsync(model, userId);
 
@@ -79,12 +81,11 @@ namespace FishingEventsWebApp.Controllers
 
             if (model == null)
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
-
+                return PageNotFoundError();
             }
-            if (model.OrganizerId != userId && !User.IsInRole(AdminRole) && !User.IsInRole(GlobalAdminRole))
+            if (model.OrganizerId != userId && !IsAdminOrGlobalAdmin())
             {
-                return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
+                return UnauthorizedError();
             }
             return View(model);
         }
@@ -102,13 +103,14 @@ namespace FishingEventsWebApp.Controllers
 
             if (fishEvent == null)
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
+
             string? userId = GetUserId();
 
-            if (fishEvent.OrganizerId != userId && !User.IsInRole(AdminRole) && !User.IsInRole(GlobalAdminRole))
+            if (fishEvent.OrganizerId != userId && !IsAdminOrGlobalAdmin())
             {
-                return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
+                return UnauthorizedError();
             }
 
             await service.EditEventAsync(model, fishEvent);
@@ -119,15 +121,15 @@ namespace FishingEventsWebApp.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var model = await service.FindEventAsync(id);
-            string userId = GetUserId();
+            string? userId = GetUserId();
 
             if (model == null)
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
-            if (model.OrganizerId != userId && !User.IsInRole(AdminRole) && !User.IsInRole(GlobalAdminRole))
+            if (model.OrganizerId != userId && !IsAdminOrGlobalAdmin())
             {
-                return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
+                return UnauthorizedError();
             }
 
             FishingEventDeleteModel modelToDelete = new FishingEventDeleteModel()
@@ -148,9 +150,10 @@ namespace FishingEventsWebApp.Controllers
             }
 
             var entity = await service.FindEventAsync(id);
+
             if (entity == null)
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
             await service.DeleteEventAsync(entity);
             return RedirectToAction(nameof(All));
@@ -161,10 +164,12 @@ namespace FishingEventsWebApp.Controllers
         {
             string? userId = GetUserId();
             FishingEventDetailModel model = await service.GetEventDetailsAsync(id, userId);
+
             if (model == null)
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
+
             return View(model);
         }
 

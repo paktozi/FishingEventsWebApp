@@ -16,9 +16,9 @@
         background-image: url('../img/bass780x840.jpg') !important;
         background-attachment: fixed !important;
         background-repeat: no-repeat !important;
-        background-size: cover !important;
-        background-position: center !important;
-        color: rgb(104, 186, 181);
+        background-size:cover !important;
+        background-position:center!important;
+        color: rgb(104, 186, 181);     
     }
 
     .navbar {
@@ -246,6 +246,10 @@ body {
     color: greenyellow;
     box-shadow: 5px 5px 10px black;
 }
+.card-image {
+    max-height: 150px;
+    object-fit: contain;
+}
 
 
 .transparent-card {
@@ -329,7 +333,7 @@ body {
 
 .bubble-container {
     position: absolute; /* Positions the container relative to the closest positioned ancestor */
-    width: 75%; /* Sets the width of the container to 75% of the viewport width */
+    width:70%; /* Sets the width of the container to 75% of the viewport width */
     height: 100%; /* Sets the container height to the full height of the viewport */
     overflow: hidden; /* Hides any content that exceeds the container’s bounds */
     top: 0; /* Aligns the top edge of the container to the top of the viewport */

@@ -57,11 +57,11 @@ namespace FishingEventsWebApp.Controllers
 
             if (model == null)
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
             if (!User.IsInRole(GlobalAdminRole))
             {
-                return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
+                return UnauthorizedError();
             }
 
             ApplicationUserDeleteModel userToDelete = new ApplicationUserDeleteModel()
@@ -86,7 +86,7 @@ namespace FishingEventsWebApp.Controllers
 
             if (entity == null)
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
             string? globalAdminId = GetUserId();
             await userRoleService.DeleteUserAsync(entity, userId, globalAdminId);

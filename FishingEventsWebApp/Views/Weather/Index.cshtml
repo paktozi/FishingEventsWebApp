@@ -8,37 +8,37 @@
 }
 
 <div class="text-lg-center transparent-card-weather align-content-center mx-auto">
-   <div >
+    <div>
         <h3 class="text-center text-custom-color">@Model.ResolvedAddress  <img src="~/img/weathericons/@($"{Model.Conditions.Icon}.svg")" alt="Weather Icon" class="weather-icon-big" /></h3>
         <div class="card-text">
             Current Condition: <span class="text-custom-color">@Model.Conditions.Conditions</span>
-        </div>                                      
+        </div>
     </div>
     <hr />
 
     <div class="card-text weather-list">
         Last Update: <span class="text-custom-color">@Model.Conditions.DateTime</span>
     </div>
-   
+
     <div class="card-text weather-list">
         Temperature: <span class="text-custom-color"> @Model.Conditions.Temp °C</span>
     </div>
-    
+
     <div class="card-text weather-list">
         Humidity: <span class="text-custom-color">  @Model.Conditions.Humidity %</span>
     </div>
-  
+
     <div class="card-text weather-list">
         Pressure: <span class="text-custom-color">  @Model.Conditions.Pressure hPa</span>
     </div>
-  
+
     <div class="card-text weather-list">
         Cloud cover: <span class="text-custom-color">   @Model.Conditions.Cloudcover %</span>
     </div>
- 
+
     <div class="card-text weather-list">
         Precipitation: <span class="text-custom-color">   @Model.Conditions.Precip  mm</span>
-    </div>  
+    </div>
     <br />
     <div class="card-text weather-list">
         UvIndex: <span class="text-custom-color">   @Model.Conditions.UvIndex</span>
@@ -55,7 +55,7 @@
     <div class="card-text weather-list">
         Sunset: <span class="text-custom-color"> @Model.Conditions.Sunset h</span>
     </div>
-   
+
     @foreach (var a in Model.Alerts)
     {
         <h3 class="text-danger">Alerts:</h3>
@@ -75,7 +75,7 @@
 {
     <div class="weather-days-forecast">
 
-        <p >@d.DateTime.ToString("ddd dd.MM") <img src="~/img/weathericons/@($"{d.Icon}.svg")" alt="Weather Icon" class="weather-icon-normal" /></p>
+        <p>@d.DateTime.ToString("ddd dd.MM") <img src="~/img/weathericons/@($"{d.Icon}.svg")" alt="Weather Icon" class="weather-icon-normal" /></p>
         <p class="weather-condition-custom ">@d.Conditions</p>
         <p style="color:deepskyblue"> Min: @d.TempMin°C</p>
         <p style="color:indianred;">Max: @d.TempMax°C</p>

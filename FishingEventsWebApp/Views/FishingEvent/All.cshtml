@@ -1,4 +1,4 @@
-﻿﻿
+﻿
 @model ICollection< FishingEventALLModel>
 
 <h3 class="text-center">Events List</h3>
@@ -7,12 +7,13 @@
     if (User.Identity.IsAuthenticated)
     {
         <form asp-controller="FishingEvent" asp-action="All" method="get" class="form-inline">
-            <input type="text" name="eventName" class="form-control mr-2 input-field" style="width:40%" placeholder="Enter event name" required />
+            <input type="text" name="eventName" class="form-control mr-2 input-field-30" placeholder="Enter event name" required />
             <button type="submit" class="btn custom-btn-green" style="margin:6px"><i class="fa-solid fa-magnifying-glass"></i> Search Event by Name</button>
         </form>
-    }
+    }         
 }
 <br />
+
 
 <div class="row text-center">
 
@@ -23,12 +24,12 @@
 
                 @if (!string.IsNullOrEmpty(e.EventImageUrl))
                 {
-                    <img src="@e.EventImageUrl" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="@e.EventName">
+                    <img src="@e.EventImageUrl" class="card-img-top card-image" alt="@e.EventName">
                     <p class="text-custom-danger">@(e.IsOrganizer ? "My Event" : "")</p>
                 }
                 else
                 {
-                    <img src="~/img/no-image.jpg" class="card-img-top" style="max-height: 150px; object-fit: contain;" alt="No Image Available">
+                    <img src="~/img/no-image.jpg" class="card-img-top card-image" alt="No Image Available">
                     <p class="text-custom-danger">@(e.IsOrganizer ? "My Event" : "")</p>
                 }
                 <div class="card-body d-flex flex-column">
@@ -54,12 +55,12 @@
 
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <a asp-controller="FishingEvent" asp-action="Details" asp-route-id="@e.Id" class="btn btn-info mb-2 w-100 p-1 "><i class="fa fa-circle-info"></i> Details</a>
+                        <a asp-controller="FishingEvent" asp-action="Details" asp-route-id="@e.Id" class="btn btn-outline-info mb-2 w-100 p-1 "><i class="fa fa-circle-info"></i> Details</a>
 
                         @if (e.IsOrganizer || User.IsInRole(AdminRole) || User.IsInRole(GlobalAdminRole))
                         {
-                            <a asp-controller="FishingEvent" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-1 "><i class="fa fa-pen"></i> Edit</a>
-                            <a asp-controller="FishingEvent" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger w-100 "><i class="fa fa-trash"></i> Delete</a>
+                            <a asp-controller="FishingEvent" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-outline-warning mb-2 w-100 p-1 "><i class="fa fa-pen"></i> Edit</a>
+                            <a asp-controller="FishingEvent" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-outline-danger w-100 "><i class="fa fa-trash"></i> Delete</a>
 
                             // Don't show "Join" or "Leave" buttons if the user is an admin
                             if (!User.IsInRole(AdminRole) && !User.IsInRole(GlobalAdminRole))
@@ -67,13 +68,13 @@
                                 if (!e.IsJoined)
                                 {
                                     <form class="input-group-sm" asp-controller="FishingEvent" asp-action="Join" asp-route-id="@e.Id">
-                                        <input type="submit" value="Join the Event" class="fs-6 btn btn-success mb-3 w-50 p-1 fw-bold " />
+                                        <input type="submit" value="Join to my Event" class="btn btn-success mb-1 w-100 p-1 mt-1"/>
                                     </form>
                                 }
                                 else
                                 {
                                     <form class="input-group-sm" asp-controller="FishingEvent" asp-action="Leave" asp-route-id="@e.Id">
-                                        <input type="submit" value="Leave the Event" class="fs-6 btn btn-warning mb-3 w-50 p-1 fw-bold" />
+                                        <input type="submit" value="Leave from my Event" class="btn btn-danger mb-1 w-100 p-1 mt-1"/>
                                     </form>
                                 }
                             }
@@ -92,7 +93,7 @@
                                 else // If the user has joined the event, show the Leave button
                                 {
                                     <form class="input-group-sm" asp-controller="FishingEvent" asp-action="Leave" asp-route-id="@e.Id">
-                                        <input type="submit" value="Leave the Event" class="fs-6 btn btn-danger mb-2 w-100 p-1 " />
+                                        <input type="submit" value="Leave the Event" class="fs-6 btn btn-danger mb-2 w-100 p-1" />
                                     </form>
                                 }
                             }

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FishingEventsWebApp.Controllers
 {
     [Authorize]
-    public class SpeciesController(ISpeciesService service) : Controller
+    public class SpeciesController(ISpeciesService service) : BaseController
     {
         [HttpGet]
         public async Task<IActionResult> All(string? specieName)
@@ -64,7 +64,7 @@ namespace FishingEventsWebApp.Controllers
 
             if (speciesToEdit == null)
             {
-                return RedirectToAction(nameof(All));
+                return PageNotFoundError();
             }
 
             await service.EditSpeciesAsync(model, speciesToEdit);
@@ -78,7 +78,7 @@ namespace FishingEventsWebApp.Controllers
             var model = await service.FindSpeciesAsync(id);
             if (model == null)
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
             SpeciesDeleteModel modelToDelete = new SpeciesDeleteModel()
             {
@@ -102,7 +102,7 @@ namespace FishingEventsWebApp.Controllers
 
             if (modelToDelete == null)
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
             await service.DeleteFishAsync(modelToDelete);
             return RedirectToAction(nameof(All));

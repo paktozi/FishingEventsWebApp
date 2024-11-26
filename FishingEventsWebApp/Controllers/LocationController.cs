@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FishingEventsWebApp.Controllers
 {
     [Authorize]
-    public class LocationController(ILocationService service) : Controller
+    public class LocationController(ILocationService service) : BaseController
     {
         [HttpGet]
         public async Task<IActionResult> All(string? locationName)
@@ -65,7 +65,7 @@ namespace FishingEventsWebApp.Controllers
             Location locationToEdit = await service.FindLocationAsync(id);
             if (locationToEdit == null)
             {
-                return RedirectToAction(nameof(All));
+                return PageNotFoundError();
             }
 
             await service.EditLocationAsync(model, locationToEdit);
@@ -79,7 +79,7 @@ namespace FishingEventsWebApp.Controllers
             var model = await service.FindLocationAsync(id);
             if (model == null)
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
             LocationDeleteModel modelToDelete = new LocationDeleteModel()
             {
@@ -102,7 +102,7 @@ namespace FishingEventsWebApp.Controllers
             var entity = await service.FindLocationAsync(id);
             if (entity == null)
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
             await service.DeleteLocationAsync(entity);
             return RedirectToAction(nameof(All));

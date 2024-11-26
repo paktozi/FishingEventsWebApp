@@ -3,7 +3,6 @@ using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.CommentModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using static FishingEventsApp.Common.ValidationConstants;
 
 namespace FishingEventsWebApp.Controllers
 {
@@ -45,16 +44,16 @@ namespace FishingEventsWebApp.Controllers
         {
             string? currentUserId = GetUserId();
 
-            if (authorId != currentUserId && !User.IsInRole(AdminRole) && !User.IsInRole(GlobalAdminRole))
+            if (authorId != currentUserId && !IsAdminOrGlobalAdmin())
             {
-                return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
+                return UnauthorizedError();
             }
 
             CommentEditModel model = await service.GetCommentToEdit(commentId);
 
             if (model == null)
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
 
             return View(model);
@@ -72,7 +71,7 @@ namespace FishingEventsWebApp.Controllers
             Comment comment = await service.FindCommentAsync(Id);
             if (comment == null)
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
             await service.EditCommentAsync(model, comment);
             return RedirectToAction(nameof(All), new { id = comment.FishingEventId });
@@ -87,11 +86,11 @@ namespace FishingEventsWebApp.Controllers
 
             if (model == null)
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
-            if (model.AuthorId != userId && !User.IsInRole(AdminRole) && !User.IsInRole(GlobalAdminRole))
+            if (model.AuthorId != userId && !IsAdminOrGlobalAdmin())
             {
-                return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
+                return UnauthorizedError();
             }
 
             CommentDeleteModel modelToDelete = new CommentDeleteModel()
@@ -116,7 +115,7 @@ namespace FishingEventsWebApp.Controllers
 
             if (entity == null)
             {
-                return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+                return PageNotFoundError();
             }
 
             await service.DeleteCommentAsync(entity);
