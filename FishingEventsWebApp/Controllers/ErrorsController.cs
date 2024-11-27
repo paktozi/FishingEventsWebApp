@@ -5,27 +5,15 @@ namespace FishingEventsWebApp.Controllers
     public class ErrorsController : Controller
     {
         [Route("Errors/PageNotFound")]
-        public IActionResult PageNotFound()
-        {
-            return View();
-        }
+        public IActionResult PageNotFound() => View();
 
         [Route("Errors/ServerError")]
-        public IActionResult ServerError()
-        {
-            return View();
-        }
+        public IActionResult ServerError() => View();
 
         [Route("Errors/Unauthorized")]
-        public IActionResult Unauthorized()
-        {
-            return View();
-        }
+        public IActionResult Unauthorized() => View();
 
         [Route("Errors/DontBeClever")]
-        public IActionResult DontBeClever()
-        {
-            return View();
-        }
+        public IActionResult DontBeClever() => View();
     }
 }

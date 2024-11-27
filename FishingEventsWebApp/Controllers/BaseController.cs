@@ -19,25 +19,12 @@ namespace FishingEventsWebApp.Controllers
             return userId;
         }
 
-        protected bool IsAdminOrGlobalAdmin()
-        {
-            return User.IsInRole(AdminRole) || User.IsInRole(GlobalAdminRole);
-        }
+        protected bool IsAdminOrGlobalAdmin() => User.IsInRole(AdminRole) || User.IsInRole(GlobalAdminRole);
 
+        protected IActionResult PageNotFoundError() => RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
 
-        protected IActionResult PageNotFoundError()
-        {
-            return RedirectToAction(nameof(ErrorsController.PageNotFound), "Errors");
+        protected IActionResult UnauthorizedError() => RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
 
-        }
-        protected IActionResult UnauthorizedError()
-        {
-            return RedirectToAction(nameof(ErrorsController.Unauthorized), "Errors");
-        }
-
-        protected IActionResult ServerError()
-        {
-            return RedirectToAction(nameof(ErrorsController.ServerError), "Errors");
-        }
+        protected IActionResult ServerError() => RedirectToAction(nameof(ErrorsController.ServerError), "Errors");
     }
 }

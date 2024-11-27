@@ -4,12 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FishingEventsWebApp.Controllers
 {
-    public class WeatherController(WeatherService service) : Controller
+    public class WeatherController(WeatherService service) : BaseController
     {
-        public IActionResult SearchLocation()
-        {
-            return View();
-        }
+        public IActionResult SearchLocation() => View();
 
         public async Task<ActionResult> Index(string locationName)
         {
@@ -18,10 +15,9 @@ namespace FishingEventsWebApp.Controllers
                 Weather weatherData = await service.GetWeatherAsync(locationName);
                 return View(weatherData);
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
-                ViewBag.ErrorMessage = "Unable to fetch weather data.";
-                return RedirectToAction(nameof(ErrorsController.ServerError), "Errors");
+                return (ActionResult)ServerError();
             }
         }
     }

@@ -55,7 +55,6 @@ namespace FishingEventsWebApp.Controllers
             {
                 return PageNotFoundError();
             }
-
             return View(model);
         }
 

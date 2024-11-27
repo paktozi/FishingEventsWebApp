@@ -1,6 +1,5 @@
 ﻿@model ICollection< FishingEventAllParticipants>
 
-
 @{
     ViewData["Title"] = "All Participants:";
     var currentUserId = ViewData["CurrentUserId"].ToString();
@@ -20,10 +19,17 @@
 
                         <hr />
                         @foreach (var f in e.FishCaughtsList)
-                        {                          
-                            <p class="card-text">Fish Name: @f.Species</p>
-                            <p class="card-text">Fish Weight: @f.Weight kg</p>
-                            <p class="card-text">Fish Length: @f.Length cm</p>
+                        {
+                            <div class="card-text">
+                                Fish Name: <span class="text-custom-color">@f.Species</span>
+                            </div>
+                            <div class="card-text">
+                                Fish Weight: <span class="text-custom-color">@f.Weight kg</span>
+                            </div>
+                            <div class="card-text">
+                                Fish Length: <span class="text-custom-color">@f.Length cm</span>
+                            </div>
+                            <br />                                                                      
                             @if ((User.IsInRole(AdminRole) || User.IsInRole(GlobalAdminRole)) && currentUserId != e.UserId)
                             {
                                 <a asp-controller="FishCaught" asp-action="Edit" asp-route-userId="@e.UserId" asp-route-eventId="@e.EventId" asp-route-id="@f.Id" class="btn btn-warning mb-2 w-100 p-1"><i class="fa fa-pen"></i> Edit fish caught </a>

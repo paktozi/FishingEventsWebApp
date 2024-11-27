@@ -3,7 +3,6 @@ using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.EventsModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using static FishingEventsApp.Common.ValidationConstants;
 
 
 namespace FishingEventsWebApp.Controllers
@@ -67,7 +66,7 @@ namespace FishingEventsWebApp.Controllers
                 return PageNotFoundError();
             }
 
-            var userId = GetUserId();
+            string? userId = GetUserId();
             await service.LeaveAsync(model, userId);
 
             return RedirectToAction(nameof(All), new { model.EventName });
@@ -120,7 +119,7 @@ namespace FishingEventsWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var model = await service.FindEventAsync(id);
+            FishingEvent model = await service.FindEventAsync(id);
             string? userId = GetUserId();
 
             if (model == null)
@@ -149,7 +148,7 @@ namespace FishingEventsWebApp.Controllers
                 return View(modelToDelete);
             }
 
-            var entity = await service.FindEventAsync(id);
+            FishingEvent entity = await service.FindEventAsync(id);
 
             if (entity == null)
             {

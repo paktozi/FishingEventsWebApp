@@ -36,7 +36,6 @@ namespace Microsoft.Extensions.DependencyInjection
 
             return services;
         }
-
         public static IServiceCollection AddAppServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IFishingEventService, FishingEventService>();
