@@ -5,7 +5,7 @@ namespace FishingEventsApp.Core.Contracts
 {
     public interface IFishingEventService
     {
-        Task<IEnumerable<FishingEventALLModel>> GetAllEventsAsync(string? userId, string? eventName);
+        Task<IEnumerable<FishingEventALLModel>> GetAllEventsAsync(string? userId, string? eventName, string? radioOption);
         Task<ICollection<FishingLocationModel>?> GetLocationListAsync();
         Task AddFishingEventAsync(FishingEventAddModel model, string? userId);
         Task<FishingEvent> FindEventAsync(int id);

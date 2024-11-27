@@ -13,10 +13,10 @@ namespace FishingEventsWebApp.Controllers
     {
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> All(string? eventName)
+        public async Task<IActionResult> All(string? searchValue, string? radioOption)
         {
             string? userId = GetUserId();
-            IEnumerable<FishingEventALLModel> model = await service.GetAllEventsAsync(userId, eventName);
+            IEnumerable<FishingEventALLModel> model = await service.GetAllEventsAsync(userId, searchValue, radioOption);
             return View(model);
         }
 

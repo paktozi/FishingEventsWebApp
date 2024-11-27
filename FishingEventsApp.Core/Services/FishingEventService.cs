@@ -5,21 +5,35 @@ using FishingEventsApp.Core.Models.FishCaughtModels;
 using FishingEventsApp.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Buffers;
 using System.Globalization;
 using static FishingEventsApp.Common.ValidationConstants;
 
 namespace FishingEventsApp.Core.Services
 {
-    public class FishingEventService(FishingEventsDbContext context, UserManager<ApplicationUser> userManager) : IFishingEventService
+    public class FishingEventService(FishingEventsDbContext context) : IFishingEventService
     {
-        public async Task<IEnumerable<FishingEventALLModel>> GetAllEventsAsync(string? userId, string? eventName)
+        public async Task<IEnumerable<FishingEventALLModel>> GetAllEventsAsync(string? userId, string? searchValue, string? radioOption)
         {
             var query = context.FishingEvents
-        .Where(e => e.IsCompleted == false);
+               .Where(e => e.IsCompleted == false);
 
-            if (!string.IsNullOrEmpty(eventName))
+            switch (radioOption)
             {
-                query = query.Where(e => e.EventName.Contains(eventName));
+                case "EventName":
+                    query = query
+                        .Where(e => !string.IsNullOrEmpty(searchValue)
+                            ? e.EventName.Contains(searchValue)
+                            : true);
+                    break;
+
+                case "FishName":
+                    query = query
+                        .Where(e => e.EventParticipants.Any(ep => ep.FishingEvent.FishCaughts
+                            .Any(f => !string.IsNullOrEmpty(searchValue)
+                                ? f.Species.Name.Contains(searchValue)
+                                : true)));
+                    break;
             }
 
             var model = await query
