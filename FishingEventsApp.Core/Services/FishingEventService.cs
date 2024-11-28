@@ -155,7 +155,7 @@ namespace FishingEventsApp.Core.Services
                     StartDate = f.StartDate.ToString(DateFormat),
                     EndDate = f.EndDate.ToString(DateFormat),
                     LocationName = f.Location.Name,
-                    Organizer = f.Organizer.FirstName,
+                    Organizer = $"{f.Organizer.FirstName} {f.Organizer.LastName}",
                     ImageUrl = f.Location.LocationImageUrl ?? string.Empty,
                     FishingType = f.Location.FishingType,
                     UserId = userId
