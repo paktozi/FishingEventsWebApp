@@ -13,12 +13,12 @@ namespace FishingEventsApp.Infrastructure
         {
         }
 
-        public DbSet<FishingEvent> FishingEvents { get; set; } = null!;
-        public DbSet<Location> Locations { get; set; } = null!;
-        public DbSet<Species> Species { get; set; } = null!;
-        public DbSet<FishCaught> FishCaughts { get; set; } = null!;
-        public DbSet<EventParticipant> EventParticipants { get; set; } = null!;
-        public DbSet<Comment> Comments { get; set; } = null!;
+        public virtual DbSet<FishingEvent> FishingEvents { get; set; } = null!;
+        public virtual DbSet<Location> Locations { get; set; } = null!;
+        public virtual DbSet<Species> Species { get; set; } = null!;
+        public virtual DbSet<FishCaught> FishCaughts { get; set; } = null!;
+        public virtual DbSet<EventParticipant> EventParticipants { get; set; } = null!;
+        public virtual DbSet<Comment> Comments { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
