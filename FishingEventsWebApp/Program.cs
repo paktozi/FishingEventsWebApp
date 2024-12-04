@@ -5,7 +5,7 @@ builder.Services.AddAppDataBase(builder.Configuration);
 builder.Services.AddAppIdentity(builder.Configuration);
 builder.Services.AddAppServices(builder.Configuration);
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddMemoryCache();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();

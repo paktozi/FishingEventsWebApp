@@ -53,5 +53,7 @@
 
         public const string RoleAddedSuccessMessage = "Role added successfully.";
         public const string RoleAddedFailMessage = "Failed to add role.";
+
+        public const int CacheExpirationMinutes = 30;
     }
 }
