@@ -1,6 +1,6 @@
 # FishingEventsWebApp
 
-This is an application for fishing events or tournaments.
+This is an application(My final SoftUni project) for fishing events or tournaments.
 Unregistered users can only view events and the general ranking, for the rest they must log in.
 
 Logged in users can create events, edit or delete them if they created them. They can also join other events, post comments about certain events. They have access to all locations and check the forecast and current weather conditions, they can also check the weather in any city. They can view all fish species, all users and their catches.
