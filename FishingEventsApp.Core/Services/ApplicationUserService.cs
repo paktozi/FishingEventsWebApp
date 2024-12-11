@@ -2,7 +2,6 @@
 using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.ApplicationUserModels;
 using FishingEventsApp.Core.Models.FishCaughtModels;
-using FishingEventsApp.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using static FishingEventsApp.Common.ValidationConstants;
@@ -11,7 +10,6 @@ namespace FishingEventsApp.Core.Services
 {
     public class ApplicationUserService(UserManager<ApplicationUser> userManager) : IApplicationUserService
     {
-
         public async Task<ICollection<ApplicationUserAllModel>> GetAllAsync(string? userName)
         {
             var query = userManager.Users.AsQueryable();

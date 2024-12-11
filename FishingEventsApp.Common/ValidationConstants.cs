@@ -21,7 +21,6 @@
         public const int LocationFishingTypeMinLength = 3;
         public const int LocationFishingTypeMaxLength = 50;
 
-
         public const int FishCaughtSpeciesNameMinLength = 3;
         public const double FishCaughtWeightMaxRange = 600;
         public const double FishCaughtLengthMinRange = 0;
@@ -46,6 +45,7 @@
         public const int CommentTextMinLength = 2;
         public const int CommentTextMaxLength = 500;
 
+        public const string UserRole = "User";
         public const string AdminRole = "Admin";
         public const string GlobalAdminRole = "GlobalAdmin";
         public const string RoleRemovedSuccessMessage = "Role removed successfully.";

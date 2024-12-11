@@ -3,9 +3,7 @@ using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.EventsModels;
 using FishingEventsApp.Core.Models.FishCaughtModels;
 using FishingEventsApp.Infrastructure;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Buffers;
 using System.Globalization;
 using static FishingEventsApp.Common.ValidationConstants;
 

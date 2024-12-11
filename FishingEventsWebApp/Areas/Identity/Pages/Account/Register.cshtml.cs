@@ -3,22 +3,10 @@
 #nullable disable
 
 using FishingEvents.Infrastructure.Data.Models;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
 using static FishingEventsApp.Common.ValidationConstants;
 
 namespace FishingEventsWebApp.Areas.Identity.Pages.Account
@@ -31,7 +19,6 @@ namespace FishingEventsWebApp.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
 
-
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
@@ -40,7 +27,6 @@ namespace FishingEventsWebApp.Areas.Identity.Pages.Account
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
-
         }
 
         [BindProperty]

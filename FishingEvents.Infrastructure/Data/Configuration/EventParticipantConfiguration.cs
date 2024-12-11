@@ -33,7 +33,6 @@ namespace FishingEvents.Infrastructure.Data.Configuration
                 FishingEventId=4,  //Catching Big Barracudas
                 UserId="5667e464-5a99-44f1-81cd-6e9022965a07" //TJ Ott
             },
-
         };
 
 

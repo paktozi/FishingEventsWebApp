@@ -1,6 +1,5 @@
 ﻿using FishingEventsApp.Core.Contracts;
 using FishingEventsApp.Core.Models.ApplicationUserModels;
-using FishingEventsWebApp.CustomAttributes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
